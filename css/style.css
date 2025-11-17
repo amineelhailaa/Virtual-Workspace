@@ -1,0 +1,20 @@
+
+/*.rooms_container{*/
+
+/*    width: 100%;*/
+/*    !*background-image: url('../assets/background.jpg');*!*/
+/*    !*background-repeat:no-repeat;*!*/
+/*    !*background-size: cover;*!*/
+/*    aspect-ratio: 16 / 9;*/
+/*    !*background-position: center;*!*/
+/*}*/
+
+/*#profile{*/
+/*    background-image: url("../assets/emptyProfile.jpg");*/
+/*    background-size: cover;*/
+/*}*/
+
+#addForm{
+    scrollbar-width: none;
+}
+

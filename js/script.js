@@ -10,6 +10,12 @@ const experienceContainer = document.getElementById("experienceContainer");
 const addExperience = document.getElementById("btnExper");
 const workerContainer = document.getElementById('workerContainer')
 const roomsContainer = document.getElementById('rooms_container');
+const conferenceContainer =document.getElementById("conferenceC")
+const staffContainer =document.getElementById("personnelC")
+const securityContainer = document.getElementById("securityC")
+const receptionContainer=document.getElementById("receptionC")
+const archiveContainer =document.getElementById("archiveC")
+const itContainer=document.getElementById("serversC")
 const alowedList = document.getElementById("allowedList")
 
 
@@ -115,12 +121,17 @@ function showCards(array,location) {
             location.append(workerCard)
         })
     }
+
     else {
         location.innerHTML=""
-        {
-
-        }
+        array.forEach(mate=>{
+            let roomCard = cardOfRooms(mate)
+            location.append(roomCard)
+        })
     }
+
+
+
 }
 
 
@@ -195,7 +206,7 @@ addExperience.addEventListener('click', () => {
 roomsContainer.addEventListener('click', event => {
 
 
-
+/// part of ajout
     if (event.target.closest(".addHimHere")) {
         const clickedMe = event.target.closest(".addHimHere")
 
@@ -203,24 +214,39 @@ roomsContainer.addEventListener('click', event => {
             filter("receptionist",clickedMe.parentElement.id)
         }
 
-        if ( clickedMe.parentElement.id === "servers" ) {
+        else if ( clickedMe.parentElement.id === "servers" ) {
             filter("technicien",clickedMe.parentElement.id)
         }
-        if ( clickedMe.parentElement.id === "security" ) {
+        else if ( clickedMe.parentElement.id === "security" ) {
             filter("securite",clickedMe.parentElement.id)
         }
-        if ( clickedMe.parentElement.id === "conference"){
+        else if ( clickedMe.parentElement.id === "conference"){
             filter("justGo",clickedMe.parentElement.id)
         }
-        if (clickedMe.parentElement.id === "personnel"){
+        else if (clickedMe.parentElement.id === "personnel"){
             filter("justGo",clickedMe.parentElement.id)
         }
 
-
-        if (clickedMe.parentElement.id === "archive"){
+        else if (clickedMe.parentElement.id === "archive"){
             filter("archive",clickedMe.parentElement.id)
         }
+        else{
+            console.log("there is some error here")
+        }
     }
+
+
+/// part of delete
+        else if (event.target.closest(".deleteBtn")){
+        const clickedMe = event.target.closest(".deleteBtn")
+
+        if (clickedMe.closest("#servers")){
+
+        }
+    }
+
+
+
 
 })
 
@@ -239,7 +265,7 @@ function filter(roleName,idOfRoom) {
         if (roleName === "archive" ){
             if ( worker.role === "manager") {
                 somethingThere = true
-                let allowedCard = cardIt(worker)
+                let allowedCard = cardIt(worker,idOfRoom)
                 alowedList.append(allowedCard)
                 console.log("first condition")
             }
@@ -281,12 +307,15 @@ function cardIt(worker,idOfRoom){
                           <div><h1 class="worker_NAME">${worker.name}</h1>
                           <p class="worker_ROLE">${worker.role}</p></div>
                      </div>`
+
+
     allowedCard.addEventListener('click',()=>{
         if ( idOfRoom === "conference"){
             let tempTransfer = transfer(workerList,conferenceList,worker)
             workerList=tempTransfer[0]
             conferenceList=tempTransfer[1]
             showCards(workerList,workerContainer)
+            showCards(conferenceList,conferenceContainer)
         }
 
         if ( idOfRoom === "reception"){
@@ -319,7 +348,7 @@ function cardIt(worker,idOfRoom){
             archiveList=tempTransfer[1]
             showCards(workerList,workerContainer)
         }
-
+        allowedListSection.classList.toggle("hidden")
     })
     return allowedCard
 }
@@ -346,4 +375,23 @@ function noCardAvailable(){
                           <div><h1 class="worker_NAME">desole y a pas des roles pour les ajouter dans ce poste</h1>
                     
                      </div>`
+}
+
+
+function cardOfRooms(objet) {
+    const card = document.createElement("div")
+    card.className="roomCards"
+        card.innerHTML = `<div class="relative    rounded-md border-2  border-white max-w-[30%] lg:max-w-[20%] min-w-0 ">
+                            <img src="${objet.img}" class="rounded-sm  w-full " alt="profile">
+                            <svg id="${objet.id}" class="deleteBtn cursor-pointer absolute -top-1.5 left-1/2 -translate-x-1/2 w-[30%] aspect-square" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg">
+                                <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0"
+                                      fill="#f44336"/>
+                                <path d="m350.273438 320.105469c8.339843 8.34375 8.339843 21.824219 0 30.167969-4.160157 4.160156-9.621094 6.25-15.085938 6.25-5.460938 0-10.921875-2.089844-15.082031-6.25l-64.105469-64.109376-64.105469 64.109376c-4.160156 4.160156-9.621093 6.25-15.082031 6.25-5.464844 0-10.925781-2.089844-15.085938-6.25-8.339843-8.34375-8.339843-21.824219 0-30.167969l64.109376-64.105469-64.109376-64.105469c-8.339843-8.34375-8.339843-21.824219 0-30.167969 8.34375-8.339843 21.824219-8.339843 30.167969 0l64.105469 64.109376 64.105469-64.109376c8.34375-8.339843 21.824219-8.339843 30.167969 0 8.339843 8.34375 8.339843 21.824219 0 30.167969l-64.109376 64.105469zm0 0"
+                                      fill="#fafafa"/>
+                            </svg>
+                            <div class="absolute top-11/12 left-1/2 px-1 transform -translate-x-1/2  min-w-[120%] max-w-14  rounded-xs bg-orange-500 whitespace-nowrap  overflow-hidden flex justify-center font-semibold ">
+                                <h1 class="text-[0.4rem]">${objet.name.split(" ")[0]}</h1>
+                            </div>
+                        </div>`
+    return card
 }

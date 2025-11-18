@@ -2,12 +2,16 @@ const addWorker= document.getElementById("addWorker");
 const cancelAdding = document.getElementById("btnAnnulerSubmit")
 // const submitAdding = document.getElementById("btnSubmit")
 const formSection = document.getElementById("form_section");
+const allowedListSection = document.getElementById("popUpAllowedList")
 const addForm = document.getElementById("addForm")
 const imageProfile = document.getElementById("profileImage")
 const imageInput = document.getElementById("inputProfile");
 const experienceContainer = document.getElementById("experienceContainer");
 const addExperience = document.getElementById("btnExper");
 const workerContainer = document.getElementById('workerContainer')
+const roomsContainer = document.getElementById('rooms_container');
+const alowedList = document.getElementById("allowedList")
+
 
 
 let workerCounter=0
@@ -19,8 +23,6 @@ let securityList = []
 let staffList = []
 let archiveList = []
 let experienceList = []
-
-
 
 
 
@@ -109,12 +111,18 @@ cancelAdding.addEventListener('click', () => {
 })
 
 
-formSection.addEventListener('click', (e) => {
-    if (e.target === formSection) {
-        formSection.classList.toggle("hidden");
-    }
-})
+hideOnEmptyClick(formSection)
+hideOnEmptyClick(allowedListSection)
 
+
+
+function hideOnEmptyClick(form) {
+    form.addEventListener('click', (e) => {
+        if (e.target === form) {
+            form.classList.toggle("hidden");
+        }
+    })
+}
 
 
 
@@ -158,4 +166,83 @@ addExperience.addEventListener('click', () => {
 })
 
 
+
+//------------------------ start event on rooms -----------------------------
+roomsContainer.addEventListener('click', event => {
+    if (event.target.closest(".addHimHere")) {
+        const clickedMe = event.target.closest(".addHimHere")
+        if ( clickedMe.parentElement.id === "reception" ) {
+            filter("receptionist")
+        }
+        if ( clickedMe.parentElement.id === "servers" ) {
+            filter("technicien")
+        }
+        if ( clickedMe.parentElement.id === "security" ) {
+            filter("securite")
+        }
+        if ( clickedMe.parentElement.id === "conference"){
+            filter("justGo")
+        }
+    }
+
+
+
+    if (event.target.className)
+
+
+    if (event.target.id === "conference") {
+
+    }
+    if (event.target.id === "reception") {
+
+    }
+    if (event.target.id === "servers") {
+
+    }
+    if (event.target.id === "security") {
+
+    }
+    if (event.target.id === "personnel") {
+
+    }
+    if (event.target.id === "archive") {
+
+    }
+})
+
+
+
+
+
+
+
+function filter(roleName) {
+
+    let somethingThere = false
+    allowedListSection.classList.toggle("hidden")
+    alowedList.innerHTML = ""
+    workerList.forEach(worker => {
+        if (worker.role === roleName || roleName === "justGo") {
+            somethingThere= true
+            let allowedCard = document.createElement('div')
+            allowedCard.innerHTML = `
+                    <div class="card cursor-pointer flex flex-row gap-4 py-2 border-b-2 border-b-amber-400">
+                          <img src="${worker.img}" alt="profile" class="rounded-full aspect-square max-h-13">
+                          <div><h1 class="worker_NAME">${worker.name}</h1>
+                          <p class="worker_ROLE">${worker.role}</p></div>
+                     </div>`
+            alowedList.append(allowedCard)
+        }
+    })
+    if (somethingThere === false) {
+        alowedList.innerHTML = ""
+
+        alowedList.innerHTML = `
+                    <div class="text-red-500 cursor-pointer flex flex-row gap-4 py-2 border-b-2 border-b-amber-400">
+                          <div><h1 class="worker_NAME">desole y a pas des roles pour les ajouter dans ce poste</h1>
+                    
+                     </div>`
+    }
+    //should make statement to show unvailable people in this case
+}
 

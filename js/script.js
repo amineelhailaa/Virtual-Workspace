@@ -76,28 +76,52 @@ addForm.addEventListener('submit',e=>{
 
     }
 
-
-    const workerCard = document.createElement('div')
-    e.preventDefault()
-    workerCard.className= "flex flex-row gap-4 py-2 border-b-2 border-b-amber-400"
-    workerCard.id="worker_id_here"
-    workerCard.innerHTML=`
-                        <img src="../assets/emptyProfile.jpg" alt="profile" class="rounded-full aspect-square max-h-13">
-                        <div><h1 class="worker_NAME">AMINE ELHAILAA</h1>
-                            <p class="worker_ROLE">Role</p></div>
-                    `
-    workerCard.querySelector('.worker_NAME').textContent = workerObjet.name
-    workerCard.querySelector('.worker_ROLE').textContent = workerObjet.role
-    workerCard.querySelector('img').src = workerObjet.img
-    formSection.classList.toggle('hidden')
-    console.log(workerList)
-    workerContainer.append(workerCard)
+    // const workerCard = document.createElement('div')
+    // workerCard.className= "flex flex-row gap-4 py-2 border-b-2 border-b-amber-400"
+    // workerCard.id="worker_id_here"
+    // workerCard.innerHTML=`
+    //                     <img src="../assets/emptyProfile.jpg" alt="profile" class="rounded-full aspect-square max-h-13">
+    //                     <div><h1 class="worker_NAME">AMINE ELHAILAA</h1>
+    //                         <p class="worker_ROLE">Role</p></div>
+    //                 `
+    // workerCard.querySelector('.worker_NAME').textContent = workerObjet.name
+    // workerCard.querySelector('.worker_ROLE').textContent = workerObjet.role
+    // workerCard.querySelector('img').src = workerObjet.img
+    // console.log(workerList)
+    //
+    //
+    //
+    // workerContainer.append(workerCard)
+    e.preventDefault() //submit reload the page
     workerList.push(workerObjet)
+    showCards(workerList,workerContainer) //affichage
+    formSection.classList.toggle('hidden')
 
 })
 
 
+function showCards(array,location) {
+    if (location === workerContainer){
+        location.innerHTML = ""
+        array.forEach(worker =>{
+            const workerCard = document.createElement('div')
+            workerCard.className= "flex flex-row gap-4 py-2 border-b-2 border-b-amber-400"
+            workerCard.innerHTML=`
+                        <img src="${worker.img}" alt="profile" class="rounded-full aspect-square max-h-13">
+                        <div><h1 class="worker_NAME">${worker.name}</h1>
+                            <p class="worker_ROLE">${worker.role}</p></div>
+                    `
+            workerCard.id = worker.id
+            location.append(workerCard)
+        })
+    }
+    else {
+        location.innerHTML=""
+        {
 
+        }
+    }
+}
 
 
 
@@ -169,45 +193,35 @@ addExperience.addEventListener('click', () => {
 
 //------------------------ start event on rooms -----------------------------
 roomsContainer.addEventListener('click', event => {
+
+
+
     if (event.target.closest(".addHimHere")) {
         const clickedMe = event.target.closest(".addHimHere")
+
         if ( clickedMe.parentElement.id === "reception" ) {
-            filter("receptionist")
+            filter("receptionist",clickedMe.parentElement.id)
         }
+
         if ( clickedMe.parentElement.id === "servers" ) {
-            filter("technicien")
+            filter("technicien",clickedMe.parentElement.id)
         }
         if ( clickedMe.parentElement.id === "security" ) {
-            filter("securite")
+            filter("securite",clickedMe.parentElement.id)
         }
         if ( clickedMe.parentElement.id === "conference"){
-            filter("justGo")
+            filter("justGo",clickedMe.parentElement.id)
+        }
+        if (clickedMe.parentElement.id === "personnel"){
+            filter("justGo",clickedMe.parentElement.id)
+        }
+
+
+        if (clickedMe.parentElement.id === "archive"){
+            filter("archive",clickedMe.parentElement.id)
         }
     }
 
-
-
-    if (event.target.className)
-
-
-    if (event.target.id === "conference") {
-
-    }
-    if (event.target.id === "reception") {
-
-    }
-    if (event.target.id === "servers") {
-
-    }
-    if (event.target.id === "security") {
-
-    }
-    if (event.target.id === "personnel") {
-
-    }
-    if (event.target.id === "archive") {
-
-    }
 })
 
 
@@ -216,33 +230,120 @@ roomsContainer.addEventListener('click', event => {
 
 
 
-function filter(roleName) {
+function filter(roleName,idOfRoom) {
 
     let somethingThere = false
     allowedListSection.classList.toggle("hidden")
     alowedList.innerHTML = ""
     workerList.forEach(worker => {
-        if (worker.role === roleName || roleName === "justGo") {
+        if (roleName === "archive" ){
+            if ( worker.role === "manager") {
+                somethingThere = true
+                let allowedCard = cardIt(worker)
+                alowedList.append(allowedCard)
+                console.log("first condition")
+            }
+
+
+        }
+
+
+
+        else if (worker.role === roleName || worker.role ==="manager" || worker.role==="nettoyage" || roleName === "justGo") {
+            console.log("second condition")
             somethingThere= true
-            let allowedCard = document.createElement('div')
-            allowedCard.innerHTML = `
-                    <div class="card cursor-pointer flex flex-row gap-4 py-2 border-b-2 border-b-amber-400">
-                          <img src="${worker.img}" alt="profile" class="rounded-full aspect-square max-h-13">
-                          <div><h1 class="worker_NAME">${worker.name}</h1>
-                          <p class="worker_ROLE">${worker.role}</p></div>
-                     </div>`
+            let allowedCard = cardIt(worker,idOfRoom)
+            // let allowedCard = document.createElement('div')
+            // allowedCard.innerHTML = `
+            //         <div class="card cursor-pointer flex flex-row gap-4 py-2 border-b-2 border-b-amber-400">
+            //               <img src="${worker.img}" alt="profile" class="rounded-full aspect-square max-h-13">
+            //               <div><h1 class="worker_NAME">${worker.name}</h1>
+            //               <p class="worker_ROLE">${worker.role}</p></div>
+            //          </div>`
             alowedList.append(allowedCard)
         }
     })
-    if (somethingThere === false) {
-        alowedList.innerHTML = ""
+    if (!somethingThere) {
 
-        alowedList.innerHTML = `
-                    <div class="text-red-500 cursor-pointer flex flex-row gap-4 py-2 border-b-2 border-b-amber-400">
-                          <div><h1 class="worker_NAME">desole y a pas des roles pour les ajouter dans ce poste</h1>
-                    
-                     </div>`
+
+        noCardAvailable()
     }
     //should make statement to show unvailable people in this case
 }
 
+
+
+function cardIt(worker,idOfRoom){
+    let allowedCard = document.createElement('div')
+    allowedCard.innerHTML = `
+                    <div id="${worker.id}"  class="card cursor-pointer flex flex-row gap-4 py-2 border-b-2 border-b-amber-400 md:hover:scale-102">
+                          <img src="${worker.img}" alt="profile" class="rounded-full aspect-square max-h-13">
+                          <div><h1 class="worker_NAME">${worker.name}</h1>
+                          <p class="worker_ROLE">${worker.role}</p></div>
+                     </div>`
+    allowedCard.addEventListener('click',()=>{
+        if ( idOfRoom === "conference"){
+            let tempTransfer = transfer(workerList,conferenceList,worker)
+            workerList=tempTransfer[0]
+            conferenceList=tempTransfer[1]
+            showCards(workerList,workerContainer)
+        }
+
+        if ( idOfRoom === "reception"){
+            let tempTransfer = transfer(workerList,receptionList,worker)
+            workerList=tempTransfer[0]
+            receptionList=tempTransfer[1]
+            showCards(workerList,workerContainer)
+        }
+        if ( idOfRoom === "servers"){
+            let tempTransfer = transfer(workerList,serversList,worker)
+            workerList=tempTransfer[0]
+            serversList=tempTransfer[1]
+            showCards(workerList,workerContainer)
+        }
+        if ( idOfRoom === "security"){
+            let tempTransfer = transfer(workerList,securityList,worker)
+            workerList=tempTransfer[0]
+            securityList=tempTransfer[1]
+            showCards(workerList,workerContainer)
+        }
+        if ( idOfRoom === "personnel"){
+            let tempTransfer = transfer(workerList,staffList,worker)
+            workerList=tempTransfer[0]
+            staffList=tempTransfer[1]
+            showCards(workerList,workerContainer)
+        }
+        if ( idOfRoom === "archive"){
+            let tempTransfer = transfer(workerList,archiveList,worker)
+            workerList=tempTransfer[0]
+            archiveList=tempTransfer[1]
+            showCards(workerList,workerContainer)
+        }
+
+    })
+    return allowedCard
+}
+
+
+function transfer(array1,array2,agent){
+
+    let temp=[]
+    array2.push(agent)
+    array1.forEach( element=>{
+        if (element !== agent){
+            temp.push(element)
+        }
+    })
+    array1 = temp
+    return [array1,array2]
+}
+
+
+
+function noCardAvailable(){
+    alowedList.innerHTML = `
+                    <div class="text-red-500 flex flex-row gap-4 py-2 border-b-2 border-b-amber-400  ">
+                          <div><h1 class="worker_NAME">desole y a pas des roles pour les ajouter dans ce poste</h1>
+                    
+                     </div>`
+}

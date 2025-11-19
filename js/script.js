@@ -17,6 +17,7 @@ const receptionContainer=document.getElementById("receptionC")
 const archiveContainer =document.getElementById("archiveC")
 const itContainer=document.getElementById("serversC")
 const alowedList = document.getElementById("allowedList")
+const detailSection = document.getElementById('detailsContainer')
 
 
 
@@ -82,6 +83,7 @@ addForm.addEventListener('submit',e=>{
 
     }
 
+
     // const workerCard = document.createElement('div')
     // workerCard.className= "flex flex-row gap-4 py-2 border-b-2 border-b-amber-400"
     // workerCard.id="worker_id_here"
@@ -111,11 +113,11 @@ function showCards(array,location) {
         location.innerHTML = ""
         array.forEach(worker =>{
             const workerCard = document.createElement('div')
-            workerCard.className= "flex flex-row gap-4 py-2 border-b-2 border-b-amber-400"
-            workerCard.innerHTML=`
+            workerCard.className= "roomCards"
+            workerCard.innerHTML=`<div id="${worker.id}" class=" flex flex-row gap-4 py-2 border-b-2 border-b-amber-400"> //last edit changit lclass lhna hydnto mn lclass name bach ntargeti had div f documnetbodyevent
                         <img src="${worker.img}" alt="profile" class="rounded-full aspect-square max-h-13">
                         <div><h1 class="worker_NAME">${worker.name}</h1>
-                            <p class="worker_ROLE">${worker.role}</p></div>
+                            <p class="worker_ROLE">${worker.role}</p></div></div>
                     `
             workerCard.id = worker.id
             location.append(workerCard)
@@ -148,7 +150,7 @@ cancelAdding.addEventListener('click', () => {
 
 hideOnEmptyClick(formSection)
 hideOnEmptyClick(allowedListSection)
-
+hideOnEmptyClick(detailSection)
 
 
 function hideOnEmptyClick(form) {
@@ -201,6 +203,10 @@ addExperience.addEventListener('click', () => {
 })
 
 
+workerContainer.addEventListener('click',event=>{
+
+})
+
 
 //------------------------ start event on rooms -----------------------------
 roomsContainer.addEventListener('click', event => {
@@ -235,15 +241,15 @@ roomsContainer.addEventListener('click', event => {
         }
     }
 
-
 /// part of delete
         else if (event.target.closest(".deleteBtn")){
         const clickedMe = event.target.closest(".deleteBtn")
+        const idToDelete = clickedMe.parentElement.id
         console.log("condition of delete btn works")
-
+            ///
         if (clickedMe.closest("#conference")){
             conferenceList.forEach(agent=>{
-                if (agent.id == clickedMe.id){
+                if (agent.id == idToDelete){
                     let tempTransfer = transfer(conferenceList,workerList,agent)
                     workerList=tempTransfer[1]
                     conferenceList=tempTransfer[0]
@@ -256,7 +262,7 @@ roomsContainer.addEventListener('click', event => {
         else if (clickedMe.closest("#reception")){
             console.log("conditons passed to reception",clickedMe.id)
             receptionList.forEach(agent=>{
-                if (agent.id == clickedMe.id){
+                if (agent.id == idToDelete){
                     let tempTransfer = transfer(receptionList,workerList,agent)
                     workerList=tempTransfer[1]
                     receptionList=tempTransfer[0]
@@ -267,7 +273,7 @@ roomsContainer.addEventListener('click', event => {
         }
         else if (clickedMe.closest("#servers")){
             serversList.forEach(agent=>{
-                if (agent.id == clickedMe.id){
+                if (agent.id == idToDelete){
                     let tempTransfer = transfer(serversList,workerList,agent)
                     workerList=tempTransfer[1]
                     serversList=tempTransfer[0]
@@ -278,7 +284,7 @@ roomsContainer.addEventListener('click', event => {
         }
         else if (clickedMe.closest("#security")){
             securityList.forEach(agent=>{
-                if (agent.id == clickedMe.id){
+                if (agent.id == idToDelete){
                     let tempTransfer = transfer(securityList,workerList,agent)
                     workerList=tempTransfer[1]
                     securityList=tempTransfer[0]
@@ -289,7 +295,7 @@ roomsContainer.addEventListener('click', event => {
         }
         else if (clickedMe.closest("#personnel")){
             staffList.forEach(agent=>{
-                if (agent.id == clickedMe.id){
+                if (agent.id == idToDelete){
                     let tempTransfer = transfer(staffList,workerList,agent)
                     workerList=tempTransfer[1]
                     staffList=tempTransfer[0]
@@ -300,7 +306,7 @@ roomsContainer.addEventListener('click', event => {
         }
         else if (clickedMe.closest("#archive")){
             archiveList.forEach(agent=>{
-                if (agent.id == clickedMe.id){
+                if (agent.id == idToDelete){
                     let tempTransfer = transfer(archiveList,workerList,agent)
                     workerList=tempTransfer[1]
                     archiveList=tempTransfer[0]
@@ -315,6 +321,45 @@ roomsContainer.addEventListener('click', event => {
     }
 
 
+        //detailllllllllllllllllllllllllllllllll------------------------------
+
+        else if(event.target.closest('.roomCards')){
+            const cardToDetail = event.target.closest('.roomCards')
+            const idToDetail = event.target.closest('.roomCards').querySelector('div').id //get the id of the div inside the div that has this class
+
+
+
+
+        if (cardToDetail.parentElement.id === "conferenceC") {
+
+
+            let objetX = searchById(conferenceList,idToDetail)
+
+            detailledCard(objetX,"Conference")
+            }
+        else if (cardToDetail.parentElement.id === "receptionC"){
+            console.log("access here",receptionList[idToDetail])
+            detailledCard(receptionList[idToDetail],"Reception")
+        }
+        else if (cardToDetail.parentElement.id === "serversC"){
+            detailledCard(serversList[idToDetail],"Servers")
+        }
+        else if (cardToDetail.parentElement.id === "securityC"){
+            detailledCard(securityList[idToDetail],"Security")
+        }
+        else if (cardToDetail.parentElement.id === "personnelC"){
+            detailledCard(staffList[idToDetail],"Staff")
+        }
+        else if (cardToDetail.parentElement.id === "archiveC"){
+            detailledCard(archiveList[idToDetail],"Archive")
+        }
+
+        }
+
+
+
+
+
 
 
 
@@ -322,7 +367,18 @@ roomsContainer.addEventListener('click', event => {
 
 })
 
+function searchById(array,id){
 
+    let objetx
+    array.forEach(thing=>{
+        if(thing.id==id){
+            objetx=thing
+        }
+    })
+    console.log(objetx);
+
+    return objetx
+}
 
 
 
@@ -347,7 +403,7 @@ function filter(roleName,idOfRoom) {
 
 
 
-        else if (worker.role === roleName || worker.role ==="manager" || worker.role==="nettoyage" || roleName === "justGo") {
+        else if (worker.role === roleName || worker.role ==="manager" || worker.role==="nettoyage" || roleName === "justGo" ) {
             console.log("second condition")
             somethingThere= true
             let allowedCard = cardIt(worker,idOfRoom)
@@ -432,7 +488,7 @@ function cardIt(worker,idOfRoom){
 
 
 function transfer(array1,array2,agent){
-
+//add loop here refactor!!!
     let temp=[]
     array2.push(agent)
     array1.forEach( element=>{
@@ -457,10 +513,10 @@ function noCardAvailable(){
 
 function cardOfRooms(objet) {
     const card = document.createElement("div")
-    card.className="roomCards"
-        card.innerHTML = `<div class="relative   rounded-md border-2  border-white max-w-[30%] lg:max-w-[15%] min-w-0 ">
+    card.className = "roomCards"
+    card.innerHTML = `<div id="${objet.id}" class="relative   rounded-md border-2  border-white max-w-[30%] lg:max-w-[15%] min-w-0 ">
                             <img src="${objet.img}" class="rounded-sm  w-full " alt="profile">
-                            <svg id="${objet.id}" class="deleteBtn hidden cursor-pointer absolute -top-1.5 left-1/2 -translate-x-1/2 w-[30%] aspect-square" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg">
+                            <svg  class="deleteBtn  cursor-pointer absolute -top-1.5 left-1/2 -translate-x-1/2 w-[30%] aspect-square" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg">
                                 <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0"
                                       fill="#f44336"/>
                                 <path d="m350.273438 320.105469c8.339843 8.34375 8.339843 21.824219 0 30.167969-4.160157 4.160156-9.621094 6.25-15.085938 6.25-5.460938 0-10.921875-2.089844-15.082031-6.25l-64.105469-64.109376-64.105469 64.109376c-4.160156 4.160156-9.621093 6.25-15.082031 6.25-5.464844 0-10.925781-2.089844-15.085938-6.25-8.339843-8.34375-8.339843-21.824219 0-30.167969l64.109376-64.105469-64.109376-64.105469c-8.339843-8.34375-8.339843-21.824219 0-30.167969 8.34375-8.339843 21.824219-8.339843 30.167969 0l64.105469 64.109376 64.105469-64.109376c8.34375-8.339843 21.824219-8.339843 30.167969 0 8.339843 8.34375 8.339843 21.824219 0 30.167969l-64.109376 64.105469zm0 0"
@@ -470,5 +526,42 @@ function cardOfRooms(objet) {
                                 <h1 class="text-[0.4rem]">${objet.name.split(" ")[0]}</h1>
                             </div>
                         </div>`
+
     return card
 }
+
+
+function experienceCardDetail(arrayofexperience) {
+    console.log(arrayofexperience)
+    const fullexperience = document.createElement("div")
+    fullexperience.className=" w-full flex flex-col gap-2 pt-2"
+    fullexperience.innerHTML=""
+    arrayofexperience.forEach(exp=>{
+
+        fullexperience.innerHTML+=`<div class="experienceDetailled w-full bg-amber-300 text-white shadow-md rounded-2xl p-2">
+
+            <p class="flex w-full gap-7"><span>${exp.company}</span><span>${exp.role}</span></p>
+            <p class="flex w-full gap-7"><span class="dateDebutEx">Start: ${exp.company}</span><span class="dateFinEx">End: ${exp.company}</span></p>
+        </div>`
+    })
+return fullexperience
+}
+
+
+
+const detailPage = document.getElementById('detailCard')
+
+
+function detailledCard(objet,location){
+    console.log(objet,"this is the one")
+    detailSection.classList.toggle('hidden')
+    detailPage.querySelector('#NameDetail').textContent = `${objet.name}`
+    detailPage.querySelector('#phoneDetail').textContent = `${objet.phone}`
+    detailPage.querySelector('#emailDetail').textContent = `${objet.email}`
+    detailPage.querySelector('#roleDetail').textContent = `${objet.role}`
+    detailPage.querySelector('#locationDetail').textContent = location
+    detailPage.querySelector('#experienceContainerDetail').append(experienceCardDetail(objet.experience))
+}
+
+
+

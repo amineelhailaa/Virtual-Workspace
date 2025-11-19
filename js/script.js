@@ -114,12 +114,12 @@ function showCards(array,location) {
         array.forEach(worker =>{
             const workerCard = document.createElement('div')
             workerCard.className= "roomCards"
-            workerCard.innerHTML=`<div id="${worker.id}" class=" flex flex-row gap-4 py-2 border-b-2 border-b-amber-400"> //last edit changit lclass lhna hydnto mn lclass name bach ntargeti had div f documnetbodyevent
+            workerCard.innerHTML=`<div id="${worker.id}" class=" flex flex-row gap-4 py-2 border-b-2 border-b-amber-400"> 
                         <img src="${worker.img}" alt="profile" class="rounded-full aspect-square max-h-13">
                         <div><h1 class="worker_NAME">${worker.name}</h1>
                             <p class="worker_ROLE">${worker.role}</p></div></div>
                     `
-            workerCard.id = worker.id
+            // workerCard.id = worker.id
             location.append(workerCard)
         })
     }
@@ -203,15 +203,13 @@ addExperience.addEventListener('click', () => {
 })
 
 
-workerContainer.addEventListener('click',event=>{
 
-})
 
 
 //------------------------ start event on rooms -----------------------------
-roomsContainer.addEventListener('click', event => {
+// roomsContainer.addEventListener('click', event => {
 
-
+    document.body.addEventListener('click', event => {
 /// part of ajout
     if (event.target.closest(".addHimHere")) {
         const clickedMe = event.target.closest(".addHimHere")
@@ -332,26 +330,29 @@ roomsContainer.addEventListener('click', event => {
 
         if (cardToDetail.parentElement.id === "conferenceC") {
 
+            // let objetX = searchById(conferenceList,idToDetail)
 
-            let objetX = searchById(conferenceList,idToDetail)
-
-            detailledCard(objetX,"Conference")
+            detailledCard(searchById(conferenceList,idToDetail),"Conference")
             }
         else if (cardToDetail.parentElement.id === "receptionC"){
-            console.log("access here",receptionList[idToDetail])
-            detailledCard(receptionList[idToDetail],"Reception")
+
+            detailledCard(searchById(receptionList,idToDetail),"Reception")
         }
         else if (cardToDetail.parentElement.id === "serversC"){
-            detailledCard(serversList[idToDetail],"Servers")
+            detailledCard(searchById(serversList,idToDetail),"Servers")
         }
         else if (cardToDetail.parentElement.id === "securityC"){
-            detailledCard(securityList[idToDetail],"Security")
+            detailledCard(searchById(securityList,idToDetail),"Security")
         }
         else if (cardToDetail.parentElement.id === "personnelC"){
-            detailledCard(staffList[idToDetail],"Staff")
+            detailledCard(searchById(staffList,idToDetail),"Staff")
         }
         else if (cardToDetail.parentElement.id === "archiveC"){
-            detailledCard(archiveList[idToDetail],"Archive")
+            detailledCard(searchById(archiveList,idToDetail),"Archive")
+        }
+
+        else{
+            detailledCard(searchById(workerList,idToDetail),"unssaigned")
         }
 
         }
@@ -492,7 +493,7 @@ function transfer(array1,array2,agent){
     let temp=[]
     array2.push(agent)
     array1.forEach( element=>{
-        if (element !== agent){
+        if (element.id !== agent.id){
             temp.push(element)
         }
     })
@@ -541,7 +542,7 @@ function experienceCardDetail(arrayofexperience) {
         fullexperience.innerHTML+=`<div class="experienceDetailled w-full bg-amber-300 text-white shadow-md rounded-2xl p-2">
 
             <p class="flex w-full gap-7"><span>${exp.company}</span><span>${exp.role}</span></p>
-            <p class="flex w-full gap-7"><span class="dateDebutEx">Start: ${exp.company}</span><span class="dateFinEx">End: ${exp.company}</span></p>
+            <p class="flex w-full gap-7"><span class="dateDebutEx">Start: ${exp.dateS}</span><span class="dateFinEx">End: ${exp.dateE}</span></p>
         </div>`
     })
 return fullexperience
@@ -560,6 +561,7 @@ function detailledCard(objet,location){
     detailPage.querySelector('#emailDetail').textContent = `${objet.email}`
     detailPage.querySelector('#roleDetail').textContent = `${objet.role}`
     detailPage.querySelector('#locationDetail').textContent = location
+    detailPage.querySelector('#experienceContainerDetail').innerHTML=""
     detailPage.querySelector('#experienceContainerDetail').append(experienceCardDetail(objet.experience))
 }
 

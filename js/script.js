@@ -239,11 +239,83 @@ roomsContainer.addEventListener('click', event => {
 /// part of delete
         else if (event.target.closest(".deleteBtn")){
         const clickedMe = event.target.closest(".deleteBtn")
+        console.log("condition of delete btn works")
 
-        if (clickedMe.closest("#servers")){
+        if (clickedMe.closest("#conference")){
+            conferenceList.forEach(agent=>{
+                if (agent.id == clickedMe.id){
+                    let tempTransfer = transfer(conferenceList,workerList,agent)
+                    workerList=tempTransfer[1]
+                    conferenceList=tempTransfer[0]
+                    showCards(workerList,workerContainer)
+                    showCards(conferenceList,conferenceContainer)
+                }
+            })
 
         }
+        else if (clickedMe.closest("#reception")){
+            console.log("conditons passed to reception",clickedMe.id)
+            receptionList.forEach(agent=>{
+                if (agent.id == clickedMe.id){
+                    let tempTransfer = transfer(receptionList,workerList,agent)
+                    workerList=tempTransfer[1]
+                    receptionList=tempTransfer[0]
+                    showCards(workerList,workerContainer)
+                    showCards(receptionList,receptionContainer)
+                }
+            })
+        }
+        else if (clickedMe.closest("#servers")){
+            serversList.forEach(agent=>{
+                if (agent.id == clickedMe.id){
+                    let tempTransfer = transfer(serversList,workerList,agent)
+                    workerList=tempTransfer[1]
+                    serversList=tempTransfer[0]
+                    showCards(workerList,workerContainer)
+                    showCards(serversList,itContainer)
+                }
+            })
+        }
+        else if (clickedMe.closest("#security")){
+            securityList.forEach(agent=>{
+                if (agent.id == clickedMe.id){
+                    let tempTransfer = transfer(securityList,workerList,agent)
+                    workerList=tempTransfer[1]
+                    securityList=tempTransfer[0]
+                    showCards(workerList,workerContainer)
+                    showCards(securityList,securityContainer)
+                }
+            })
+        }
+        else if (clickedMe.closest("#personnel")){
+            staffList.forEach(agent=>{
+                if (agent.id == clickedMe.id){
+                    let tempTransfer = transfer(staffList,workerList,agent)
+                    workerList=tempTransfer[1]
+                    staffList=tempTransfer[0]
+                    showCards(workerList,workerContainer)
+                    showCards(staffList,staffContainer)
+                }
+            })
+        }
+        else if (clickedMe.closest("#archive")){
+            archiveList.forEach(agent=>{
+                if (agent.id == clickedMe.id){
+                    let tempTransfer = transfer(archiveList,workerList,agent)
+                    workerList=tempTransfer[1]
+                    archiveList=tempTransfer[0]
+                    showCards(workerList,workerContainer)
+                    showCards(archiveList,archiveContainer)
+                }
+            })
+        }
+        else{
+            console.log("there is error in delete")
+        }
     }
+
+
+
 
 
 
@@ -323,30 +395,35 @@ function cardIt(worker,idOfRoom){
             workerList=tempTransfer[0]
             receptionList=tempTransfer[1]
             showCards(workerList,workerContainer)
+            showCards(receptionList,receptionContainer)
         }
         if ( idOfRoom === "servers"){
             let tempTransfer = transfer(workerList,serversList,worker)
             workerList=tempTransfer[0]
             serversList=tempTransfer[1]
             showCards(workerList,workerContainer)
+            showCards(serversList,itContainer)
         }
         if ( idOfRoom === "security"){
             let tempTransfer = transfer(workerList,securityList,worker)
             workerList=tempTransfer[0]
             securityList=tempTransfer[1]
             showCards(workerList,workerContainer)
+            showCards(securityList,securityContainer)
         }
         if ( idOfRoom === "personnel"){
             let tempTransfer = transfer(workerList,staffList,worker)
             workerList=tempTransfer[0]
             staffList=tempTransfer[1]
             showCards(workerList,workerContainer)
+            showCards(staffList,staffContainer)
         }
         if ( idOfRoom === "archive"){
             let tempTransfer = transfer(workerList,archiveList,worker)
             workerList=tempTransfer[0]
             archiveList=tempTransfer[1]
             showCards(workerList,workerContainer)
+            showCards(archiveList,archiveContainer)
         }
         allowedListSection.classList.toggle("hidden")
     })
@@ -381,9 +458,9 @@ function noCardAvailable(){
 function cardOfRooms(objet) {
     const card = document.createElement("div")
     card.className="roomCards"
-        card.innerHTML = `<div class="relative    rounded-md border-2  border-white max-w-[30%] lg:max-w-[20%] min-w-0 ">
+        card.innerHTML = `<div class="relative   rounded-md border-2  border-white max-w-[30%] lg:max-w-[15%] min-w-0 ">
                             <img src="${objet.img}" class="rounded-sm  w-full " alt="profile">
-                            <svg id="${objet.id}" class="deleteBtn cursor-pointer absolute -top-1.5 left-1/2 -translate-x-1/2 w-[30%] aspect-square" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg">
+                            <svg id="${objet.id}" class="deleteBtn hidden cursor-pointer absolute -top-1.5 left-1/2 -translate-x-1/2 w-[30%] aspect-square" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg">
                                 <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0"
                                       fill="#f44336"/>
                                 <path d="m350.273438 320.105469c8.339843 8.34375 8.339843 21.824219 0 30.167969-4.160157 4.160156-9.621094 6.25-15.085938 6.25-5.460938 0-10.921875-2.089844-15.082031-6.25l-64.105469-64.109376-64.105469 64.109376c-4.160156 4.160156-9.621093 6.25-15.082031 6.25-5.464844 0-10.925781-2.089844-15.085938-6.25-8.339843-8.34375-8.339843-21.824219 0-30.167969l64.109376-64.105469-64.109376-64.105469c-8.339843-8.34375-8.339843-21.824219 0-30.167969 8.34375-8.339843 21.824219-8.339843 30.167969 0l64.105469 64.109376 64.105469-64.109376c8.34375-8.339843 21.824219-8.339843 30.167969 0 8.339843 8.34375 8.339843 21.824219 0 30.167969l-64.109376 64.105469zm0 0"

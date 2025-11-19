@@ -441,6 +441,9 @@
   .max-w-\[20\%\] {
     max-width: 20%;
   }
+  .max-w-\[25\%\] {
+    max-width: 25%;
+  }
   .max-w-\[30\%\] {
     max-width: 30%;
   }
@@ -1012,6 +1015,11 @@
           scale: var(--tw-scale-x) var(--tw-scale-y);
         }
       }
+    }
+  }
+  .lg\:max-w-\[15\%\] {
+    @media (width >= 64rem) {
+      max-width: 15%;
     }
   }
   .lg\:max-w-\[20\%\] {

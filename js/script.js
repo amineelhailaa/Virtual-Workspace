@@ -485,8 +485,7 @@ addExperience.addEventListener('click', () => {
 
 
 
-
-
+verifyArray()
 })
 
 function searchById(array,id){
@@ -690,3 +689,11 @@ function detailledCard(objet,location){
 
 
 
+function verifyArray(){
+
+    if(receptionList.length<1) receptionContainer.classList.add("bg-red-500/60")
+    if(serversList.length<1) receptionContainer.classList.add("bg-red-500/60")
+    if(securityList.length<1) receptionContainer.classList.add("bg-red-500/60")
+    if(archiveList.length<1) receptionContainer.classList.add("bg-red-500/60")
+
+}

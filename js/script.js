@@ -35,11 +35,15 @@ let experienceList = []
 
 
 
-const regexEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z-._]+\.[a-z]{3,}$/
+const regexEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z._]+\.[a-z]{3,}$/
 const regexFullName = /^[a-zA-Z]+\s[a-zA-Z]+$/
 const regexPhone = /^0[6-7][0-9]{8}$/
 const regexUrl = /^https:\/\/[a-zA-Z0-9.-_\/]+$/
 const regexExp = /^[a-zA-Z]+$/
+
+
+
+
 
 
 const msgRegEx = document.getElementById("regExpEn")
@@ -48,48 +52,40 @@ const msgNameForm = document.getElementById("regFullName")
 const msgImg = document.getElementById("regImg")
 const msgEmail = document.getElementById("regEmail")
 const msgPhone = document.getElementById("regPhone")
+// const arrayOfMsg = [msgRegEx,msgRegRole,msgNameForm,msgImg,msgEmail,msgPhone]
 
-
-if(regexEmail.test(document.getElementById("email").value)){
-    toggleHidden(msgEmail)
-}//validion email
-else if( regexFullName.test(document.getElementById("name").value)) {
-    toggleHidden(msgNameForm)
-}//validation full name
-else if( regexUrl.test(document.getElementById("profileImage").src)) {
-    toggleHidden(msgImg)
-}//validation url image
-else if( regexPhone.test(document.getElementById('telephone').value)) {
-    toggleHidden(msgPhone)
-}//validation phone number
-document.querySelectorAll(".entrepriseEx").forEach(exrg=>{
-
-    if( regexExp.test(exrg.value)) {
-        toggleHidden(msgNameForm)
-
-
-})
-
-
-
-
-}//validation experience entreprise
+// if(regexEmail.test(document.getElementById("email").value)){
+//     toggleHidden(msgEmail)
+// }//validion email
+// else if( regexFullName.test(document.getElementById("name").value)) {
+//     toggleHidden(msgNameForm)
+// }//validation full name
+// else if( regexUrl.test(document.getElementById("profileImage").src)) {
+//     toggleHidden(msgImg)
+// }//validation url image
+// else if( regexPhone.test(document.getElementById('telephone').value)) {
+//     toggleHidden(msgPhone)
+// }//validation phone number
+// document.querySelectorAll(".accessExperience").forEach(exrg => {
+//         if (regexExp.test(exrg.querySelector(".entrepriseEx").value)) {
+//             toggleHidden(msgRegEx)
+//         }
+//         if (regexExp.test(exrg.querySelector(".roleEx").value)) {
+//             toggleHidden(msgRegRole)
+//         }
+//     }
+// )
 
 
 
 
-else if(regexExp.test())
+//validation experience entreprise
 
 
 
-name: document.getElementById("name").value,
-    role: document.getElementById("role").value ,
-    img: ,
-    experience: experienceBridge ,
-    email: ,
-    phone: document.getElementById('telephone').value ,
 
-}
+
+
 
 
 
@@ -100,6 +96,9 @@ name: document.getElementById("name").value,
 
 imageInput.addEventListener('input', () => {
     imageProfile.src = imageInput.value
+    if( !regexUrl.test(imageInput.value)) {
+            msgImg.classList.remove("hidden")
+        }
     imageProfile.onerror = () => {
         imageProfile.src = "./assets/emptyProfile.jpg"
     }
@@ -117,7 +116,54 @@ function toggleHidden(element){
 
 
 addForm.addEventListener('submit',e=>{
+    e.preventDefault()
 
+
+    const arrayOfMsg = [msgNameForm,msgImg,msgEmail,msgPhone]
+    arrayOfMsg.forEach(msg=>{
+        msg.classList.add('hidden')
+    })
+    console.log(regexEmail.test(document.getElementById("email").value),msgEmail)
+let valid = 1
+   if(!regexFullName.test(document.getElementById("name").value)) {
+        toggleHidden(msgNameForm)
+        valid=0
+    }//validation full name
+
+    //  if( !regexUrl.test(document.getElementById("profileImage").src)) {
+    //     toggleHidden(msgImg)
+    //     valid=0
+    // }//validation url image
+
+     if(!regexEmail.test(document.getElementById("email").value)){
+        toggleHidden(msgEmail)
+        valid=0
+    }//validion email
+     if( !regexPhone.test(document.getElementById('telephone').value)) {
+        toggleHidden(msgPhone)
+        valid=0
+
+    }//validation phone number
+
+
+    document.querySelectorAll(".accessExperience").forEach(exrg => {
+            if (!regexExp.test(exrg.querySelector(".entrepriseEx").value)) {
+                toggleHidden(msgRegEx)
+                valid=0
+            }
+             if (!regexExp.test(exrg.querySelector(".roleEx").value)) {
+                toggleHidden(msgRegRole)
+                valid=0
+            }
+        }
+    )
+
+
+
+    if(!valid){
+        return
+    }
+     //submit reload the page
 
     workerCounter++
     let experienceBridge = []
@@ -139,10 +185,7 @@ addForm.addEventListener('submit',e=>{
     })
 
 
-    if( regexEmail.test(document.getElementById("name").value) ){
-        toggleHidden()
-    }
-
+    console.log(regexFullName.test(document.getElementById("name").value))
 
 
 
@@ -176,7 +219,6 @@ addForm.addEventListener('submit',e=>{
     //
     //
     // workerContainer.append(workerCard)
-    e.preventDefault() //submit reload the page
     workerList.push(workerObjet)
     showCards(workerList,workerContainer) //affichage
     formSection.classList.toggle('hidden')
@@ -643,6 +685,8 @@ function detailledCard(objet,location){
     detailPage.querySelector('#experienceContainerDetail').innerHTML=""
     detailPage.querySelector('#experienceContainerDetail').append(experienceCardDetail(objet.experience))
 }
+
+
 
 
 

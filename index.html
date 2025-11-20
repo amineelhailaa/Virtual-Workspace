@@ -14,19 +14,19 @@
 
 <main >
     <section id="workspace" >
-        <div class=" flex flex-col sm:flex-row  lg:flex-row gap-5 lg:gap-4 lg:py-8 px-2 py-4 lg:px-10  lg:justify-between   ">
+        <div id="bodyContainer" class=" flex flex-col   lg:flex-row gap-5 lg:gap-4 lg:py-8 px-2 py-4 lg:px-10  lg:justify-between   ">
 
-            <div class=" flex lg:grow flex-col gap-5 lg:gap-3 items-center px-4 bg-white rounded-2xl shadow-xl order-2 sm:order-1 py-4 min-h-56 w-[1fr] ">
+            <aside class=" flex lg:grow flex-col gap-5 lg:gap-3 items-center px-4 bg-white rounded-2xl shadow-xl order-2  lg:order-1 py-4 min-h-56 w-[1fr] ">
                 <button  id="addWorker" class="bg-amber-400 px-8 py-2 rounded-2xl text-white w-full  whitespace-nowrap  cursor-pointer  " type="button">
                     Ajouter un Agent
                 </button>
                 <div id="workerContainer" class="border-t-2 border-t-amber-400 w-full">
                 </div>
-            </div>
+            </aside>
 
 
 
-            <div class=" sm:aspect-[16/9]  aspect-[16/12] sm:max-w-[80%]  w-full self-start border-4 border-white shadow-2xl rounded-2xl order-1 sm:order-2 relative overflow-hidden">
+            <div id="halfScreen" class=" md:aspect-[16/9]  aspect-[16/12] lg:max-w-[80%]  w-full self-start  border-4 border-white shadow-2xl rounded-2xl order-1 lg:order-2 relative overflow-hidden">
                 <img src="assets/background.jpg" class="absolute top-0 left-0  w-full h-full  rounded-2xl "
                      alt="workspace"/>
                 <div id="rooms_container"
@@ -38,7 +38,7 @@
                             +
                         </div>
                         <div id="conferenceC" class="gap-[30%] gap-y-1 flex  flex-wrap p-[10%]   justify-evenly  ">
-                            <div id="${objet.id}" class="relative flex gap-[10%] py-[0.1%]  rounded-sm bg-white border-2  border-white max-w-[30%] aspect-[20/7] min-w-0 ">
+                            <div id="${objet.id}" class="relative flex gap-[5%] py-[0.1%]  rounded-sm bg-white border-2  border-white max-w-[30%] aspect-[20/7] min-w-0 ">
                                 <img src="./assets/emptyProfile.jpg" class="rounded-sm  " alt="profile">
                                 <svg  class="deleteBtn  cursor-pointer absolute top-1/2 left-full -translate-1/2 w-[20%] aspect-square" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg">
                                     <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0"
@@ -46,7 +46,7 @@
                                     <path d="m350.273438 320.105469c8.339843 8.34375 8.339843 21.824219 0 30.167969-4.160157 4.160156-9.621094 6.25-15.085938 6.25-5.460938 0-10.921875-2.089844-15.082031-6.25l-64.105469-64.109376-64.105469 64.109376c-4.160156 4.160156-9.621093 6.25-15.082031 6.25-5.464844 0-10.925781-2.089844-15.085938-6.25-8.339843-8.34375-8.339843-21.824219 0-30.167969l64.109376-64.105469-64.109376-64.105469c-8.339843-8.34375-8.339843-21.824219 0-30.167969 8.34375-8.339843 21.824219-8.339843 30.167969 0l64.105469 64.109376 64.105469-64.109376c8.34375-8.339843 21.824219-8.339843 30.167969 0 8.339843 8.34375 8.339843 21.824219 0 30.167969l-64.109376 64.105469zm0 0"
                                           fill="#fafafa"/>
                                 </svg>
-                                <div class="text-[4px] text-black"><h1 class="border-b-amber-400 border-b-[1px] lg:border-b-2 w-fit" >AMINE</h1><p>Technecien</p> </div>
+                                <div class="text-xs text-black"><h1 class="border-b-amber-400 border-b-[1px] lg:border-b-2 w-fit" >AMINE</h1><p>Technecien</p> </div>
 
                             </div>
                             <div id="${objet.id}" class="relative flex gap-[10%] py-[0.1%]  rounded-sm bg-white border-2  border-white max-w-[30%] aspect-[20/7] min-w-0 ">

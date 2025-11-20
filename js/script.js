@@ -164,6 +164,11 @@ let valid = 1
                 toggleHidden(msgRegRole)
                 valid=0
             }
+             console.log(exrg.querySelector(".dateE").value)
+             if ( parseInt(exrg.querySelector(".dateE").value)<parseInt(exrg.querySelector(".dateS").value)  ){
+                 alert("date of experience is not correct")
+                 valid=0
+             }
         }
     )
 

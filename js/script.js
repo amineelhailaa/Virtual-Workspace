@@ -43,7 +43,16 @@ const regexExp = /^[a-zA-Z]+$/
 
 
 
-
+// workerList[0]={
+//     id: 1,
+//     name: "amine",
+//     role: "whocares" ,
+//     img: "../assets/emptyProfile.jpg",
+//     experience: "experienceBridge" ,
+//     email:"adsfasdddddd",
+//     phone: "44444444444" ,
+//
+// }
 
 
 const msgRegEx = document.getElementById("regExpEn")
@@ -297,9 +306,9 @@ addExperience.addEventListener('click', () => {
                                 <p class=" text-red-600 text-xs hidden"  id="regRole">role name invalid!</p></div>
                     </div>
                     <div class="flex flex-row min-w-0 gap-2 grow-0 ">
-                        <input type="date"
+                        <input type="date" required
                                class="dateS min-w-0 grow outline-1 outline-amber-400 rounded-md px-4 py-1">
-                        <input type="date"
+                        <input type="date" required
                                class="dateE min-w-0 grow outline-1 outline-amber-400 rounded-md px-4 py-1">
                     </div>
 
@@ -358,6 +367,9 @@ addExperience.addEventListener('click', () => {
         else{
             console.log("there is some error here")
         }
+
+        verifyArray()
+
     }
 
 /// part of delete
@@ -437,12 +449,15 @@ addExperience.addEventListener('click', () => {
         else{
             console.log("there is error in delete")
         }
+
+            verifyArray()
     }
 
 
         //detailllllllllllllllllllllllllllllllll------------------------------
 
         else if(event.target.closest('.roomCards')){
+
             const cardToDetail = event.target.closest('.roomCards')
             const idToDetail = event.target.closest('.roomCards').querySelector('div').id //get the id of the div inside the div that has this class
 
@@ -476,6 +491,7 @@ addExperience.addEventListener('click', () => {
             detailledCard(searchById(workerList,idToDetail),"unssaigned")
         }
 
+
         }
 
 
@@ -485,7 +501,6 @@ addExperience.addEventListener('click', () => {
 
 
 
-verifyArray()
 })
 
 function searchById(array,id){
@@ -543,6 +558,7 @@ function filter(roleName,idOfRoom) {
 
         noCardAvailable()
     }
+    verifyArray()
     //should make statement to show unvailable people in this case
 }
 
@@ -603,7 +619,9 @@ function cardIt(worker,idOfRoom){
             showCards(archiveList,archiveContainer)
         }
         allowedListSection.classList.toggle("hidden")
+        verifyArray()
     })
+
     return allowedCard
 }
 
@@ -647,7 +665,7 @@ function cardOfRooms(objet) {
                                 <h1 class="text-[0.4rem]">${objet.name.split(" ")[0]}</h1>
                             </div>
                         </div>`
-
+    verifyArray()
     return card
 }
 
@@ -691,9 +709,8 @@ function detailledCard(objet,location){
 
 function verifyArray(){
 
-    if(receptionList.length<1) receptionContainer.classList.add("bg-red-500/60")
-    if(serversList.length<1) receptionContainer.classList.add("bg-red-500/60")
-    if(securityList.length<1) receptionContainer.classList.add("bg-red-500/60")
-    if(archiveList.length<1) receptionContainer.classList.add("bg-red-500/60")
-
+receptionContainer.parentElement.classList.toggle("bg-red-500/60",receptionList.length===0)
+archiveContainer.parentElement.classList.toggle("bg-red-500/60",archiveList.length===0)
+itContainer.parentElement.classList.toggle("bg-red-500/60",serversList.length===0)
+securityContainer.parentElement.classList.toggle("bg-red-500/60",securityList.length===0)
 }

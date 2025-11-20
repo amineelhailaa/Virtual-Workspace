@@ -42,6 +42,58 @@ const regexUrl = /^https:\/\/[a-zA-Z0-9.-_\/]+$/
 const regexExp = /^[a-zA-Z]+$/
 
 
+const msgRegEx = document.getElementById("regExpEn")
+const msgRegRole = document.getElementById("regRole")
+const msgNameForm = document.getElementById("regFullName")
+const msgImg = document.getElementById("regImg")
+const msgEmail = document.getElementById("regEmail")
+const msgPhone = document.getElementById("regPhone")
+
+
+if(regexEmail.test(document.getElementById("email").value)){
+    toggleHidden(msgEmail)
+}//validion email
+else if( regexFullName.test(document.getElementById("name").value)) {
+    toggleHidden(msgNameForm)
+}//validation full name
+else if( regexUrl.test(document.getElementById("profileImage").src)) {
+    toggleHidden(msgImg)
+}//validation url image
+else if( regexPhone.test(document.getElementById('telephone').value)) {
+    toggleHidden(msgPhone)
+}//validation phone number
+document.querySelectorAll(".entrepriseEx").forEach(exrg=>{
+
+    if( regexExp.test(exrg.value)) {
+        toggleHidden(msgNameForm)
+
+
+})
+
+
+
+
+}//validation experience entreprise
+
+
+
+
+else if(regexExp.test())
+
+
+
+name: document.getElementById("name").value,
+    role: document.getElementById("role").value ,
+    img: ,
+    experience: experienceBridge ,
+    email: ,
+    phone: document.getElementById('telephone').value ,
+
+}
+
+
+
+
 
 
 
@@ -59,7 +111,9 @@ addWorker.addEventListener('click', () => {
 })
 
 
-
+function toggleHidden(element){
+    element.classList.toggle("hidden")
+}
 
 
 addForm.addEventListener('submit',e=>{
@@ -83,6 +137,12 @@ addForm.addEventListener('submit',e=>{
             experienceBridge.push(storeExperience)
         }
     })
+
+
+    if( regexEmail.test(document.getElementById("name").value) ){
+        toggleHidden()
+    }
+
 
 
 
@@ -120,6 +180,7 @@ addForm.addEventListener('submit',e=>{
     workerList.push(workerObjet)
     showCards(workerList,workerContainer) //affichage
     formSection.classList.toggle('hidden')
+    addForm.reset()
 
 })
 
@@ -186,10 +247,12 @@ addExperience.addEventListener('click', () => {
     const experienceTemplate = document.createElement("div")
     experienceTemplate.className ="accessExperience"
     experienceTemplate.innerHTML = `<div class=" flex flex-col gap-4 ">
-                    <div class="flex flex-row min-w-0 gap-2"><input type="text" placeholder="Entreprise"
+                    <div class="flex flex-row min-w-0 gap-2"><div class="flex flex-col"><input type="text" placeholder="Entreprise"
                                 class="entrepriseEx min-w-0  outline-1 outline-amber-400 rounded-md px-4 py-1">
-                        <input type="text" placeholder="Role" value=""
+                                 <p class="text-red-600 text-xs hidden"  id="regExpEn">company name invalid!</p></div>
+                        <div class="flex flex-col"><input type="text" placeholder="Role" 
                                class="roleEx min-w-0  outline-1 outline-amber-400 rounded-md px-4 py-1">
+                                <p class=" text-red-600 text-xs hidden"  id="regRole">role name invalid!</p></div>
                     </div>
                     <div class="flex flex-row min-w-0 gap-2 grow-0 ">
                         <input type="date"

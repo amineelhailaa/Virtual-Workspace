@@ -276,11 +276,13 @@
 
 
 
-<section id="form_section" class="  hidden  left-0 top-0 w-full h-full bg-red-950/50 fixed ">
+<section id="form_section" class="    left-0 top-0 w-full h-full bg-red-950/50 fixed ">
 
     <form id="addForm" class="flex flex-col py-4 px-4 gap-y-2 bg-white border-1 border-amber-500 shadow-amber-600 rounded-2xl w-[90%] max-w-[400px]  absolute top-1/2 left-1/2  transform -translate-1/2 max- overflow-y-scroll max-h-[80vh]  ">
         <label for="name">Nom</label>
-        <input id="name" class="outline-1 outline-amber-400 rounded-md px-4 py-1" type="text">
+        <div class="flex flex-col"><input id="name" class="outline-1 outline-amber-400 rounded-md px-4 py-1" type="text">
+        <p class="text-red-500 text-xs  hidden" id="regFullName">Nom invalid!</p>
+        </div>
 
         <label for="role">Role</label>
         <select id="role" class="outline-1 outline-amber-400 rounded-md px-4 py-1" type="text">
@@ -298,7 +300,9 @@
             <div class="rounded-full border-1 border-amber-400 aspect-square max-h-20 overflow-hidden  " id="profile" > <img alt="profileImage" src="./assets/emptyProfile.jpg" id="profileImage" ></div>
             <div class="flex flex-col grow min-w-0 ">
                 <label for="inputProfile">Image</label>
-                <input id="inputProfile" class="outline-1 outline-amber-400 rounded-md  px-2 py-1 " type="url"></div>
+                <input id="inputProfile" class="outline-1 outline-amber-400 rounded-md  px-2 py-1 " type="url">
+                <p class="text-red-600 text-xs hidden"  id="regImg" >image url invalid!</p>
+            </div>
         </div>
 
 
@@ -317,12 +321,13 @@
 
 
         <label for="email">Email</label>
-        <input id="email" class="outline-1 outline-amber-400 rounded-md px-4 py-1" type="email">
+        <div class="flex flex-col"><input id="email" class="outline-1 outline-amber-400 rounded-md px-4 py-1" type="email">
+            <p class="text-red-600 text-xs hidden"  id="regEmail">image url invalid!</p></div>
 
 
         <label for="telephone">Telephone</label>
-        <input id="telephone" class="outline-1 outline-amber-400 rounded-md px-4 py-1" type="tel">
-
+        <div class="text-red-600 flex-col flex"><input id="telephone" class="outline-1 outline-amber-400 rounded-md px-4 py-1" type="tel">
+            <p class="text-red-600 text-xs hidden"  id="regPhone">phone number invalid!</p></div>
 
         <div class="flex justify-evenly flex-wrap">
             <button type="button" id="btnAnnulerSubmit"

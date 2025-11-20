@@ -35,6 +35,17 @@ let experienceList = []
 
 
 
+const regexEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z-._]+\.[a-z]{3,}$/
+const regexFullName = /^[a-zA-Z]+\s[a-zA-Z]+$/
+const regexPhone = /^0[6-7][0-9]{8}$/
+const regexUrl = /^https:\/\/[a-zA-Z0-9.-_\/]+$/
+const regexExp = /^[a-zA-Z]+$/
+
+
+
+
+
+
 imageInput.addEventListener('input', () => {
     imageProfile.src = imageInput.value
     imageProfile.onerror = () => {
@@ -72,6 +83,10 @@ addForm.addEventListener('submit',e=>{
             experienceBridge.push(storeExperience)
         }
     })
+
+
+
+
 
     let workerObjet = {
         id: workerCounter,

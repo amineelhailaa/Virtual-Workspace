@@ -21,6 +21,7 @@ const detailSection = document.getElementById('detailsContainer')
 
 
 
+
 let workerCounter=0
 let workerList = []
 let conferenceList = []

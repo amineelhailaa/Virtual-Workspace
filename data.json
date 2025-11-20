@@ -1,0 +1,27 @@
+{
+  "receptionist": {
+    "roleName": "Réceptionniste",
+    "value": "receptionist"
+  },
+  "technicien": {
+    "roleName": "Techniciens IT",
+    "value": "technicien"
+  },
+  "manager": {
+    "roleName": "Manager",
+    "value": "manager"
+  },
+  "securite": {
+    "roleName": "Agents de sécurité",
+    "value": "securite"
+  },
+  "nettoyage": {
+    "roleName": "Nettoyage",
+    "value": "nettoyage"
+  },
+  "other": {
+    "roleName": "Autres rôles",
+    "value": "other"
+  }
+
+}

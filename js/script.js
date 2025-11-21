@@ -38,7 +38,7 @@ let experienceList = []
 const regexEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z._]+\.[a-z]{3,}$/
 const regexFullName = /^[a-zA-Z]+\s[a-zA-Z]+\s*[a-zA-Z]*$/
 const regexPhone = /^0[6-7][0-9]{8}$/
-const regexPhone = /^.*$/
+// const regexPhone = /^.*$/
 const regexUrl = /^https:\/\/.+$/
 const regexExp = /^[a-zA-Z]+\s[a-zA-Z]+\s*[a-zA-Z]+$/
 

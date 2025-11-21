@@ -7,7 +7,6 @@
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
-    --color-red-400: oklch(70.4% 0.191 22.216);
     --color-red-500: oklch(63.7% 0.237 25.331);
     --color-red-600: oklch(57.7% 0.245 27.325);
     --color-red-950: oklch(25.8% 0.092 26.042);
@@ -18,10 +17,6 @@
     --color-amber-500: oklch(76.9% 0.188 70.08);
     --color-amber-600: oklch(66.6% 0.179 58.318);
     --color-amber-700: oklch(55.5% 0.163 48.998);
-    --color-yellow-500: oklch(79.5% 0.184 86.047);
-    --color-yellow-700: oklch(55.4% 0.135 66.442);
-    --color-green-50: oklch(98.2% 0.018 155.826);
-    --color-green-500: oklch(72.3% 0.219 149.579);
     --color-gray-300: oklch(87.2% 0.01 258.338);
     --color-black: #000;
     --color-white: #fff;
@@ -29,8 +24,6 @@
     --container-xs: 20rem;
     --text-xs: 0.75rem;
     --text-xs--line-height: calc(1 / 0.75);
-    --text-sm: 0.875rem;
-    --text-sm--line-height: calc(1.25 / 0.875);
     --text-xl: 1.25rem;
     --text-xl--line-height: calc(1.75 / 1.25);
     --font-weight-semibold: 600;
@@ -348,12 +341,6 @@
   .w-\[90\%\] {
     width: 90%;
   }
-  .w-\[clamp\(20px\,7vw\,75px\)\] {
-    width: clamp(20px, 7vw, 75px);
-  }
-  .w-\[clamp\(20px\,7vw\,80px\)\] {
-    width: clamp(20px, 7vw, 80px);
-  }
   .w-\[clamp\(40px\,80px\,80px\)\] {
     width: clamp(40px, 80px, 80px);
   }
@@ -468,9 +455,6 @@
   .justify-start {
     justify-content: flex-start;
   }
-  .gap-0 {
-    gap: calc(var(--spacing) * 0);
-  }
   .gap-1 {
     gap: calc(var(--spacing) * 1);
   }
@@ -488,9 +472,6 @@
   }
   .gap-7 {
     gap: calc(var(--spacing) * 7);
-  }
-  .gap-\[2px\] {
-    gap: 2px;
   }
   .gap-\[5\%\] {
     gap: 5%;
@@ -687,12 +668,6 @@
   .text-\[4px\] {
     font-size: 4px;
   }
-  .text-\[6px\] {
-    font-size: 6px;
-  }
-  .text-\[7px\] {
-    font-size: 7px;
-  }
   .text-\[8px\] {
     font-size: 8px;
   }
@@ -702,10 +677,6 @@
   .leading-none {
     --tw-leading: 1;
     line-height: 1;
-  }
-  .leading-tight {
-    --tw-leading: var(--leading-tight);
-    line-height: var(--leading-tight);
   }
   .font-bold {
     --tw-font-weight: var(--font-weight-bold);
@@ -767,16 +738,6 @@
       @media (hover: hover) {
         color: var(--color-amber-700);
       }
-    }
-  }
-  .sm\:max-w-\[90px\] {
-    @media (width >= 40rem) {
-      max-width: 90px;
-    }
-  }
-  .sm\:text-\[8px\] {
-    @media (width >= 40rem) {
-      font-size: 8px;
     }
   }
   .sm\:leading-tight {

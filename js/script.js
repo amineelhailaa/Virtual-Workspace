@@ -36,10 +36,11 @@ let experienceList = []
 
 
 const regexEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z._]+\.[a-z]{3,}$/
-const regexFullName = /^[a-zA-Z]+\s[a-zA-Z]+$/
-const regexPhone = /^0[6-7][0-9]{8}$/
-const regexUrl = /^https:\/\/[a-zA-Z0-9.-_\/]+$/
-const regexExp = /^[a-zA-Z]+$/
+const regexFullName = /^[a-zA-Z]+\s[a-zA-Z]+\s*[a-zA-Z]*$/
+// const regexPhone = /^0[6-7][0-9]{8}$/
+const regexPhone = /^.*$/
+const regexUrl = /^https:\/\/.+$/
+const regexExp = /^[a-zA-Z]+\s[a-zA-Z]+\s*[a-zA-Z]+$/
 
 
 
@@ -303,18 +304,23 @@ addExperience.addEventListener('click', () => {
     const experienceTemplate = document.createElement("div")
     experienceTemplate.className ="accessExperience"
     experienceTemplate.innerHTML = `<div class=" flex flex-col gap-4 ">
-                    <div class="flex flex-row min-w-0 gap-2"><div class="flex flex-col"><input type="text" placeholder="Entreprise"
+                    <div class="flex flex-row min-w-0 gap-2"><div class="flex flex-col min-w-0"><input type="text" placeholder="Entreprise"
                                 class="entrepriseEx min-w-0  outline-1 outline-amber-400 rounded-md px-4 py-1">
                                  <p class="text-red-600 text-xs hidden"  id="regExpEn">company name invalid!</p></div>
-                        <div class="flex flex-col"><input type="text" placeholder="Role" 
+                        <div class="flex flex-col min-w-0"><input type="text" placeholder="Role" 
                                class="roleEx min-w-0  outline-1 outline-amber-400 rounded-md px-4 py-1">
                                 <p class=" text-red-600 text-xs hidden"  id="regRole">role name invalid!</p></div>
                     </div>
                     <div class="flex flex-row min-w-0 gap-2 grow-0 ">
+                    
+                    <div class="flex flex-col w-full"><label for="dateS">start date</label>
                         <input type="date" required
                                class="dateS min-w-0 grow outline-1 outline-amber-400 rounded-md px-4 py-1">
+                               </div>
+                               
+                               <div class="flex flex-col w-full"><label for="dateS">start date</label>
                         <input type="date" required
-                               class="dateE min-w-0 grow outline-1 outline-amber-400 rounded-md px-4 py-1">
+                               class="dateE min-w-0 grow outline-1 outline-amber-400 rounded-md px-4 py-1"></div>
                     </div>
 
 
@@ -582,6 +588,7 @@ function cardIt(worker,idOfRoom){
 
 
     allowedCard.addEventListener('click',()=>{
+
         if ( idOfRoom === "conference"){
             if ((receptionList.length+1>4)) {
                 alert("conference room is full!")
@@ -606,7 +613,7 @@ function cardIt(worker,idOfRoom){
             showCards(receptionList,receptionContainer)
         }
         if ( idOfRoom === "servers"){
-            if ((serversList.length+1>4)) {
+            if ((serversList.length+1>3)) {
                 alert("servers room is full!")
                 return
             }
@@ -617,7 +624,7 @@ function cardIt(worker,idOfRoom){
             showCards(serversList,itContainer)
         }
         if ( idOfRoom === "security"){
-            if ((securityList.length+1>4)) {
+            if ((securityList.length+1>3)) {
                 alert("security room is full!")
                 return
             }
@@ -628,7 +635,7 @@ function cardIt(worker,idOfRoom){
             showCards(securityList,securityContainer)
         }
         if ( idOfRoom === "personnel"){
-            if ((staffList.length+1>4)) {
+            if ((staffList.length+1>3)) {
                 alert("staff room is full!")
                 return
             }
@@ -639,7 +646,7 @@ function cardIt(worker,idOfRoom){
             showCards(staffList,staffContainer)
         }
         if ( idOfRoom === "archive"){
-            if ((archiveList.length+1>2)) {
+            if ((archiveList.length+1>3)) {
                 alert("archive room is full!")
                 return
             }
@@ -705,7 +712,7 @@ function cardOfRooms(objet) {
                                     <path d="m350.273438 320.105469c8.339843 8.34375 8.339843 21.824219 0 30.167969-4.160157 4.160156-9.621094 6.25-15.085938 6.25-5.460938 0-10.921875-2.089844-15.082031-6.25l-64.105469-64.109376-64.105469 64.109376c-4.160156 4.160156-9.621093 6.25-15.082031 6.25-5.464844 0-10.925781-2.089844-15.085938-6.25-8.339843-8.34375-8.339843-21.824219 0-30.167969l64.109376-64.105469-64.109376-64.105469c-8.339843-8.34375-8.339843-21.824219 0-30.167969 8.34375-8.339843 21.824219-8.339843 30.167969 0l64.105469 64.109376 64.105469-64.109376c8.34375-8.339843 21.824219-8.339843 30.167969 0 8.339843 8.34375 8.339843 21.824219 0 30.167969l-64.109376 64.105469zm0 0"
                                           fill="#fafafa"/>
                                 </svg>
-                                <div class="text-[8px] md:text-[9px] text-black flex flex-col "><h1 class="border-b-amber-400 border-b-[1px] lg:border-b-2 w-fit" >${objet.name.split(" ")[0]}</h1><p>${objet.role}</p> </div>
+                                <div class="   text-[8px] md:text-[9px] text-black flex flex-col justify-start  leading-none   sm:leading-tight"><h1 class="border-b-amber-400 border-b-[1px] lg:border-b-2 w-fit m-0" >${objet.name.split(" ")[0]}</h1><p>${objet.role}</p> </div>
 
                             </div>`
     verifyArray()
@@ -722,7 +729,7 @@ function experienceCardDetail(arrayofexperience) {
 
         fullexperience.innerHTML+=`<div class="experienceDetailled w-full bg-amber-300 text-white shadow-md rounded-2xl p-2">
 
-            <p class="flex w-full gap-7"><span>${exp.company}</span><span>${exp.role}</span></p>
+            <p class="flex flex-col w-full "><span>E/ses: ${exp.company}</span><span>Post: ${exp.role}</span></p>
             <p class="flex w-full gap-7"><span class="dateDebutEx">Start: ${exp.dateS}</span><span class="dateFinEx">End: ${exp.dateE}</span></p>
         </div>`
     })

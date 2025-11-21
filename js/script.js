@@ -751,6 +751,7 @@ function detailledCard(objet,location){
     detailPage.querySelector('#locationDetail').textContent = location
     detailPage.querySelector('#experienceContainerDetail').innerHTML=""
     detailPage.querySelector('#experienceContainerDetail').append(experienceCardDetail(objet.experience))
+    detailPage.querySelector('#imgDetail').src  = objet.img
 }
 
 

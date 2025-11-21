@@ -26,7 +26,7 @@
 
 
 
-            <div id="halfScreen" class=" md:aspect-[16/9]  aspect-[16/12] lg:max-w-[80%]  w-full self-start  border-4 border-white shadow-2xl rounded-2xl order-1 lg:order-2 relative overflow-hidden">
+            <div id="halfScreen" class=" md:aspect-[16/11]  lg:aspect-[16/9] aspect-[16/12] lg:max-w-[80%]  w-full self-start  border-4 border-white shadow-2xl rounded-2xl order-1 lg:order-2 relative overflow-hidden">
                 <img src="assets/background.jpg" class="absolute top-0 left-0  w-full h-full  rounded-2xl "
                      alt="workspace"/>
                 <div id="rooms_container"
@@ -37,8 +37,8 @@
                         <div class=" addHimHere   cursor-pointer bg-amber-700 text-white hover:text-amber-700 hover:bg-white  rounded-b-[40%]   -translate-x-1/2 w-[15%] flex flex-col justify-center items-center font-bold text-xs lg:text-xl min-w-0 min-h-0 top-0 left-1/2 aspect-video  absolute">
                             +
                         </div>
-                        <div id="conferenceC" class="gap-[30%] gap-y-1 flex  flex-wrap p-[10%]   justify-evenly  ">
-                            <div id="${objet.id}" class="relative flex gap-[5%] py-[0.1%]  rounded-sm bg-white border-2  border-white max-w-[30%] aspect-[20/7] min-w-0 ">
+                        <div id="conferenceC" class=" flex  flex-wrap  items-center justify-between gap-y-4 px-6 h-full ">
+                            <div id="${objet.id}" class="relative flex gap-[5%]   rounded-sm bg-white border-2  border-white max-w-[80px] aspect-[3/1] min-w-0 ">
                                 <img src="./assets/emptyProfile.jpg" class="rounded-sm  " alt="profile">
                                 <svg  class="deleteBtn  cursor-pointer absolute top-1/2 left-full -translate-1/2 w-[20%] aspect-square" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg">
                                     <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0"
@@ -46,10 +46,63 @@
                                     <path d="m350.273438 320.105469c8.339843 8.34375 8.339843 21.824219 0 30.167969-4.160157 4.160156-9.621094 6.25-15.085938 6.25-5.460938 0-10.921875-2.089844-15.082031-6.25l-64.105469-64.109376-64.105469 64.109376c-4.160156 4.160156-9.621093 6.25-15.082031 6.25-5.464844 0-10.925781-2.089844-15.085938-6.25-8.339843-8.34375-8.339843-21.824219 0-30.167969l64.109376-64.105469-64.109376-64.105469c-8.339843-8.34375-8.339843-21.824219 0-30.167969 8.34375-8.339843 21.824219-8.339843 30.167969 0l64.105469 64.109376 64.105469-64.109376c8.34375-8.339843 21.824219-8.339843 30.167969 0 8.339843 8.34375 8.339843 21.824219 0 30.167969l-64.109376 64.105469zm0 0"
                                           fill="#fafafa"/>
                                 </svg>
-                                <div class="text-xs text-black"><h1 class="border-b-amber-400 border-b-[1px] lg:border-b-2 w-fit" >AMINE</h1><p>Technecien</p> </div>
+                                <div class="text-[8px] text-black flex flex-col "><h1 class="border-b-amber-400 border-b-[1px] lg:border-b-2 w-fit" >AMINE</h1><p>Technecien</p> </div>
 
                             </div>
-                            <div id="${objet.id}" class="relative flex gap-[10%] py-[0.1%]  rounded-sm bg-white border-2  border-white max-w-[30%] aspect-[20/7] min-w-0 ">
+<!--                            <div id="${objet.id}" class="relative flex gap-[10%] py-[0.1%]  rounded-sm bg-white border-2  border-white max-w-[30%] aspect-[20/7] min-w-0 ">-->
+<!--                                <img src="./assets/emptyProfile.jpg" class="rounded-sm  " alt="profile">-->
+<!--                                <svg  class="deleteBtn  cursor-pointer absolute top-1/2 left-full -translate-1/2 w-[20%] aspect-square" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg">-->
+<!--                                    <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0"-->
+<!--                                          fill="#f44336"/>-->
+<!--                                    <path d="m350.273438 320.105469c8.339843 8.34375 8.339843 21.824219 0 30.167969-4.160157 4.160156-9.621094 6.25-15.085938 6.25-5.460938 0-10.921875-2.089844-15.082031-6.25l-64.105469-64.109376-64.105469 64.109376c-4.160156 4.160156-9.621093 6.25-15.082031 6.25-5.464844 0-10.925781-2.089844-15.085938-6.25-8.339843-8.34375-8.339843-21.824219 0-30.167969l64.109376-64.105469-64.109376-64.105469c-8.339843-8.34375-8.339843-21.824219 0-30.167969 8.34375-8.339843 21.824219-8.339843 30.167969 0l64.105469 64.109376 64.105469-64.109376c8.34375-8.339843 21.824219-8.339843 30.167969 0 8.339843 8.34375 8.339843 21.824219 0 30.167969l-64.109376 64.105469zm0 0"-->
+<!--                                          fill="#fafafa"/>-->
+<!--                                </svg>-->
+<!--                                <div class="text-[4px] text-black"><h1 class="border-b-amber-400 border-b-2 w-fit" >AMINE</h1><p>technecien</p> </div>-->
+
+<!--                            </div>-->
+<!--                            <div id="${objet.id}" class="relative flex gap-[10%] py-[0.1%]  rounded-sm bg-white border-2  border-white max-w-[30%] aspect-[20/7] min-w-0 ">-->
+<!--                                <img src="./assets/emptyProfile.jpg" class="rounded-sm  " alt="profile">-->
+<!--                                <svg  class="deleteBtn  cursor-pointer absolute top-1/2 left-full -translate-1/2 w-[20%] aspect-square" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg">-->
+<!--                                    <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0"-->
+<!--                                          fill="#f44336"/>-->
+<!--                                    <path d="m350.273438 320.105469c8.339843 8.34375 8.339843 21.824219 0 30.167969-4.160157 4.160156-9.621094 6.25-15.085938 6.25-5.460938 0-10.921875-2.089844-15.082031-6.25l-64.105469-64.109376-64.105469 64.109376c-4.160156 4.160156-9.621093 6.25-15.082031 6.25-5.464844 0-10.925781-2.089844-15.085938-6.25-8.339843-8.34375-8.339843-21.824219 0-30.167969l64.109376-64.105469-64.109376-64.105469c-8.339843-8.34375-8.339843-21.824219 0-30.167969 8.34375-8.339843 21.824219-8.339843 30.167969 0l64.105469 64.109376 64.105469-64.109376c8.34375-8.339843 21.824219-8.339843 30.167969 0 8.339843 8.34375 8.339843 21.824219 0 30.167969l-64.109376 64.105469zm0 0"-->
+<!--                                          fill="#fafafa"/>-->
+<!--                                </svg>-->
+<!--                                <div class="text-[4px] text-black"><h1 class="border-b-amber-400 border-b-2 w-fit" >AMINE</h1><p>technecien</p> </div>-->
+
+<!--                            </div>-->
+<!--                            <div id="${objet.id}" class="relative flex gap-[10%] py-[0.1%]  rounded-sm bg-white border-2  border-white max-w-[30%] aspect-[20/7] min-w-0 ">-->
+<!--                                <img src="./assets/emptyProfile.jpg" class="rounded-sm  " alt="profile">-->
+<!--                                <svg  class="deleteBtn  cursor-pointer absolute top-1/2 left-full -translate-1/2 w-[20%] aspect-square" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg">-->
+<!--                                    <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0"-->
+<!--                                          fill="#f44336"/>-->
+<!--                                    <path d="m350.273438 320.105469c8.339843 8.34375 8.339843 21.824219 0 30.167969-4.160157 4.160156-9.621094 6.25-15.085938 6.25-5.460938 0-10.921875-2.089844-15.082031-6.25l-64.105469-64.109376-64.105469 64.109376c-4.160156 4.160156-9.621093 6.25-15.082031 6.25-5.464844 0-10.925781-2.089844-15.085938-6.25-8.339843-8.34375-8.339843-21.824219 0-30.167969l64.109376-64.105469-64.109376-64.105469c-8.339843-8.34375-8.339843-21.824219 0-30.167969 8.34375-8.339843 21.824219-8.339843 30.167969 0l64.105469 64.109376 64.105469-64.109376c8.34375-8.339843 21.824219-8.339843 30.167969 0 8.339843 8.34375 8.339843 21.824219 0 30.167969l-64.109376 64.105469zm0 0"-->
+<!--                                          fill="#fafafa"/>-->
+<!--                                </svg>-->
+<!--                                <div class="text-[4px] text-black"><h1 class="border-b-amber-400 border-b-2 w-fit" >AMINE</h1><p>technecien</p> </div>-->
+
+<!--                            </div><div id="${objet.id}" class="relative flex gap-[10%] py-[0.1%]  rounded-sm bg-white border-2  border-white max-w-[30%] aspect-[20/7] min-w-0 ">-->
+<!--                            <img src="./assets/emptyProfile.jpg" class="rounded-sm  " alt="profile">-->
+<!--                            <svg  class="deleteBtn  cursor-pointer absolute top-1/2 left-full -translate-1/2 w-[20%] aspect-square" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg">-->
+<!--                                <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0"-->
+<!--                                      fill="#f44336"/>-->
+<!--                                <path d="m350.273438 320.105469c8.339843 8.34375 8.339843 21.824219 0 30.167969-4.160157 4.160156-9.621094 6.25-15.085938 6.25-5.460938 0-10.921875-2.089844-15.082031-6.25l-64.105469-64.109376-64.105469 64.109376c-4.160156 4.160156-9.621093 6.25-15.082031 6.25-5.464844 0-10.925781-2.089844-15.085938-6.25-8.339843-8.34375-8.339843-21.824219 0-30.167969l64.109376-64.105469-64.109376-64.105469c-8.339843-8.34375-8.339843-21.824219 0-30.167969 8.34375-8.339843 21.824219-8.339843 30.167969 0l64.105469 64.109376 64.105469-64.109376c8.34375-8.339843 21.824219-8.339843 30.167969 0 8.339843 8.34375 8.339843 21.824219 0 30.167969l-64.109376 64.105469zm0 0"-->
+<!--                                      fill="#fafafa"/>-->
+<!--                            </svg>-->
+<!--                            <div class="text-[4px] text-black"><h1 class="border-b-amber-400 border-b-2 w-fit" >AMINE</h1><p>technecien</p> </div>-->
+
+<!--                        </div><div id="${objet.id}" class="relative flex gap-[10%] py-[0.1%]  rounded-sm bg-white border-2  border-white max-w-[30%] aspect-[20/7] min-w-0 ">-->
+<!--                            <img src="./assets/emptyProfile.jpg" class="rounded-sm  " alt="profile">-->
+<!--                            <svg  class="deleteBtn  cursor-pointer absolute top-1/2 left-full -translate-1/2 w-[20%] aspect-square" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg">-->
+<!--                                <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0"-->
+<!--                                      fill="#f44336"/>-->
+<!--                                <path d="m350.273438 320.105469c8.339843 8.34375 8.339843 21.824219 0 30.167969-4.160157 4.160156-9.621094 6.25-15.085938 6.25-5.460938 0-10.921875-2.089844-15.082031-6.25l-64.105469-64.109376-64.105469 64.109376c-4.160156 4.160156-9.621093 6.25-15.082031 6.25-5.464844 0-10.925781-2.089844-15.085938-6.25-8.339843-8.34375-8.339843-21.824219 0-30.167969l64.109376-64.105469-64.109376-64.105469c-8.339843-8.34375-8.339843-21.824219 0-30.167969 8.34375-8.339843 21.824219-8.339843 30.167969 0l64.105469 64.109376 64.105469-64.109376c8.34375-8.339843 21.824219-8.339843 30.167969 0 8.339843 8.34375 8.339843 21.824219 0 30.167969l-64.109376 64.105469zm0 0"-->
+<!--                                      fill="#fafafa"/>-->
+<!--                            </svg>-->
+<!--                            <div class="text-[4px] text-black"><h1 class="border-b-amber-400 border-b-2 w-fit" >AMINE</h1><p>technecien</p> </div>-->
+
+<!--&lt;!&ndash;                        </div>&ndash;&gt; last working-->
+                            <div id="${objet.id}" class="relative flex gap-[5%]   rounded-sm bg-white border-2  border-white max-w-[80px] aspect-[3/1] min-w-0 ">
                                 <img src="./assets/emptyProfile.jpg" class="rounded-sm  " alt="profile">
                                 <svg  class="deleteBtn  cursor-pointer absolute top-1/2 left-full -translate-1/2 w-[20%] aspect-square" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg">
                                     <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0"
@@ -57,10 +110,10 @@
                                     <path d="m350.273438 320.105469c8.339843 8.34375 8.339843 21.824219 0 30.167969-4.160157 4.160156-9.621094 6.25-15.085938 6.25-5.460938 0-10.921875-2.089844-15.082031-6.25l-64.105469-64.109376-64.105469 64.109376c-4.160156 4.160156-9.621093 6.25-15.082031 6.25-5.464844 0-10.925781-2.089844-15.085938-6.25-8.339843-8.34375-8.339843-21.824219 0-30.167969l64.109376-64.105469-64.109376-64.105469c-8.339843-8.34375-8.339843-21.824219 0-30.167969 8.34375-8.339843 21.824219-8.339843 30.167969 0l64.105469 64.109376 64.105469-64.109376c8.34375-8.339843 21.824219-8.339843 30.167969 0 8.339843 8.34375 8.339843 21.824219 0 30.167969l-64.109376 64.105469zm0 0"
                                           fill="#fafafa"/>
                                 </svg>
-                                <div class="text-[4px] text-black"><h1 class="border-b-amber-400 border-b-2 w-fit" >AMINE</h1><p>technecien</p> </div>
+                                <div class="text-[8px] text-black flex flex-col "><h1 class="border-b-amber-400 border-b-[1px] lg:border-b-2 w-fit" >AMINE</h1><p>Technecien</p> </div>
 
                             </div>
-                            <div id="${objet.id}" class="relative flex gap-[10%] py-[0.1%]  rounded-sm bg-white border-2  border-white max-w-[30%] aspect-[20/7] min-w-0 ">
+                            <div id="${objet.id}" class="relative flex gap-[5%]   rounded-sm bg-white border-2  border-white max-w-[80px] aspect-[3/1] min-w-0 ">
                                 <img src="./assets/emptyProfile.jpg" class="rounded-sm  " alt="profile">
                                 <svg  class="deleteBtn  cursor-pointer absolute top-1/2 left-full -translate-1/2 w-[20%] aspect-square" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg">
                                     <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0"
@@ -68,10 +121,10 @@
                                     <path d="m350.273438 320.105469c8.339843 8.34375 8.339843 21.824219 0 30.167969-4.160157 4.160156-9.621094 6.25-15.085938 6.25-5.460938 0-10.921875-2.089844-15.082031-6.25l-64.105469-64.109376-64.105469 64.109376c-4.160156 4.160156-9.621093 6.25-15.082031 6.25-5.464844 0-10.925781-2.089844-15.085938-6.25-8.339843-8.34375-8.339843-21.824219 0-30.167969l64.109376-64.105469-64.109376-64.105469c-8.339843-8.34375-8.339843-21.824219 0-30.167969 8.34375-8.339843 21.824219-8.339843 30.167969 0l64.105469 64.109376 64.105469-64.109376c8.34375-8.339843 21.824219-8.339843 30.167969 0 8.339843 8.34375 8.339843 21.824219 0 30.167969l-64.109376 64.105469zm0 0"
                                           fill="#fafafa"/>
                                 </svg>
-                                <div class="text-[4px] text-black"><h1 class="border-b-amber-400 border-b-2 w-fit" >AMINE</h1><p>technecien</p> </div>
+                                <div class="text-[8px] text-black flex flex-col "><h1 class="border-b-amber-400 border-b-[1px] lg:border-b-2 w-fit" >AMINE</h1><p>Technecien</p> </div>
 
                             </div>
-                            <div id="${objet.id}" class="relative flex gap-[10%] py-[0.1%]  rounded-sm bg-white border-2  border-white max-w-[30%] aspect-[20/7] min-w-0 ">
+                            <div id="${objet.id}" class="relative flex gap-[5%]   rounded-sm bg-white border-2  border-white max-w-[80px] aspect-[3/1] min-w-0 ">
                                 <img src="./assets/emptyProfile.jpg" class="rounded-sm  " alt="profile">
                                 <svg  class="deleteBtn  cursor-pointer absolute top-1/2 left-full -translate-1/2 w-[20%] aspect-square" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg">
                                     <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0"
@@ -79,29 +132,10 @@
                                     <path d="m350.273438 320.105469c8.339843 8.34375 8.339843 21.824219 0 30.167969-4.160157 4.160156-9.621094 6.25-15.085938 6.25-5.460938 0-10.921875-2.089844-15.082031-6.25l-64.105469-64.109376-64.105469 64.109376c-4.160156 4.160156-9.621093 6.25-15.082031 6.25-5.464844 0-10.925781-2.089844-15.085938-6.25-8.339843-8.34375-8.339843-21.824219 0-30.167969l64.109376-64.105469-64.109376-64.105469c-8.339843-8.34375-8.339843-21.824219 0-30.167969 8.34375-8.339843 21.824219-8.339843 30.167969 0l64.105469 64.109376 64.105469-64.109376c8.34375-8.339843 21.824219-8.339843 30.167969 0 8.339843 8.34375 8.339843 21.824219 0 30.167969l-64.109376 64.105469zm0 0"
                                           fill="#fafafa"/>
                                 </svg>
-                                <div class="text-[4px] text-black"><h1 class="border-b-amber-400 border-b-2 w-fit" >AMINE</h1><p>technecien</p> </div>
+                                <div class="text-[8px] text-black flex flex-col "><h1 class="border-b-amber-400 border-b-[1px] lg:border-b-2 w-fit" >AMINE</h1><p>Technecien</p> </div>
 
-                            </div><div id="${objet.id}" class="relative flex gap-[10%] py-[0.1%]  rounded-sm bg-white border-2  border-white max-w-[30%] aspect-[20/7] min-w-0 ">
-                            <img src="./assets/emptyProfile.jpg" class="rounded-sm  " alt="profile">
-                            <svg  class="deleteBtn  cursor-pointer absolute top-1/2 left-full -translate-1/2 w-[20%] aspect-square" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg">
-                                <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0"
-                                      fill="#f44336"/>
-                                <path d="m350.273438 320.105469c8.339843 8.34375 8.339843 21.824219 0 30.167969-4.160157 4.160156-9.621094 6.25-15.085938 6.25-5.460938 0-10.921875-2.089844-15.082031-6.25l-64.105469-64.109376-64.105469 64.109376c-4.160156 4.160156-9.621093 6.25-15.082031 6.25-5.464844 0-10.925781-2.089844-15.085938-6.25-8.339843-8.34375-8.339843-21.824219 0-30.167969l64.109376-64.105469-64.109376-64.105469c-8.339843-8.34375-8.339843-21.824219 0-30.167969 8.34375-8.339843 21.824219-8.339843 30.167969 0l64.105469 64.109376 64.105469-64.109376c8.34375-8.339843 21.824219-8.339843 30.167969 0 8.339843 8.34375 8.339843 21.824219 0 30.167969l-64.109376 64.105469zm0 0"
-                                      fill="#fafafa"/>
-                            </svg>
-                            <div class="text-[4px] text-black"><h1 class="border-b-amber-400 border-b-2 w-fit" >AMINE</h1><p>technecien</p> </div>
+                            </div>
 
-                        </div><div id="${objet.id}" class="relative flex gap-[10%] py-[0.1%]  rounded-sm bg-white border-2  border-white max-w-[30%] aspect-[20/7] min-w-0 ">
-                            <img src="./assets/emptyProfile.jpg" class="rounded-sm  " alt="profile">
-                            <svg  class="deleteBtn  cursor-pointer absolute top-1/2 left-full -translate-1/2 w-[20%] aspect-square" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg">
-                                <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0"
-                                      fill="#f44336"/>
-                                <path d="m350.273438 320.105469c8.339843 8.34375 8.339843 21.824219 0 30.167969-4.160157 4.160156-9.621094 6.25-15.085938 6.25-5.460938 0-10.921875-2.089844-15.082031-6.25l-64.105469-64.109376-64.105469 64.109376c-4.160156 4.160156-9.621093 6.25-15.082031 6.25-5.464844 0-10.925781-2.089844-15.085938-6.25-8.339843-8.34375-8.339843-21.824219 0-30.167969l64.109376-64.105469-64.109376-64.105469c-8.339843-8.34375-8.339843-21.824219 0-30.167969 8.34375-8.339843 21.824219-8.339843 30.167969 0l64.105469 64.109376 64.105469-64.109376c8.34375-8.339843 21.824219-8.339843 30.167969 0 8.339843 8.34375 8.339843 21.824219 0 30.167969l-64.109376 64.105469zm0 0"
-                                      fill="#fafafa"/>
-                            </svg>
-                            <div class="text-[4px] text-black"><h1 class="border-b-amber-400 border-b-2 w-fit" >AMINE</h1><p>technecien</p> </div>
-
-                        </div>
 
 
                         </div>
@@ -151,21 +185,120 @@
                     </div>
 
                     <div id="reception"
-                         class=" relative flex justify-center  items-center    bg-red-500/60   col-start-1 col-end-2 row-start-2 row-end-5   ">
+                         class=" relative flex justify-center  items-center    bg-red-500/40   col-start-1 col-end-2 row-start-2 row-end-5   ">
                             <div class=" addHimHere  cursor-pointer  bg-amber-700 text-white hover:text-amber-700 hover:bg-white  rounded-b-[40%]  -translate-x-1/2 aspect-video min-w-0 min-h-0  w-[15%]  flex flex-col justify-center items-center font-bold text-xs lg:text-xl  top-0 left-1/2   absolute">
                             +
                         </div>
-                        <div id="receptionC" ></div>
+                        <div id="receptionC" class="flex  flex-wrap p-[10%]  gap-y-2 justify-between" >
+                            <div id="${objet.id}" class="relative flex gap-[5%]   rounded-sm bg-white border-2  border-white max-w-[80px] aspect-[3/1] min-w-0 ">
+                                <img src="./assets/emptyProfile.jpg" class="rounded-sm  " alt="profile">
+                                <svg  class="deleteBtn  cursor-pointer absolute top-1/2 left-full -translate-1/2 w-[20%] aspect-square" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg">
+                                    <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0"
+                                          fill="#f44336"/>
+                                    <path d="m350.273438 320.105469c8.339843 8.34375 8.339843 21.824219 0 30.167969-4.160157 4.160156-9.621094 6.25-15.085938 6.25-5.460938 0-10.921875-2.089844-15.082031-6.25l-64.105469-64.109376-64.105469 64.109376c-4.160156 4.160156-9.621093 6.25-15.082031 6.25-5.464844 0-10.925781-2.089844-15.085938-6.25-8.339843-8.34375-8.339843-21.824219 0-30.167969l64.109376-64.105469-64.109376-64.105469c-8.339843-8.34375-8.339843-21.824219 0-30.167969 8.34375-8.339843 21.824219-8.339843 30.167969 0l64.105469 64.109376 64.105469-64.109376c8.34375-8.339843 21.824219-8.339843 30.167969 0 8.339843 8.34375 8.339843 21.824219 0 30.167969l-64.109376 64.105469zm0 0"
+                                          fill="#fafafa"/>
+                                </svg>
+                                <div class="text-[8px] text-black flex flex-col "><h1 class="border-b-amber-400 border-b-[1px] lg:border-b-2 w-fit" >AMINE</h1><p>Technecien</p> </div>
+
+                            </div>
+                            <div id="${objet.id}" class="relative flex gap-[5%]   rounded-sm bg-white border-2  border-white max-w-[80px] aspect-[3/1] min-w-0 ">
+                                <img src="./assets/emptyProfile.jpg" class="rounded-sm  " alt="profile">
+                                <svg  class="deleteBtn  cursor-pointer absolute top-1/2 left-full -translate-1/2 w-[20%] aspect-square" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg">
+                                    <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0"
+                                          fill="#f44336"/>
+                                    <path d="m350.273438 320.105469c8.339843 8.34375 8.339843 21.824219 0 30.167969-4.160157 4.160156-9.621094 6.25-15.085938 6.25-5.460938 0-10.921875-2.089844-15.082031-6.25l-64.105469-64.109376-64.105469 64.109376c-4.160156 4.160156-9.621093 6.25-15.082031 6.25-5.464844 0-10.925781-2.089844-15.085938-6.25-8.339843-8.34375-8.339843-21.824219 0-30.167969l64.109376-64.105469-64.109376-64.105469c-8.339843-8.34375-8.339843-21.824219 0-30.167969 8.34375-8.339843 21.824219-8.339843 30.167969 0l64.105469 64.109376 64.105469-64.109376c8.34375-8.339843 21.824219-8.339843 30.167969 0 8.339843 8.34375 8.339843 21.824219 0 30.167969l-64.109376 64.105469zm0 0"
+                                          fill="#fafafa"/>
+                                </svg>
+                                <div class="text-[8px] text-black flex flex-col "><h1 class="border-b-amber-400 border-b-[1px] lg:border-b-2 w-fit" >AMINE</h1><p>Technecien</p> </div>
+
+                            </div>
+                            <div id="${objet.id}" class="relative flex gap-[5%]   rounded-sm bg-white border-2  border-white max-w-[80px] aspect-[3/1] min-w-0 ">
+                                <img src="./assets/emptyProfile.jpg" class="rounded-sm  " alt="profile">
+                                <svg  class="deleteBtn  cursor-pointer absolute top-1/2 left-full -translate-1/2 w-[20%] aspect-square" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg">
+                                    <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0"
+                                          fill="#f44336"/>
+                                    <path d="m350.273438 320.105469c8.339843 8.34375 8.339843 21.824219 0 30.167969-4.160157 4.160156-9.621094 6.25-15.085938 6.25-5.460938 0-10.921875-2.089844-15.082031-6.25l-64.105469-64.109376-64.105469 64.109376c-4.160156 4.160156-9.621093 6.25-15.082031 6.25-5.464844 0-10.925781-2.089844-15.085938-6.25-8.339843-8.34375-8.339843-21.824219 0-30.167969l64.109376-64.105469-64.109376-64.105469c-8.339843-8.34375-8.339843-21.824219 0-30.167969 8.34375-8.339843 21.824219-8.339843 30.167969 0l64.105469 64.109376 64.105469-64.109376c8.34375-8.339843 21.824219-8.339843 30.167969 0 8.339843 8.34375 8.339843 21.824219 0 30.167969l-64.109376 64.105469zm0 0"
+                                          fill="#fafafa"/>
+                                </svg>
+                                <div class="text-[8px] text-black flex flex-col "><h1 class="border-b-amber-400 border-b-[1px] lg:border-b-2 w-fit" >AMINE</h1><p>Technecien</p> </div>
+
+                            </div>
+                            <div id="${objet.id}" class="relative flex gap-[5%]   rounded-sm bg-white border-2  border-white max-w-[80px] aspect-[3/1] min-w-0 ">
+                                <img src="./assets/emptyProfile.jpg" class="rounded-sm  " alt="profile">
+                                <svg  class="deleteBtn  cursor-pointer absolute top-1/2 left-full -translate-1/2 w-[20%] aspect-square" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg">
+                                    <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0"
+                                          fill="#f44336"/>
+                                    <path d="m350.273438 320.105469c8.339843 8.34375 8.339843 21.824219 0 30.167969-4.160157 4.160156-9.621094 6.25-15.085938 6.25-5.460938 0-10.921875-2.089844-15.082031-6.25l-64.105469-64.109376-64.105469 64.109376c-4.160156 4.160156-9.621093 6.25-15.082031 6.25-5.464844 0-10.925781-2.089844-15.085938-6.25-8.339843-8.34375-8.339843-21.824219 0-30.167969l64.109376-64.105469-64.109376-64.105469c-8.339843-8.34375-8.339843-21.824219 0-30.167969 8.34375-8.339843 21.824219-8.339843 30.167969 0l64.105469 64.109376 64.105469-64.109376c8.34375-8.339843 21.824219-8.339843 30.167969 0 8.339843 8.34375 8.339843 21.824219 0 30.167969l-64.109376 64.105469zm0 0"
+                                          fill="#fafafa"/>
+                                </svg>
+                                <div class="text-[8px] text-black flex flex-col "><h1 class="border-b-amber-400 border-b-[1px] lg:border-b-2 w-fit" >AMINE</h1><p>Technecien</p> </div>
+
+                            </div>
+                            <div id="${objet.id}" class="relative flex gap-[5%]   rounded-sm bg-white border-2  border-white max-w-[80px] aspect-[3/1] min-w-0 ">
+                                <img src="./assets/emptyProfile.jpg" class="rounded-sm  " alt="profile">
+                                <svg  class="deleteBtn  cursor-pointer absolute top-1/2 left-full -translate-1/2 w-[20%] aspect-square" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg">
+                                    <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0"
+                                          fill="#f44336"/>
+                                    <path d="m350.273438 320.105469c8.339843 8.34375 8.339843 21.824219 0 30.167969-4.160157 4.160156-9.621094 6.25-15.085938 6.25-5.460938 0-10.921875-2.089844-15.082031-6.25l-64.105469-64.109376-64.105469 64.109376c-4.160156 4.160156-9.621093 6.25-15.082031 6.25-5.464844 0-10.925781-2.089844-15.085938-6.25-8.339843-8.34375-8.339843-21.824219 0-30.167969l64.109376-64.105469-64.109376-64.105469c-8.339843-8.34375-8.339843-21.824219 0-30.167969 8.34375-8.339843 21.824219-8.339843 30.167969 0l64.105469 64.109376 64.105469-64.109376c8.34375-8.339843 21.824219-8.339843 30.167969 0 8.339843 8.34375 8.339843 21.824219 0 30.167969l-64.109376 64.105469zm0 0"
+                                          fill="#fafafa"/>
+                                </svg>
+                                <div class="text-[8px] text-black flex flex-col "><h1 class="border-b-amber-400 border-b-[1px] lg:border-b-2 w-fit" >AMINE</h1><p>Technecien</p> </div>
+
+                            </div>
+                            <div id="${objet.id}" class="relative flex gap-[5%]   rounded-sm bg-white border-2  border-white w-[clamp(40px,80px,80px)] aspect-[3/1] min-w-0 ">
+                                <img src="./assets/emptyProfile.jpg" class="rounded-sm  " alt="profile">
+                                <svg  class="deleteBtn  cursor-pointer absolute top-1/2 left-full -translate-1/2 w-[20%] aspect-square" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg">
+                                    <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0"
+                                          fill="#f44336"/>
+                                    <path d="m350.273438 320.105469c8.339843 8.34375 8.339843 21.824219 0 30.167969-4.160157 4.160156-9.621094 6.25-15.085938 6.25-5.460938 0-10.921875-2.089844-15.082031-6.25l-64.105469-64.109376-64.105469 64.109376c-4.160156 4.160156-9.621093 6.25-15.082031 6.25-5.464844 0-10.925781-2.089844-15.085938-6.25-8.339843-8.34375-8.339843-21.824219 0-30.167969l64.109376-64.105469-64.109376-64.105469c-8.339843-8.34375-8.339843-21.824219 0-30.167969 8.34375-8.339843 21.824219-8.339843 30.167969 0l64.105469 64.109376 64.105469-64.109376c8.34375-8.339843 21.824219-8.339843 30.167969 0 8.339843 8.34375 8.339843 21.824219 0 30.167969l-64.109376 64.105469zm0 0"
+                                          fill="#fafafa"/>
+                                </svg>
+                                <div class="text-[8px] text-black flex flex-col "><h1 class="border-b-amber-400 border-b-[1px] lg:border-b-2 w-fit" >AMINE</h1><p>Technecien</p> </div>
+
+                            </div>
+                        </div>
 
 
                     </div>
 
                     <div id="servers"
-                         class=" relative flex  justify-center items-center  gap-[40%] p-[20%] flex-wrap  bg-red-500/60  col-start-3 col-end-4 row-start-1 row-end-3   ">
+                         class=" relative flex  justify-center items-center  flex-wrap  bg-red-500/40  col-start-3 col-end-4 row-start-1 row-end-3   ">
                             <div class=" addHimHere  cursor-pointer  bg-amber-700 text-white hover:text-amber-700 hover:bg-white rounded-b-[40%]   -translate-x-1/2 w-[25%] flex flex-col justify-center items-center font-bold text-xs lg:text-xl  top-0 left-1/2 aspect-video  absolute">
                             +
                         </div>
-                        <div id="serversC" ></div>
+                        <div id="serversC" class="flex  flex-wrap justify-around items-end gap-1 w-full  " >
+                            <div id="${objet.id}" class="relative flex gap-[5%]   rounded-sm bg-white border-2  border-white w-[clamp(20px,7vw,80px)] aspect-[3/1] min-w-0 ">
+                                <img src="./assets/emptyProfile.jpg" class="rounded-sm  " alt="profile">
+                                <svg  class="deleteBtn  cursor-pointer absolute top-1/2 left-full -translate-1/2 w-[20%] aspect-square" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg">
+                                    <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0"
+                                          fill="#f44336"/>
+                                    <path d="m350.273438 320.105469c8.339843 8.34375 8.339843 21.824219 0 30.167969-4.160157 4.160156-9.621094 6.25-15.085938 6.25-5.460938 0-10.921875-2.089844-15.082031-6.25l-64.105469-64.109376-64.105469 64.109376c-4.160156 4.160156-9.621093 6.25-15.082031 6.25-5.464844 0-10.925781-2.089844-15.085938-6.25-8.339843-8.34375-8.339843-21.824219 0-30.167969l64.109376-64.105469-64.109376-64.105469c-8.339843-8.34375-8.339843-21.824219 0-30.167969 8.34375-8.339843 21.824219-8.339843 30.167969 0l64.105469 64.109376 64.105469-64.109376c8.34375-8.339843 21.824219-8.339843 30.167969 0 8.339843 8.34375 8.339843 21.824219 0 30.167969l-64.109376 64.105469zm0 0"
+                                          fill="#fafafa"/>
+                                </svg>
+                                <div class="text-[8px] text-black flex flex-col "><h1 class="border-b-amber-400 border-b-[1px] lg:border-b-2 w-fit" >AMINE</h1><p>Technecien</p> </div>
+
+                            </div><div id="${objet.id}" class="relative flex gap-[5%]   rounded-sm bg-white border-2  border-white max-w-[80px] aspect-[3/1] min-w-0 ">
+                            <img src="./assets/emptyProfile.jpg" class="rounded-sm  " alt="profile">
+                            <svg  class="deleteBtn  cursor-pointer absolute top-1/2 left-full -translate-1/2 w-[20%] aspect-square" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg">
+                                <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0"
+                                      fill="#f44336"/>
+                                <path d="m350.273438 320.105469c8.339843 8.34375 8.339843 21.824219 0 30.167969-4.160157 4.160156-9.621094 6.25-15.085938 6.25-5.460938 0-10.921875-2.089844-15.082031-6.25l-64.105469-64.109376-64.105469 64.109376c-4.160156 4.160156-9.621093 6.25-15.082031 6.25-5.464844 0-10.925781-2.089844-15.085938-6.25-8.339843-8.34375-8.339843-21.824219 0-30.167969l64.109376-64.105469-64.109376-64.105469c-8.339843-8.34375-8.339843-21.824219 0-30.167969 8.34375-8.339843 21.824219-8.339843 30.167969 0l64.105469 64.109376 64.105469-64.109376c8.34375-8.339843 21.824219-8.339843 30.167969 0 8.339843 8.34375 8.339843 21.824219 0 30.167969l-64.109376 64.105469zm0 0"
+                                      fill="#fafafa"/>
+                            </svg>
+                            <div class="text-[8px] text-black flex flex-col "><h1 class="border-b-amber-400 border-b-[1px] lg:border-b-2 w-fit" >AMINE</h1><p>Technecien</p> </div>
+
+                        </div><div id="${objet.id}" class="relative flex gap-[5%]   rounded-sm bg-white border-2  border-white max-w-[80px] aspect-[3/1] min-w-0 ">
+                            <img src="./assets/emptyProfile.jpg" class="rounded-sm  " alt="profile">
+                            <svg  class="deleteBtn  cursor-pointer absolute top-1/2 left-full -translate-1/2 w-[20%] aspect-square" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg">
+                                <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0"
+                                      fill="#f44336"/>
+                                <path d="m350.273438 320.105469c8.339843 8.34375 8.339843 21.824219 0 30.167969-4.160157 4.160156-9.621094 6.25-15.085938 6.25-5.460938 0-10.921875-2.089844-15.082031-6.25l-64.105469-64.109376-64.105469 64.109376c-4.160156 4.160156-9.621093 6.25-15.082031 6.25-5.464844 0-10.925781-2.089844-15.085938-6.25-8.339843-8.34375-8.339843-21.824219 0-30.167969l64.109376-64.105469-64.109376-64.105469c-8.339843-8.34375-8.339843-21.824219 0-30.167969 8.34375-8.339843 21.824219-8.339843 30.167969 0l64.105469 64.109376 64.105469-64.109376c8.34375-8.339843 21.824219-8.339843 30.167969 0 8.339843 8.34375 8.339843 21.824219 0 30.167969l-64.109376 64.105469zm0 0"
+                                      fill="#fafafa"/>
+                            </svg>
+                            <div class="text-[8px] text-black flex flex-col "><h1 class="border-b-amber-400 border-b-[1px] lg:border-b-2 w-fit" >AMINE</h1><p>Technecien</p> </div>
+
+                        </div>
+                        </div>
 
 <!--                        <div class="relative    rounded-md border-2  border-white max-w-[20%] min-w-0 ">-->
 <!--                            <img src="./assets/emptyProfile.jpg" class="rounded-sm  w-full " alt="profile">-->
@@ -199,7 +332,7 @@
                     </div>
 
                     <div id="security"
-                         class=" relative flex  justify-center items-center  gap-[40%] p-[20%] flex-wrap  bg-red-500/60  col-start-4 col-end-5 row-start-1 row-end-3    ">
+                         class=" relative flex  justify-center items-center  gap-[40%] p-[20%] flex-wrap  bg-red-500/40  col-start-4 col-end-5 row-start-1 row-end-3    ">
                             <div class=" addHimHere  cursor-pointer  bg-amber-700 text-white hover:text-amber-700 hover:bg-white rounded-b-[40%]   -translate-x-1/2 w-[25%] flex flex-col justify-center items-center font-bold text-xs lg:text-xl  top-0 left-1/2 aspect-video  absolute">
                             +
                         </div>
@@ -265,7 +398,7 @@
                     </div>
 
                     <div id="archive"
-                         class=" relative  flex  justify-center items-center  gap-[40%] p-[20%] flex-wrap   col-start-4 col-end-5 row-start-4 row-end-5    bg-red-500/60 ">
+                         class=" relative  flex  justify-center items-center  gap-[40%] p-[20%] flex-wrap   col-start-4 col-end-5 row-start-4 row-end-5    bg-red-500/40 ">
                             <div class=" addHimHere  cursor-pointer  bg-amber-700 text-white hover:text-amber-700 hover:bg-white  rounded-b-[40%]   -translate-x-1/2 w-[25%] flex flex-col justify-center items-center font-bold text-xs lg:text-xl  top-0 left-1/2 aspect-video  absolute">
                             +
                         </div>

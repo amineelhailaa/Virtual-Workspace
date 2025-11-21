@@ -384,6 +384,8 @@ addExperience.addEventListener('click', () => {
         console.log("condition of delete btn works")
             ///
         if (clickedMe.closest("#conference")){
+
+
             conferenceList.forEach(agent=>{
                 if (agent.id == idToDelete){
                     let tempTransfer = transfer(conferenceList,workerList,agent)
@@ -581,6 +583,10 @@ function cardIt(worker,idOfRoom){
 
     allowedCard.addEventListener('click',()=>{
         if ( idOfRoom === "conference"){
+            if ((receptionList.length+1>4)) {
+                alert("conference room is full!")
+                return
+            }
             let tempTransfer = transfer(workerList,conferenceList,worker)
             workerList=tempTransfer[0]
             conferenceList=tempTransfer[1]
@@ -589,6 +595,10 @@ function cardIt(worker,idOfRoom){
         }
 
         if ( idOfRoom === "reception"){
+            if ((receptionList.length+1>6)) {
+                alert("reception room is full!")
+                return
+            }
             let tempTransfer = transfer(workerList,receptionList,worker)
             workerList=tempTransfer[0]
             receptionList=tempTransfer[1]
@@ -596,6 +606,10 @@ function cardIt(worker,idOfRoom){
             showCards(receptionList,receptionContainer)
         }
         if ( idOfRoom === "servers"){
+            if ((serversList.length+1>4)) {
+                alert("servers room is full!")
+                return
+            }
             let tempTransfer = transfer(workerList,serversList,worker)
             workerList=tempTransfer[0]
             serversList=tempTransfer[1]
@@ -603,6 +617,10 @@ function cardIt(worker,idOfRoom){
             showCards(serversList,itContainer)
         }
         if ( idOfRoom === "security"){
+            if ((securityList.length+1>4)) {
+                alert("security room is full!")
+                return
+            }
             let tempTransfer = transfer(workerList,securityList,worker)
             workerList=tempTransfer[0]
             securityList=tempTransfer[1]
@@ -610,6 +628,10 @@ function cardIt(worker,idOfRoom){
             showCards(securityList,securityContainer)
         }
         if ( idOfRoom === "personnel"){
+            if ((staffList.length+1>4)) {
+                alert("staff room is full!")
+                return
+            }
             let tempTransfer = transfer(workerList,staffList,worker)
             workerList=tempTransfer[0]
             staffList=tempTransfer[1]
@@ -617,6 +639,10 @@ function cardIt(worker,idOfRoom){
             showCards(staffList,staffContainer)
         }
         if ( idOfRoom === "archive"){
+            if ((archiveList.length+1>2)) {
+                alert("archive room is full!")
+                return
+            }
             let tempTransfer = transfer(workerList,archiveList,worker)
             workerList=tempTransfer[0]
             archiveList=tempTransfer[1]
@@ -714,8 +740,8 @@ function detailledCard(objet,location){
 
 function verifyArray(){
 
-receptionContainer.parentElement.classList.toggle("bg-red-500/60",receptionList.length===0)
-archiveContainer.parentElement.classList.toggle("bg-red-500/60",archiveList.length===0)
-itContainer.parentElement.classList.toggle("bg-red-500/60",serversList.length===0)
-securityContainer.parentElement.classList.toggle("bg-red-500/60",securityList.length===0)
+receptionContainer.parentElement.classList.toggle("bg-red-500/40",receptionList.length===0)
+archiveContainer.parentElement.classList.toggle("bg-red-500/40",archiveList.length===0)
+itContainer.parentElement.classList.toggle("bg-red-500/40",serversList.length===0)
+securityContainer.parentElement.classList.toggle("bg-red-500/40",securityList.length===0)
 }

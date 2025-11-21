@@ -21,12 +21,14 @@
 
 @media(min-width:768px)and (max-width: 1023px) and (orientation: landscape){
     aside{
-        @apply order-1
+    order: 1;
     }
     #bodyContainer{
-        @apply flex-row
+     flex-direction: row;
+
     }
     #halfScreen{
-        @apply order-2
+    order: 2;
+        aspect-ratio: 16/10;
     }
 }

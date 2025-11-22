@@ -30,7 +30,7 @@ let serversList = []
 let securityList = []
 let staffList = []
 let archiveList = []
-let experienceList = []
+
 
 
 
@@ -117,8 +117,8 @@ imageInput.addEventListener('input', () => {
 addWorker.addEventListener('click', () => {
     formSection.classList.toggle("hidden");
 })
-function toggleAddReset(element){
-    const allMsgs = document.querySelectorAll("#regFullName,#regImg,#regEmail,#regPhone,.roleEx,.regExpEn")
+function toggleAddReset(){
+    const allMsgs = document.querySelectorAll("#regFullName,#regImg,#regEmail,#regPhone,.regRole,.regExpEn")
     allMsgs.forEach(element =>{
         element.classList.add("hidden")
     })

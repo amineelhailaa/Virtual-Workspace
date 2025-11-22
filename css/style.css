@@ -15,20 +15,22 @@
 /*}*/
 
 #addForm,
-.detailCard{
+#workerContainer,
+.detailCard,
+#allowedList{
     scrollbar-width: none;
 }
 
-@media(min-width:768px)and (max-width: 1023px) and (orientation: landscape){
+@media(min-width:768px)and (max-width: 1023px) and (max-height: 600px){
     aside{
-    order: 1;
+    order: 1!important;
     }
     #bodyContainer{
-     flex-direction: row;
+     flex-direction: row!important;
 
     }
     #halfScreen{
     order: 2;
-        aspect-ratio: 16/10;
+        aspect-ratio: 16/10!important;
     }
 }

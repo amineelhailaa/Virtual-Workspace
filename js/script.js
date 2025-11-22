@@ -38,7 +38,6 @@ let experienceList = []
 const regexEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z._]+\.[a-z]{3,}$/
 const regexFullName = /^[a-zA-Z]+\s*[a-zA-Z]+\s*[a-zA-Z]*$/
 const regexPhone = /^0[6-7][0-9]{8}$/
-// const regexPhone = /^.*$/
 const regexUrl = /^https:\/\/.+$/
 const regexExp = /^[a-zA-Z]+\s*[a-zA-Z]*\s*[a-zA-Z]*$/
 
@@ -118,23 +117,33 @@ imageInput.addEventListener('input', () => {
 addWorker.addEventListener('click', () => {
     formSection.classList.toggle("hidden");
 })
+function toggleAddReset(element){
+    const allMsgs = document.querySelectorAll("#regFullName,#regImg,#regEmail,#regPhone,.roleEx,.regExpEn")
+    allMsgs.forEach(element =>{
+        element.classList.add("hidden")
+    })
+}
 
 
 function toggleHidden(element){
     element.classList.remove("hidden")
 }
-function toggleAdd(element){
-}
+// function toggleAddReset(element){
+//     const allMsgs = document.querySelectorAll("#regFullName,#regImg,#regEmail,#regPhone,.roleEx,.regExpEn")
+//     allMsgs.forEach(element =>{
+//         element.classList.add("hidden")
+//     })
+// }
 
 
 addForm.addEventListener('submit',e=>{
     e.preventDefault()
 
 
-    const arrayOfMsg = [msgNameForm,msgImg,msgEmail,msgPhone]
-    arrayOfMsg.forEach(msg=>{
-        msg.classList.add('hidden')
-    })
+    // const arrayOfMsg = [msgNameForm,msgImg,msgEmail,msgPhone]
+    // arrayOfMsg.forEach(msg=>{
+    //     msg.classList.add('hidden')
+    // })
     console.log(regexEmail.test(document.getElementById("email").value),msgEmail)
 let valid = 1
    if(!regexFullName.test(document.getElementById("name").value)) {
@@ -158,9 +167,11 @@ let valid = 1
     }//validation phone number
 
 
+
     document.querySelectorAll(".accessExperience").forEach(exrg => {
             if (!regexExp.test(exrg.querySelector(".entrepriseEx").value)) {
                 toggleHidden(exrg.querySelector('.regExpEn'))
+               
                 valid=0
             }
              if (!regexExp.test(exrg.querySelector(".roleEx").value)) {
@@ -240,6 +251,7 @@ let valid = 1
     showCards(workerList,workerContainer) //affichage
     formSection.classList.toggle('hidden')
     addForm.reset()
+    toggleAddReset()
 
 })
 

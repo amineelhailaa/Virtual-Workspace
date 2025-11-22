@@ -38,7 +38,7 @@ let archiveList = []
 const regexEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z._]+\.[a-z]{3,}$/
 const regexFullName = /^[a-zA-Z]+\s*[a-zA-Z]+\s*[a-zA-Z]*$/
 const regexPhone = /^0[6-7][0-9]{8}$/
-const regexUrl = /^https:\/\/.+$/
+const regexUrl = /^https?:\/\/.+$/
 const regexExp = /^[a-zA-Z]+\s*[a-zA-Z]*\s*[a-zA-Z]*$/
 
 
@@ -108,6 +108,9 @@ imageInput.addEventListener('input', () => {
     if( !regexUrl.test(imageInput.value)) {
             msgImg.classList.remove("hidden")
         }
+    else {
+        msgImg.classList.add("hidden")
+    }
     imageProfile.onerror = () => {
         imageProfile.src = "./assets/emptyProfile.jpg"
     }

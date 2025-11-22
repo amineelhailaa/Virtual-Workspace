@@ -30,17 +30,16 @@ let serversList = []
 let securityList = []
 let staffList = []
 let archiveList = []
-let experienceList = []
+
 
 
 
 
 const regexEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z._]+\.[a-z]{3,}$/
-const regexFullName = /^[a-zA-Z]+\s[a-zA-Z]+\s*[a-zA-Z]*$/
+const regexFullName = /^[a-zA-Z]+\s*[a-zA-Z]+\s*[a-zA-Z]*$/
 const regexPhone = /^0[6-7][0-9]{8}$/
-// const regexPhone = /^.*$/
 const regexUrl = /^https:\/\/.+$/
-const regexExp = /^[a-zA-Z]+\s[a-zA-Z]+\s*[a-zA-Z]+$/
+const regexExp = /^[a-zA-Z]+\s*[a-zA-Z]*\s*[a-zA-Z]*$/
 
 
 
@@ -56,8 +55,8 @@ const regexExp = /^[a-zA-Z]+\s[a-zA-Z]+\s*[a-zA-Z]+$/
 // }
 
 
-const msgRegEx = document.getElementById("regExpEn")
-const msgRegRole = document.getElementById("regRole")
+// const msgRegEx = document.getElementById("regExpEn")
+// const msgRegRole = document.getElementById("regRole")
 const msgNameForm = document.getElementById("regFullName")
 const msgImg = document.getElementById("regImg")
 const msgEmail = document.getElementById("regEmail")
@@ -118,21 +117,33 @@ imageInput.addEventListener('input', () => {
 addWorker.addEventListener('click', () => {
     formSection.classList.toggle("hidden");
 })
+function toggleAddReset(){
+    const allMsgs = document.querySelectorAll("#regFullName,#regImg,#regEmail,#regPhone,.regRole,.regExpEn")
+    allMsgs.forEach(element =>{
+        element.classList.add("hidden")
+    })
+}
 
 
 function toggleHidden(element){
-    element.classList.toggle("hidden")
+    element.classList.remove("hidden")
 }
+// function toggleAddReset(element){
+//     const allMsgs = document.querySelectorAll("#regFullName,#regImg,#regEmail,#regPhone,.roleEx,.regExpEn")
+//     allMsgs.forEach(element =>{
+//         element.classList.add("hidden")
+//     })
+// }
 
 
 addForm.addEventListener('submit',e=>{
     e.preventDefault()
 
 
-    const arrayOfMsg = [msgNameForm,msgImg,msgEmail,msgPhone]
-    arrayOfMsg.forEach(msg=>{
-        msg.classList.add('hidden')
-    })
+    // const arrayOfMsg = [msgNameForm,msgImg,msgEmail,msgPhone]
+    // arrayOfMsg.forEach(msg=>{
+    //     msg.classList.add('hidden')
+    // })
     console.log(regexEmail.test(document.getElementById("email").value),msgEmail)
 let valid = 1
    if(!regexFullName.test(document.getElementById("name").value)) {
@@ -156,13 +167,15 @@ let valid = 1
     }//validation phone number
 
 
+
     document.querySelectorAll(".accessExperience").forEach(exrg => {
             if (!regexExp.test(exrg.querySelector(".entrepriseEx").value)) {
-                toggleHidden(msgRegEx)
+                toggleHidden(exrg.querySelector('.regExpEn'))
+               
                 valid=0
             }
              if (!regexExp.test(exrg.querySelector(".roleEx").value)) {
-                toggleHidden(msgRegRole)
+                toggleHidden(exrg.querySelector('.regRole'))
                 valid=0
             }
              console.log(exrg.querySelector(".dateE").value)
@@ -238,6 +251,7 @@ let valid = 1
     showCards(workerList,workerContainer) //affichage
     formSection.classList.toggle('hidden')
     addForm.reset()
+    toggleAddReset()
 
 })
 
@@ -306,10 +320,10 @@ addExperience.addEventListener('click', () => {
     experienceTemplate.innerHTML = `<div class=" flex flex-col gap-4 ">
                     <div class="flex flex-row min-w-0 gap-2"><div class="flex flex-col min-w-0"><input type="text" placeholder="Entreprise"
                                 class="entrepriseEx min-w-0  outline-1 outline-amber-400 rounded-md px-4 py-1">
-                                 <p class="text-red-600 text-xs hidden"  id="regExpEn">company name invalid!</p></div>
+                                 <p class="regExpEn text-red-600 text-xs hidden">company name invalid!</p></div>
                         <div class="flex flex-col min-w-0"><input type="text" placeholder="Role" 
                                class="roleEx min-w-0  outline-1 outline-amber-400 rounded-md px-4 py-1">
-                                <p class=" text-red-600 text-xs hidden"  id="regRole">role name invalid!</p></div>
+                                <p class="regRole text-red-600 text-xs hidden" >role name invalid!</p></div>
                     </div>
                     <div class="flex flex-row min-w-0 gap-2 grow-0 ">
                     

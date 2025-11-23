@@ -21,6 +21,15 @@ const sallesRules= {
     archive:["manager"]
 }
 const sallesKeys = ["conference","personnel","servers","security","archive","reception"]
+const salleMax= {
+    conference: 6,
+    personnel: 3,
+    servers: 3,
+    security: 3,
+    archive: 3,
+    reception: 6
+}
+
 
 let workerCounter =    JSON.parse(localStorage.getItem('counter')) || 0
 let workerList = JSON.parse(localStorage.getItem("workerList")) || []
@@ -171,6 +180,7 @@ function showCards(location) {
                     where.append(roomcards)
                 }
             })
+            verifyArray(where)
         })
         showCards(0)
     }
@@ -240,6 +250,10 @@ document.body.addEventListener('click', event => {
         const divClicked = event.target.closest(".addHimHere")
         console.log(clickedMe)
         let somethingThere = false
+        if (!fullOrNot(clickedMe)) {
+            alert("becarful the room is full")
+            return
+        }
         allowedListSection.classList.toggle("hidden")
         alowedList.innerHTML=""
         workerList.forEach(worker =>{
@@ -250,6 +264,10 @@ document.body.addEventListener('click', event => {
             } 
         })
         if (somethingThere===false) noCardAvailable();
+
+        // else {
+        //     console.log("hi")
+        // }
 
     }
 /// part of delete
@@ -265,6 +283,7 @@ document.body.addEventListener('click', event => {
             console.log(man, idToDelete)
             }
         })
+
     }
     //detailllllllllllllllllllllllllllllllll------------------------------
     else if (event.target.closest('.roomCards')) {
@@ -404,5 +423,23 @@ function detailledCard(objet) {
 //     securityContainer.parentElement.classList.toggle("bg-red-500/40", securityList.length === 0)
 // }
 function verifyArray(container){
+    console.log(container)
+if (container.querySelectorAll('div').length !== 0  ){
+        container.parentElement.classList.remove('bg-red-500/40')
+        console.log("gotcha",container)
+}
+else {
+    if (!container.classList.contains('free'))
+    container.parentElement.classList.add('bg-red-500/40')
+}
+}
 
+function fullOrNot(salle){
+        let weight=0
+    workerList.forEach(man=>{
+        if (man.salle===salle){
+            weight++
+        }
+    })
+    return salleMax[salle]>weight
 }

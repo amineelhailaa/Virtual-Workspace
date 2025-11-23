@@ -1,3 +1,9 @@
+
+
+
+
+
+
 const addWorker = document.getElementById("addWorker");
 const cancelAdding = document.getElementById("btnAnnulerSubmit")
 // const submitAdding = document.getElementById("btnSubmit")
@@ -22,6 +28,7 @@ const detailSection = document.getElementById('detailsContainer')
 
 let workerCounter = 0
 let workerList = []
+
 let conferenceList = []
 let receptionList = []
 let serversList = []
@@ -39,6 +46,11 @@ const msgNameForm = document.getElementById("regFullName")
 const msgImg = document.getElementById("regImg")
 const msgEmail = document.getElementById("regEmail")
 const msgPhone = document.getElementById("regPhone")
+
+
+workerList = JSON.parse(localStorage.getItem("workerList")) || []
+showCards(0)
+
 
 imageInput.addEventListener('input', () => {
     imageProfile.src = imageInput.value
@@ -139,26 +151,54 @@ addForm.addEventListener('submit', e => {
         id: workerCounter,
         name: document.getElementById("name").value,
         role: document.getElementById("role").value,
+        salle: 0,
         img: document.getElementById("profileImage").src,
         experience: experienceBridge,
         email: document.getElementById("email").value,
         phone: document.getElementById('telephone').value,
 
     }
-
+    console.log("hahah")
     workerList.push(workerObjet)
-    showCards(workerList, workerContainer) //affichage
+    localsave()
+    showCards(0) //affichag
     formSection.classList.toggle('hidden')
     addForm.reset()
     toggleAddReset()
-
 })
 
 
-function showCards(array, location) {
-    if (location === workerContainer) {
-        location.innerHTML = ""
-        array.forEach(worker => {
+let sallesRules= {
+    conference: ["receptionist","technicien","manager","securite","nettoyage","other"],
+    personnel:["receptionist","technicien","manager","securite","nettoyage","other"],
+    reception: ["receptionist","manager","nettoyage"],
+    servers:["technicien","manager","nettoyage"],
+    security:["manager","securite","nettoyage"],
+    archive:["manager"]
+}
+
+
+function localget(){
+    
+    let localA = JSON.parse(localStorage.getItem("workerList")) || []
+    return localA
+}
+function localsave(){
+    localStorage.setItem("workerList",JSON.stringify(workerList))
+}
+
+
+
+
+
+
+function showCards(location) {
+    console.log(location,"location of show cards function")
+    if (location === 0) {
+        workerContainer.innerHTML = ""
+        workerList.forEach(worker => {
+    console.log("i got there",location)
+            if (worker.salle === 0){
             const workerCard = document.createElement('div')
             workerCard.className = "roomCards"
             workerCard.innerHTML = `<div id="${worker.id}" class=" flex flex-row gap-4 py-2 border-b-2 border-b-amber-400"> 
@@ -166,14 +206,20 @@ function showCards(array, location) {
                         <div><h1 class="worker_NAME">${worker.name}</h1>
                             <p class="worker_ROLE">${worker.role}</p></div></div>
                     `
-            // workerCard.id = worker.id
-            location.append(workerCard)
-        })
-    } else {
-        location.innerHTML = ""
-        array.forEach(mate => {
-            let roomCard = cardOfRooms(mate)
-            location.append(roomCard)
+                console.log("dkhl lfunction")
+                workerContainer.append(workerCard)
+        }})
+    }
+    
+    else {
+        let where=location.parentElement.querySelector('.roomate')
+        console.log(where,"where >>>")
+        where.innerHTML=""
+        workerList.forEach(mate => {
+            if (mate.salle===location) {
+                let roomCard = cardOfRooms(mate)
+                where.append(roomCard)
+            }
         })
     }
 
@@ -249,27 +295,44 @@ addExperience.addEventListener('click', () => {
 document.body.addEventListener('click', event => {
 /// part of ajout
     if (event.target.closest(".addHimHere")) {
-        const clickedMe = event.target.closest(".addHimHere")
-
-        if (clickedMe.parentElement.id === "reception") {
-            filter("receptionist", clickedMe.parentElement.id)
-        } else if (clickedMe.parentElement.id === "servers") {
-            filter("technicien", clickedMe.parentElement.id)
-        } else if (clickedMe.parentElement.id === "security") {
-            filter("securite", clickedMe.parentElement.id)
-        } else if (clickedMe.parentElement.id === "conference") {
-            filter("justGo", clickedMe.parentElement.id)
-        } else if (clickedMe.parentElement.id === "personnel") {
-            filter("justGo", clickedMe.parentElement.id)
-        } else if (clickedMe.parentElement.id === "archive") {
-            filter("archive", clickedMe.parentElement.id)
-        } else {
-            console.log("there is some error here")
-        }
-
+        const clickedMe = event.target.closest(".addHimHere").dataset.salle
+        console.log(clickedMe)
+        let somethingThere = false
+        allowedListSection.classList.toggle("hidden")
+        alowedList.innerHTML=""
+        workerList.forEach(worker =>{
+            if (allowedHere(worker.role,clickedMe)){
+                somethingThere = true
+                let allowedCard = cardIt(worker, clickedMe)
+                alowedList.append(allowedCard)
+            } 
+        })
+        // if (clickedMe.parentElement.id === "reception") {
+        //     filter("receptionist", clickedMe.parentElement.id)
+        // } else if (clickedMe.parentElement.id === "servers") {
+        //     filter("technicien", clickedMe.parentElement.id)
+        // } else if (clickedMe.parentElement.id === "security") {
+        //     filter("securite", clickedMe.parentElement.id)
+        // } else if (clickedMe.parentElement.id === "conference") {
+        //     filter("justGo", clickedMe.parentElement.id)
+        // } else if (clickedMe.parentElement.id === "personnel") {
+        //     filter("justGo", clickedMe.parentElement.id)
+        // } else if (clickedMe.parentElement.id === "archive") {
+        //     filter("archive", clickedMe.parentElement.id)
+        // } else {
+        //     console.log("there is some error here")
+        // }
         verifyArray()
-
     }
+
+    
+    
+    
+    
+    
+    
+
+
 
 /// part of delete
     else if (event.target.closest(".deleteBtn")) {
@@ -280,73 +343,73 @@ document.body.addEventListener('click', event => {
         if (clickedMe.closest("#conference")) {
 
 
-            conferenceList.forEach(agent => {
-                if (agent.id == idToDelete) {
-                    let tempTransfer = transfer(conferenceList, workerList, agent)
-                    workerList = tempTransfer[1]
-                    conferenceList = tempTransfer[0]
-                    showCards(workerList, workerContainer)
-                    showCards(conferenceList, conferenceContainer)
-                }
-            })
-
-        } else if (clickedMe.closest("#reception")) {
-            console.log("conditons passed to reception", clickedMe.id)
-            receptionList.forEach(agent => {
-                if (agent.id == idToDelete) {
-                    let tempTransfer = transfer(receptionList, workerList, agent)
-                    workerList = tempTransfer[1]
-                    receptionList = tempTransfer[0]
-                    showCards(workerList, workerContainer)
-                    showCards(receptionList, receptionContainer)
-                }
-            })
-        } else if (clickedMe.closest("#servers")) {
-            serversList.forEach(agent => {
-                if (agent.id == idToDelete) {
-                    let tempTransfer = transfer(serversList, workerList, agent)
-                    workerList = tempTransfer[1]
-                    serversList = tempTransfer[0]
-                    showCards(workerList, workerContainer)
-                    showCards(serversList, itContainer)
-                }
-            })
-        } else if (clickedMe.closest("#security")) {
-            securityList.forEach(agent => {
-                if (agent.id == idToDelete) {
-                    let tempTransfer = transfer(securityList, workerList, agent)
-                    workerList = tempTransfer[1]
-                    securityList = tempTransfer[0]
-                    showCards(workerList, workerContainer)
-                    showCards(securityList, securityContainer)
-                }
-            })
-        } else if (clickedMe.closest("#personnel")) {
-            staffList.forEach(agent => {
-                if (agent.id == idToDelete) {
-                    let tempTransfer = transfer(staffList, workerList, agent)
-                    workerList = tempTransfer[1]
-                    staffList = tempTransfer[0]
-                    showCards(workerList, workerContainer)
-                    showCards(staffList, staffContainer)
-                }
-            })
-        } else if (clickedMe.closest("#archive")) {
-            archiveList.forEach(agent => {
-                if (agent.id == idToDelete) {
-                    let tempTransfer = transfer(archiveList, workerList, agent)
-                    workerList = tempTransfer[1]
-                    archiveList = tempTransfer[0]
-                    showCards(workerList, workerContainer)
-                    showCards(archiveList, archiveContainer)
-                }
-            })
-        } else {
-            console.log("there is error in delete")
-        }
+        //     conferenceList.forEach(agent => {
+        //         if (agent.id == idToDelete) {
+        //             let tempTransfer = transfer(conferenceList, workerList, agent)
+        //             workerList = tempTransfer[1]
+        //             conferenceList = tempTransfer[0]
+        //             showCards(workerList, workerContainer)
+        //             showCards(conferenceList, conferenceContainer)
+        //         }
+        //     })
+        //
+        // } else if (clickedMe.closest("#reception")) {
+        //     console.log("conditons passed to reception", clickedMe.id)
+        //     receptionList.forEach(agent => {
+        //         if (agent.id == idToDelete) {
+        //             let tempTransfer = transfer(receptionList, workerList, agent)
+        //             workerList = tempTransfer[1]
+        //             receptionList = tempTransfer[0]
+        //             showCards(workerList, workerContainer)
+        //             showCards(receptionList, receptionContainer)
+        //         }
+        //     })
+        // } else if (clickedMe.closest("#servers")) {
+        //     serversList.forEach(agent => {
+        //         if (agent.id == idToDelete) {
+        //             let tempTransfer = transfer(serversList, workerList, agent)
+        //             workerList = tempTransfer[1]
+        //             serversList = tempTransfer[0]
+        //             showCards(workerList, workerContainer)
+        //             showCards(serversList, itContainer)
+        //         }
+        //     })
+        // } else if (clickedMe.closest("#security")) {
+        //     securityList.forEach(agent => {
+        //         if (agent.id == idToDelete) {
+        //             let tempTransfer = transfer(securityList, workerList, agent)
+        //             workerList = tempTransfer[1]
+        //             securityList = tempTransfer[0]
+        //             showCards(workerList, workerContainer)
+        //             showCards(securityList, securityContainer)
+        //         }
+        //     })
+        // } else if (clickedMe.closest("#personnel")) {
+        //     staffList.forEach(agent => {
+        //         if (agent.id == idToDelete) {
+        //             let tempTransfer = transfer(staffList, workerList, agent)
+        //             workerList = tempTransfer[1]
+        //             staffList = tempTransfer[0]
+        //             showCards(workerList, workerContainer)
+        //             showCards(staffList, staffContainer)
+        //         }
+        //     })
+        // } else if (clickedMe.closest("#archive")) {
+        //     archiveList.forEach(agent => {
+        //         if (agent.id == idToDelete) {
+        //             let tempTransfer = transfer(archiveList, workerList, agent)
+        //             workerList = tempTransfer[1]
+        //             archiveList = tempTransfer[0]
+        //             showCards(workerList, workerContainer)
+        //             showCards(archiveList, archiveContainer)
+        //         }
+        //     })
+        // } else {
+        //     console.log("there is error in delete")
+        // }
 
         verifyArray()
-    }
+    }}
 
 
     //detailllllllllllllllllllllllllllllllll------------------------------
@@ -357,25 +420,25 @@ document.body.addEventListener('click', event => {
         const idToDetail = event.target.closest('.roomCards').querySelector('div').id //get the id of the div inside the div that has this class
 
 
-        if (cardToDetail.parentElement.id === "conferenceC") {
-
-            // let objetX = searchById(conferenceList,idToDetail)
-
-            detailledCard(searchById(conferenceList, idToDetail), "Conference")
-        } else if (cardToDetail.parentElement.id === "receptionC") {
-
-            detailledCard(searchById(receptionList, idToDetail), "Reception")
-        } else if (cardToDetail.parentElement.id === "serversC") {
-            detailledCard(searchById(serversList, idToDetail), "Servers")
-        } else if (cardToDetail.parentElement.id === "securityC") {
-            detailledCard(searchById(securityList, idToDetail), "Security")
-        } else if (cardToDetail.parentElement.id === "personnelC") {
-            detailledCard(searchById(staffList, idToDetail), "Staff")
-        } else if (cardToDetail.parentElement.id === "archiveC") {
-            detailledCard(searchById(archiveList, idToDetail), "Archive")
-        } else {
-            detailledCard(searchById(workerList, idToDetail), "unssaigned")
-        }
+        // if (cardToDetail.parentElement.id === "conferenceC") {
+        //
+        //     // let objetX = searchById(conferenceList,idToDetail)
+        //
+        //     detailledCard(searchById(conferenceList, idToDetail), "Conference")
+        // } else if (cardToDetail.parentElement.id === "receptionC") {
+        //
+        //     detailledCard(searchById(receptionList, idToDetail), "Reception")
+        // } else if (cardToDetail.parentElement.id === "serversC") {
+        //     detailledCard(searchById(serversList, idToDetail), "Servers")
+        // } else if (cardToDetail.parentElement.id === "securityC") {
+        //     detailledCard(searchById(securityList, idToDetail), "Security")
+        // } else if (cardToDetail.parentElement.id === "personnelC") {
+        //     detailledCard(searchById(staffList, idToDetail), "Staff")
+        // } else if (cardToDetail.parentElement.id === "archiveC") {
+        //     detailledCard(searchById(archiveList, idToDetail), "Archive")
+        // } else {
+        //     detailledCard(searchById(workerList, idToDetail), "unssaigned")
+        // }
 
 
     }
@@ -395,6 +458,21 @@ function searchById(array, id) {
 
     return objetx
 }
+
+
+
+function allowedHere(metier,sali){
+    let yesNo = 0
+    sallesRules[sali].forEach(role=>{
+        console.log(role)
+    if (role===metier){
+        yesNo=1
+    }
+})
+    return yesNo
+}
+
+
 
 
 function filter(roleName, idOfRoom) {
@@ -432,82 +510,93 @@ function filter(roleName, idOfRoom) {
 function cardIt(worker, idOfRoom) {
     let allowedCard = document.createElement('div')
     allowedCard.innerHTML = `
-                    <div id="${worker.id}"  class="card cursor-pointer flex flex-row gap-4 py-2 border-b-2 border-b-amber-400 md:hover:scale-102">
+                    <div data-id="${worker.id}"  class="card cursor-pointer flex flex-row gap-4 py-2 border-b-2 border-b-amber-400 md:hover:scale-102">
                           <img src="${worker.img}" alt="profile" class="rounded-full aspect-square max-h-13">
                           <div><h1 class="worker_NAME">${worker.name}</h1>
                           <p class="worker_ROLE">${worker.role}</p></div>
                      </div>`
-
+//ghibhdha bla fonction
 
     allowedCard.addEventListener('click', () => {
-
-        if (idOfRoom === "conference") {
-            if ((receptionList.length + 1 > 4)) {
-                alert("conference room is full!")
-                return
+       let theMan = allowedCard.dataset.id
+        workerList.forEach(e=>{
+            if (e.id === theMan){
+                e.salle = idOfRoom
             }
-            let tempTransfer = transfer(workerList, conferenceList, worker)
-            workerList = tempTransfer[0]
-            conferenceList = tempTransfer[1]
-            showCards(workerList, workerContainer)
-            showCards(conferenceList, conferenceContainer)
-        }
-
-        if (idOfRoom === "reception") {
-            if ((receptionList.length + 1 > 6)) {
-                alert("reception room is full!")
-                return
-            }
-            let tempTransfer = transfer(workerList, receptionList, worker)
-            workerList = tempTransfer[0]
-            receptionList = tempTransfer[1]
-            showCards(workerList, workerContainer)
-            showCards(receptionList, receptionContainer)
-        }
-        if (idOfRoom === "servers") {
-            if ((serversList.length + 1 > 3)) {
-                alert("servers room is full!")
-                return
-            }
-            let tempTransfer = transfer(workerList, serversList, worker)
-            workerList = tempTransfer[0]
-            serversList = tempTransfer[1]
-            showCards(workerList, workerContainer)
-            showCards(serversList, itContainer)
-        }
-        if (idOfRoom === "security") {
-            if ((securityList.length + 1 > 3)) {
-                alert("security room is full!")
-                return
-            }
-            let tempTransfer = transfer(workerList, securityList, worker)
-            workerList = tempTransfer[0]
-            securityList = tempTransfer[1]
-            showCards(workerList, workerContainer)
-            showCards(securityList, securityContainer)
-        }
-        if (idOfRoom === "personnel") {
-            if ((staffList.length + 1 > 3)) {
-                alert("staff room is full!")
-                return
-            }
-            let tempTransfer = transfer(workerList, staffList, worker)
-            workerList = tempTransfer[0]
-            staffList = tempTransfer[1]
-            showCards(workerList, workerContainer)
-            showCards(staffList, staffContainer)
-        }
-        if (idOfRoom === "archive") {
-            if ((archiveList.length + 1 > 3)) {
-                alert("archive room is full!")
-                return
-            }
-            let tempTransfer = transfer(workerList, archiveList, worker)
-            workerList = tempTransfer[0]
-            archiveList = tempTransfer[1]
-            showCards(workerList, workerContainer)
-            showCards(archiveList, archiveContainer)
-        }
+        })
+        
+        console.log("event triggered",idOfRoom)
+        showCards(idOfRoom)
+    
+        //
+        //
+        // if (idOfRoom === "conference") {
+        //     if ((receptionList.length + 1 > 4)) {
+        //         alert("conference room is full!")
+        //         return
+        //     }
+        //    
+        //     workerList = tempTransfer[0]
+        //     conferenceList = tempTransfer[1]
+        //     showCards(workerList, workerContainer)
+        //     showCards(conferenceList, conferenceContainer)
+        // }
+        //
+        // if (idOfRoom === "reception") {
+        //     if ((receptionList.length + 1 > 6)) {
+        //         alert("reception room is full!")
+        //         return
+        //     }
+        //     let tempTransfer = transfer(workerList, receptionList, worker)
+        //     workerList = tempTransfer[0]
+        //     receptionList = tempTransfer[1]
+        //     showCards(workerList, workerContainer)
+        //     showCards(receptionList, receptionContainer)
+        // }
+        // if (idOfRoom === "servers") {
+        //     if ((serversList.length + 1 > 3)) {
+        //         alert("servers room is full!")
+        //         return
+        //     }
+        //     let tempTransfer = transfer(workerList, serversList, worker)
+        //     workerList = tempTransfer[0]
+        //     serversList = tempTransfer[1]
+        //     showCards(workerList, workerContainer)
+        //     showCards(serversList, itContainer)
+        // }
+        // if (idOfRoom === "security") {
+        //     if ((securityList.length + 1 > 3)) {
+        //         alert("security room is full!")
+        //         return
+        //     }
+        //     let tempTransfer = transfer(workerList, securityList, worker)
+        //     workerList = tempTransfer[0]
+        //     securityList = tempTransfer[1]
+        //     showCards(workerList, workerContainer)
+        //     showCards(securityList, securityContainer)
+        // }
+        // if (idOfRoom === "personnel") {
+        //     if ((staffList.length + 1 > 3)) {
+        //         alert("staff room is full!")
+        //         return
+        //     }
+        //     let tempTransfer = transfer(workerList, staffList, worker)
+        //     workerList = tempTransfer[0]
+        //     staffList = tempTransfer[1]
+        //     showCards(workerList, workerContainer)
+        //     showCards(staffList, staffContainer)
+        // }
+        // if (idOfRoom === "archive") {
+        //     if ((archiveList.length + 1 > 3)) {
+        //         alert("archive room is full!")
+        //         return
+        //     }
+        //     let tempTransfer = transfer(workerList, archiveList, worker)
+        //     workerList = tempTransfer[0]
+        //     archiveList = tempTransfer[1]
+        //     showCards(workerList, workerContainer)
+        //     showCards(archiveList, archiveContainer)
+        // }
         allowedListSection.classList.toggle("hidden")
         verifyArray()
     })

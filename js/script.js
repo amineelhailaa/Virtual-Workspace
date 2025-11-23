@@ -276,6 +276,19 @@ document.body.addEventListener('click', event => {
             }
         })
     }
+    else if (event.target.closest('#deleteUser')){
+        const eliminatedUser = event.target.closest('#deleteUser').dataset.id
+        let temp = []
+        workerList.forEach(agent=>{
+            if(agent.id!==parseInt(eliminatedUser)){
+                temp.push(agent)
+            }
+        })
+        workerList = temp
+        localsave()
+        showCards(1)
+        detailSection.classList.add('hidden')
+    }
 })
 
 
@@ -373,12 +386,13 @@ function detailledCard(objet) {
     detailPage.querySelector('#phoneDetail').textContent = `${objet.phone}`
     detailPage.querySelector('#emailDetail').textContent = `${objet.email}`
     detailPage.querySelector('#roleDetail').textContent = `${objet.role}`
-    let location = detailPage.querySelector('#locationDetail').textContent
-    objet.salle? location = `${objet.salle}` : location = "unssaigned"
-    detailPage.querySelector('#locationDetail').textContent = `${objet.salle}`
+
+    objet.salle? detailPage.querySelector('#locationDetail').textContent = `${objet.salle}` : detailPage.querySelector('#locationDetail').textContent = "unssaigned"
+    // detailPage.querySelector('#locationDetail').textContent = `${objet.salle}`
     detailPage.querySelector('#experienceContainerDetail').innerHTML = ""
     detailPage.querySelector('#experienceContainerDetail').append(experienceCardDetail(objet.experience))
     detailPage.querySelector('#imgDetail').src = objet.img
+    detailPage.querySelector('#deleteUser').dataset.id=objet.id
 }
 
 

@@ -12,16 +12,16 @@ const alowedList = document.getElementById("allowedList")
 const detailSection = document.getElementById('detailsContainer')
 const detailPage = document.getElementById('detailCard')
 
-const sallesRules= {
-    conference: ["receptionist","technicien","manager","securite","nettoyage","other"],
-    personnel:["receptionist","technicien","manager","securite","nettoyage","other"],
-    reception: ["receptionist","manager","nettoyage"],
-    servers:["technicien","manager","nettoyage"],
-    security:["manager","securite","nettoyage"],
-    archive:["manager"]
+const sallesRules = {
+    conference: ["receptionist", "technicien", "manager", "securite", "nettoyage", "other"],
+    personnel: ["receptionist", "technicien", "manager", "securite", "nettoyage", "other"],
+    reception: ["receptionist", "manager", "nettoyage"],
+    servers: ["technicien", "manager", "nettoyage"],
+    security: ["manager", "securite", "nettoyage"],
+    archive: ["manager"]
 }
-const sallesKeys = ["conference","personnel","servers","security","archive","reception"]
-const salleMax= {
+const sallesKeys = ["conference", "personnel", "servers", "security", "archive", "reception"]
+const salleMax = {
     conference: 6,
     personnel: 3,
     servers: 3,
@@ -31,7 +31,7 @@ const salleMax= {
 }
 
 
-let workerCounter =    JSON.parse(localStorage.getItem('counter')) || 0
+let workerCounter = JSON.parse(localStorage.getItem('counter')) || 0
 let workerList = JSON.parse(localStorage.getItem("workerList")) || []
 showCards(1)
 
@@ -68,9 +68,11 @@ function toggleAddReset() {
         element.classList.add("hidden")
     })
 }
+
 function toggleHidden(element) {
     element.classList.remove("hidden")
 }
+
 addForm.addEventListener('submit', e => {
     e.preventDefault()
     console.log(regexEmail.test(document.getElementById("email").value), msgEmail)
@@ -107,7 +109,7 @@ addForm.addEventListener('submit', e => {
         return
     }
     workerCounter++
-    localStorage.setItem('counter',JSON.stringify(workerCounter))
+    localStorage.setItem('counter', JSON.stringify(workerCounter))
     let experienceBridge = []
     const experiences = addForm.querySelectorAll('.accessExperience')
     experiences.forEach(ex => {
@@ -143,33 +145,34 @@ addForm.addEventListener('submit', e => {
 })
 
 
-function localsave(){
-    localStorage.setItem("workerList",JSON.stringify(workerList))
+function localsave() {
+    localStorage.setItem("workerList", JSON.stringify(workerList))
 }
 
 
 function showCards(location) {
-    console.log(location,"location of show cards function")
+    console.log(location, "location of show cards function")
     if (location === 0) {
         workerContainer.innerHTML = ""
         workerList.forEach(worker => {
-    console.log("i got there",location)
-            if (worker.salle === 0){
-            const workerCard = document.createElement('div')
-            workerCard.className = "roomCards"
+            console.log("i got there", location)
+            if (worker.salle === 0) {
+                const workerCard = document.createElement('div')
+                workerCard.className = "roomCards"
                 workerCard.dataset.id = worker.id
-            workerCard.innerHTML = `<div id="${worker.id}" class=" flex flex-row gap-4 py-2 border-b-2 border-b-amber-400"> 
+                workerCard.innerHTML = `<div id="${worker.id}" class=" flex flex-row gap-4 py-2 border-b-2 border-b-amber-400"> 
                         <img src="${worker.img}" onerror="this.src='./assets/emptyProfile.jpg'" alt="profile" class="rounded-full aspect-square max-h-13">
                         <div><h1 class="worker_NAME">${worker.name}</h1>
                             <p class="worker_ROLE">${worker.role}</p></div></div>
                     `
                 console.log("dkhl lfunction")
                 workerContainer.append(workerCard)
-        }})
+            }
+        })
     } else {
         sallesKeys.forEach(salle => {
             let where = document.querySelector(`div[data-salle="${salle}"]`).parentElement.querySelector('.roomate')
-            where.innerHTML =""
+            where.innerHTML = ""
             workerList.forEach(mate => {
 
                 if (mate.salle === salle) {
@@ -255,15 +258,15 @@ document.body.addEventListener('click', event => {
             return
         }
         allowedListSection.classList.toggle("hidden")
-        alowedList.innerHTML=""
-        workerList.forEach(worker =>{
-            if (allowedHere(worker,clickedMe)){
+        alowedList.innerHTML = ""
+        workerList.forEach(worker => {
+            if (allowedHere(worker, clickedMe)) {
                 somethingThere = true
                 let allowedCard = cardIt(worker, divClicked)
                 alowedList.append(allowedCard)
-            } 
+            }
         })
-        if (somethingThere===false) noCardAvailable();
+        if (somethingThere === false) noCardAvailable();
 
         // else {
         //     console.log("hi")
@@ -275,12 +278,12 @@ document.body.addEventListener('click', event => {
         const clickedMe = event.target.closest(".deleteBtn")
         const idToDelete = clickedMe.parentElement.parentElement.dataset.id
 
-        workerList.forEach(man=>{
-            if (man.id===parseInt(idToDelete)){
+        workerList.forEach(man => {
+            if (man.id === parseInt(idToDelete)) {
                 man.salle = 0
                 localsave()
                 showCards(1)
-            console.log(man, idToDelete)
+                console.log(man, idToDelete)
             }
         })
 
@@ -289,17 +292,16 @@ document.body.addEventListener('click', event => {
     else if (event.target.closest('.roomCards')) {
         console.log("yama")
         const cardToDetail = event.target.closest('.roomCards').dataset.id
-        workerList.forEach(ell=>{
-            if (ell.id === parseInt(cardToDetail)){
+        workerList.forEach(ell => {
+            if (ell.id === parseInt(cardToDetail)) {
                 detailledCard(ell)
             }
         })
-    }
-    else if (event.target.closest('#deleteUser')){
+    } else if (event.target.closest('#deleteUser')) {
         const eliminatedUser = event.target.closest('#deleteUser').dataset.id
         let temp = []
-        workerList.forEach(agent=>{
-            if(agent.id!==parseInt(eliminatedUser)){
+        workerList.forEach(agent => {
+            if (agent.id !== parseInt(eliminatedUser)) {
                 temp.push(agent)
             }
         })
@@ -311,14 +313,14 @@ document.body.addEventListener('click', event => {
 })
 
 
-function allowedHere(metier,sali){
+function allowedHere(theMan, salle) {
     let yesNo = 0
-    sallesRules[sali].forEach(role=>{
+    sallesRules[salle].forEach(role => {
         console.log(role)
-    if (role===metier.role && metier.salle!==sali ){
-        yesNo=1
-    }
-})
+        if (role === theMan.role && theMan.salle !== salle) {
+            yesNo = 1
+        }
+    })
     return yesNo
 }
 
@@ -333,17 +335,17 @@ function cardIt(worker, idOfRoom) {
                      </div>`
 //     console.log(idOfRoom.dataset.salle,"this is the id of room")
     allowedCard.addEventListener('click', () => {
-       let theMan = allowedCard.dataset.id
-        console.log(theMan,"this is theMan")
-        workerList.forEach(e=>{
-            if (e.id === parseInt(theMan)){
+        let theMan = allowedCard.dataset.id
+        console.log(theMan, "this is theMan")
+        workerList.forEach(e => {
+            if (e.id === parseInt(theMan)) {
                 // console.log("this is the mannmnnnnnnnnnnnnnnnn ",e.id,theMan)
                 e.salle = idOfRoom.dataset.salle
             }
         })
         localsave()
-        console.log("event triggered",idOfRoom)
-        console.log("IDOFROOM",idOfRoom.parentElement.querySelector('.roomate'))
+        console.log("event triggered", idOfRoom)
+        console.log("IDOFROOM", idOfRoom.parentElement.querySelector('.roomate'))
         showCards(1)
         allowedListSection.classList.toggle("hidden")
     })
@@ -396,8 +398,6 @@ function experienceCardDetail(arrayofexperience) {
 }
 
 
-
-
 function detailledCard(objet) {
     console.log(objet, "this is the one")
     detailSection.classList.toggle('hidden')
@@ -406,40 +406,32 @@ function detailledCard(objet) {
     detailPage.querySelector('#emailDetail').textContent = `${objet.email}`
     detailPage.querySelector('#roleDetail').textContent = `${objet.role}`
 
-    objet.salle? detailPage.querySelector('#locationDetail').textContent = `${objet.salle}` : detailPage.querySelector('#locationDetail').textContent = "unssaigned"
+    objet.salle ? detailPage.querySelector('#locationDetail').textContent = `${objet.salle}` : detailPage.querySelector('#locationDetail').textContent = "unssaigned"
     // detailPage.querySelector('#locationDetail').textContent = `${objet.salle}`
     detailPage.querySelector('#experienceContainerDetail').innerHTML = ""
     detailPage.querySelector('#experienceContainerDetail').append(experienceCardDetail(objet.experience))
     detailPage.querySelector('#imgDetail').src = objet.img
-    detailPage.querySelector('#deleteUser').dataset.id=objet.id
+    detailPage.querySelector('#deleteUser').dataset.id = objet.id
 }
 
 
-// function   { hadi verify , array
-//
-//     receptionContainer.parentElement.classList.toggle("bg-red-500/40", receptionList.length === 0)
-//     archiveContainer.parentElement.classList.toggle("bg-red-500/40", archiveList.length === 0)
-//     itContainer.parentElement.classList.toggle("bg-red-500/40", serversList.length === 0)
-//     securityContainer.parentElement.classList.toggle("bg-red-500/40", securityList.length === 0)
-// }
-function verifyArray(container){
+function verifyArray(container) {
     console.log(container)
-if (container.querySelectorAll('div').length !== 0  ){
+    if (container.querySelectorAll('div').length !== 0) {
         container.parentElement.classList.remove('bg-red-500/40')
-        console.log("gotcha",container)
-}
-else {
-    if (!container.classList.contains('free'))
-    container.parentElement.classList.add('bg-red-500/40')
-}
+        console.log("gotcha", container)
+    } else {
+        if (!container.classList.contains('free'))
+            container.parentElement.classList.add('bg-red-500/40')
+    }
 }
 
-function fullOrNot(salle){
-        let weight=0
-    workerList.forEach(man=>{
-        if (man.salle===salle){
+function fullOrNot(salle) {
+    let weight = 0
+    workerList.forEach(man => {
+        if (man.salle === salle) {
             weight++
         }
     })
-    return salleMax[salle]>weight
+    return salleMax[salle] > weight
 }

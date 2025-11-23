@@ -3,449 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <title>Virtual Workspace</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Virtual Workspace to Organize workers in site">
-    <meta name="keywords" content="Virtual Workspace management security work job staff servers">
-    <link rel="stylesheet" href="./css/output.css">
-    <link rel="stylesheet" href="./css/style.css">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="Virtual Workspace to Organize workers in site" name="description">
+    <meta content="Virtual Workspace management security work job staff servers" name="keywords">
+    <link href="./css/output.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
 </head>
 <body class="bg-gray-300">
 
 
-<main >
-    <section id="workspace">
-        <div id="bodyContainer" class="md:flex-col min-h-screen  lg:min-h-fit  flex flex-col   lg:flex-row gap-5 lg:gap-4 lg:py-8 px-2 py-4 lg:px-10  lg:justify-between   ">
 
+
+
+
+        <main class="md:flex-col min-h-screen  lg:min-h-fit  flex flex-col   lg:flex-row gap-5 lg:gap-4 lg:py-8 px-2 py-4 lg:px-10  lg:justify-between   "
+             id="bodyContainer">
             <aside class=" flex grow flex-col gap-5 lg:gap-3 items-center px-4 bg-white rounded-2xl shadow-xl order-2  lg:order-1 py-4 min-h-full ">
-                <button  id="addWorker" class="bg-amber-400 px-8 py-2 rounded-2xl text-white w-full  whitespace-nowrap  cursor-pointer  " type="button">
+                <button class="bg-amber-400 px-8 py-2 rounded-2xl text-white w-full  whitespace-nowrap  cursor-pointer  "
+                        id="addWorker"
+                        type="button">
                     Ajouter un Agent
                 </button>
-                <div id="workerContainer" class="border-t-2 border-t-amber-400 w-full overflow-y-scroll">
-                </div>
+                <section class="border-t-2 border-t-amber-400 w-full overflow-y-scroll" id="workerContainer">
+                </section>
             </aside>
 
 
+            <div class=" sm:aspect-[16/9]  lg:aspect-[16/9] aspect-[16/12] lg:max-w-[80%]  w-full h-auto self-start  border-4 border-white shadow-2xl rounded-2xl order-1 lg:order-2 relative overflow-hidden"
+                 id="halfScreen">
+                <img alt="workspace" class="absolute top-0 left-0  w-full h-full   "
+                     src="assets/background.jpg"/>
+                <div class=" text-white grid grid-cols-[38.7%_15.9%_22.4%_23%] grid-rows-[33.7%_2%_29.5%_34.8%]  w-full h-full absolute top-0 left-0 py-0.5 "
+                     id="rooms_container">
 
-            <div id="halfScreen" class=" sm:aspect-[16/9]  lg:aspect-[16/9] aspect-[16/12] lg:max-w-[80%]  w-full h-auto self-start  border-4 border-white shadow-2xl rounded-2xl order-1 lg:order-2 relative overflow-hidden">
-                <img src="assets/background.jpg" class="absolute top-0 left-0  w-full h-full   "
-                     alt="workspace"/>
-                <div id="rooms_container"
-                     class=" text-white grid grid-cols-[38.7%_15.9%_22.4%_23%] grid-rows-[33.7%_2%_29.5%_34.8%]  w-full h-full absolute top-0 left-0 py-0.5 ">
-
-                    <div id="conference"
-                         class=" relative   col-start-1 col-end-2 row-start-1 row-end-2   ">
+                    <section class=" relative   col-start-1 col-end-2 row-start-1 row-end-2   "
+                         id="conference">
                         <div class=" addHimHere   cursor-pointer bg-amber-700 text-white hover:text-amber-700 hover:bg-white  rounded-b-[40%]   -translate-x-1/2 w-[15%] flex flex-col justify-center items-center font-bold text-xs lg:text-xl min-w-0 min-h-0 top-0 left-1/2 aspect-video  absolute">
                             +
                         </div>
-                        <div id="conferenceC" class=" flex  flex-wrap  items-center justify-between content-center gap-y-4 px-6 h-full ">
-<!--                            <div id="${objet.id}" class="relative flex gap-[5%]   rounded-sm bg-white border-2  border-white max-w-[75px] aspect-[3/1] min-w-0 ">-->
-<!--                                <img src="./assets/emptyProfile.jpg" class="rounded-sm  " alt="profile">-->
-<!--                                <svg  class="deleteBtn  cursor-pointer absolute top-1/2 left-full -translate-1/2 w-[20%] aspect-square" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg">-->
-<!--                                    <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0"-->
-<!--                                          fill="#f44336"/>-->
-<!--                                    <path d="m350.273438 320.105469c8.339843 8.34375 8.339843 21.824219 0 30.167969-4.160157 4.160156-9.621094 6.25-15.085938 6.25-5.460938 0-10.921875-2.089844-15.082031-6.25l-64.105469-64.109376-64.105469 64.109376c-4.160156 4.160156-9.621093 6.25-15.082031 6.25-5.464844 0-10.925781-2.089844-15.085938-6.25-8.339843-8.34375-8.339843-21.824219 0-30.167969l64.109376-64.105469-64.109376-64.105469c-8.339843-8.34375-8.339843-21.824219 0-30.167969 8.34375-8.339843 21.824219-8.339843 30.167969 0l64.105469 64.109376 64.105469-64.109376c8.34375-8.339843 21.824219-8.339843 30.167969 0 8.339843 8.34375 8.339843 21.824219 0 30.167969l-64.109376 64.105469zm0 0"-->
-<!--                                          fill="#fafafa"/>-->
-<!--                                </svg>-->
-<!--                                <div class="text-[8px] text-black flex flex-col "><h1 class="border-b-amber-400 border-b-[1px] lg:border-b-2 w-fit" >AMINE</h1><p>Technecien</p> </div>-->
-
-<!--                            </div>-->
-<!--                            <div id="${objet.id}" class="relative flex gap-[10%] py-[0.1%]  rounded-sm bg-white border-2  border-white max-w-[30%] aspect-[20/7] min-w-0 ">-->
-<!--                                <img src="./assets/emptyProfile.jpg" class="rounded-sm  " alt="profile">-->
-<!--                                <svg  class="deleteBtn  cursor-pointer absolute top-1/2 left-full -translate-1/2 w-[20%] aspect-square" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg">-->
-<!--                                    <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0"-->
-<!--                                          fill="#f44336"/>-->
-<!--                                    <path d="m350.273438 320.105469c8.339843 8.34375 8.339843 21.824219 0 30.167969-4.160157 4.160156-9.621094 6.25-15.085938 6.25-5.460938 0-10.921875-2.089844-15.082031-6.25l-64.105469-64.109376-64.105469 64.109376c-4.160156 4.160156-9.621093 6.25-15.082031 6.25-5.464844 0-10.925781-2.089844-15.085938-6.25-8.339843-8.34375-8.339843-21.824219 0-30.167969l64.109376-64.105469-64.109376-64.105469c-8.339843-8.34375-8.339843-21.824219 0-30.167969 8.34375-8.339843 21.824219-8.339843 30.167969 0l64.105469 64.109376 64.105469-64.109376c8.34375-8.339843 21.824219-8.339843 30.167969 0 8.339843 8.34375 8.339843 21.824219 0 30.167969l-64.109376 64.105469zm0 0"-->
-<!--                                          fill="#fafafa"/>-->
-<!--                                </svg>-->
-<!--                                <div class="text-[4px] text-black"><h1 class="border-b-amber-400 border-b-2 w-fit" >AMINE</h1><p>technecien</p> </div>-->
-
-<!--                            </div>-->
-<!--                            <div id="${objet.id}" class="relative flex gap-[10%] py-[0.1%]  rounded-sm bg-white border-2  border-white max-w-[30%] aspect-[20/7] min-w-0 ">-->
-<!--                                <img src="./assets/emptyProfile.jpg" class="rounded-sm  " alt="profile">-->
-<!--                                <svg  class="deleteBtn  cursor-pointer absolute top-1/2 left-full -translate-1/2 w-[20%] aspect-square" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg">-->
-<!--                                    <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0"-->
-<!--                                          fill="#f44336"/>-->
-<!--                                    <path d="m350.273438 320.105469c8.339843 8.34375 8.339843 21.824219 0 30.167969-4.160157 4.160156-9.621094 6.25-15.085938 6.25-5.460938 0-10.921875-2.089844-15.082031-6.25l-64.105469-64.109376-64.105469 64.109376c-4.160156 4.160156-9.621093 6.25-15.082031 6.25-5.464844 0-10.925781-2.089844-15.085938-6.25-8.339843-8.34375-8.339843-21.824219 0-30.167969l64.109376-64.105469-64.109376-64.105469c-8.339843-8.34375-8.339843-21.824219 0-30.167969 8.34375-8.339843 21.824219-8.339843 30.167969 0l64.105469 64.109376 64.105469-64.109376c8.34375-8.339843 21.824219-8.339843 30.167969 0 8.339843 8.34375 8.339843 21.824219 0 30.167969l-64.109376 64.105469zm0 0"-->
-<!--                                          fill="#fafafa"/>-->
-<!--                                </svg>-->
-<!--                                <div class="text-[4px] text-black"><h1 class="border-b-amber-400 border-b-2 w-fit" >AMINE</h1><p>technecien</p> </div>-->
-
-<!--                            </div>-->
-<!--                            <div id="${objet.id}" class="relative flex gap-[10%] py-[0.1%]  rounded-sm bg-white border-2  border-white max-w-[30%] aspect-[20/7] min-w-0 ">-->
-<!--                                <img src="./assets/emptyProfile.jpg" class="rounded-sm  " alt="profile">-->
-<!--                                <svg  class="deleteBtn  cursor-pointer absolute top-1/2 left-full -translate-1/2 w-[20%] aspect-square" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg">-->
-<!--                                    <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0"-->
-<!--                                          fill="#f44336"/>-->
-<!--                                    <path d="m350.273438 320.105469c8.339843 8.34375 8.339843 21.824219 0 30.167969-4.160157 4.160156-9.621094 6.25-15.085938 6.25-5.460938 0-10.921875-2.089844-15.082031-6.25l-64.105469-64.109376-64.105469 64.109376c-4.160156 4.160156-9.621093 6.25-15.082031 6.25-5.464844 0-10.925781-2.089844-15.085938-6.25-8.339843-8.34375-8.339843-21.824219 0-30.167969l64.109376-64.105469-64.109376-64.105469c-8.339843-8.34375-8.339843-21.824219 0-30.167969 8.34375-8.339843 21.824219-8.339843 30.167969 0l64.105469 64.109376 64.105469-64.109376c8.34375-8.339843 21.824219-8.339843 30.167969 0 8.339843 8.34375 8.339843 21.824219 0 30.167969l-64.109376 64.105469zm0 0"-->
-<!--                                          fill="#fafafa"/>-->
-<!--                                </svg>-->
-<!--                                <div class="text-[4px] text-black"><h1 class="border-b-amber-400 border-b-2 w-fit" >AMINE</h1><p>technecien</p> </div>-->
-
-<!--                            </div><div id="${objet.id}" class="relative flex gap-[10%] py-[0.1%]  rounded-sm bg-white border-2  border-white max-w-[30%] aspect-[20/7] min-w-0 ">-->
-<!--                            <img src="./assets/emptyProfile.jpg" class="rounded-sm  " alt="profile">-->
-<!--                            <svg  class="deleteBtn  cursor-pointer absolute top-1/2 left-full -translate-1/2 w-[20%] aspect-square" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg">-->
-<!--                                <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0"-->
-<!--                                      fill="#f44336"/>-->
-<!--                                <path d="m350.273438 320.105469c8.339843 8.34375 8.339843 21.824219 0 30.167969-4.160157 4.160156-9.621094 6.25-15.085938 6.25-5.460938 0-10.921875-2.089844-15.082031-6.25l-64.105469-64.109376-64.105469 64.109376c-4.160156 4.160156-9.621093 6.25-15.082031 6.25-5.464844 0-10.925781-2.089844-15.085938-6.25-8.339843-8.34375-8.339843-21.824219 0-30.167969l64.109376-64.105469-64.109376-64.105469c-8.339843-8.34375-8.339843-21.824219 0-30.167969 8.34375-8.339843 21.824219-8.339843 30.167969 0l64.105469 64.109376 64.105469-64.109376c8.34375-8.339843 21.824219-8.339843 30.167969 0 8.339843 8.34375 8.339843 21.824219 0 30.167969l-64.109376 64.105469zm0 0"-->
-<!--                                      fill="#fafafa"/>-->
-<!--                            </svg>-->
-<!--                            <div class="text-[4px] text-black"><h1 class="border-b-amber-400 border-b-2 w-fit" >AMINE</h1><p>technecien</p> </div>-->
-
-<!--                        </div><div id="${objet.id}" class="relative flex gap-[10%] py-[0.1%]  rounded-sm bg-white border-2  border-white max-w-[30%] aspect-[20/7] min-w-0 ">-->
-<!--                            <img src="./assets/emptyProfile.jpg" class="rounded-sm  " alt="profile">-->
-<!--                            <svg  class="deleteBtn  cursor-pointer absolute top-1/2 left-full -translate-1/2 w-[20%] aspect-square" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg">-->
-<!--                                <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0"-->
-<!--                                      fill="#f44336"/>-->
-<!--                                <path d="m350.273438 320.105469c8.339843 8.34375 8.339843 21.824219 0 30.167969-4.160157 4.160156-9.621094 6.25-15.085938 6.25-5.460938 0-10.921875-2.089844-15.082031-6.25l-64.105469-64.109376-64.105469 64.109376c-4.160156 4.160156-9.621093 6.25-15.082031 6.25-5.464844 0-10.925781-2.089844-15.085938-6.25-8.339843-8.34375-8.339843-21.824219 0-30.167969l64.109376-64.105469-64.109376-64.105469c-8.339843-8.34375-8.339843-21.824219 0-30.167969 8.34375-8.339843 21.824219-8.339843 30.167969 0l64.105469 64.109376 64.105469-64.109376c8.34375-8.339843 21.824219-8.339843 30.167969 0 8.339843 8.34375 8.339843 21.824219 0 30.167969l-64.109376 64.105469zm0 0"-->
-<!--                                      fill="#fafafa"/>-->
-<!--                            </svg>-->
-<!--                            <div class="text-[4px] text-black"><h1 class="border-b-amber-400 border-b-2 w-fit" >AMINE</h1><p>technecien</p> </div>-->
-
-<!--&lt;!&ndash;                        </div>&ndash;&gt; last working-->
-<!--                            <div id="${objet.id}" class="relative flex gap-[5%]   rounded-sm bg-white border-2  border-white max-w-[80px] aspect-[3/1] min-w-0 ">-->
-<!--                                <img src="./assets/emptyProfile.jpg" class="rounded-sm  " alt="profile">-->
-<!--                                <svg  class="deleteBtn  cursor-pointer absolute top-1/2 left-full -translate-1/2 w-[20%] aspect-square" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg">-->
-<!--                                    <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0"-->
-<!--                                          fill="#f44336"/>-->
-<!--                                    <path d="m350.273438 320.105469c8.339843 8.34375 8.339843 21.824219 0 30.167969-4.160157 4.160156-9.621094 6.25-15.085938 6.25-5.460938 0-10.921875-2.089844-15.082031-6.25l-64.105469-64.109376-64.105469 64.109376c-4.160156 4.160156-9.621093 6.25-15.082031 6.25-5.464844 0-10.925781-2.089844-15.085938-6.25-8.339843-8.34375-8.339843-21.824219 0-30.167969l64.109376-64.105469-64.109376-64.105469c-8.339843-8.34375-8.339843-21.824219 0-30.167969 8.34375-8.339843 21.824219-8.339843 30.167969 0l64.105469 64.109376 64.105469-64.109376c8.34375-8.339843 21.824219-8.339843 30.167969 0 8.339843 8.34375 8.339843 21.824219 0 30.167969l-64.109376 64.105469zm0 0"-->
-<!--                                          fill="#fafafa"/>-->
-<!--                                </svg>-->
-<!--                                <div class="text-[8px] text-black flex flex-col "><h1 class="border-b-amber-400 border-b-[1px] lg:border-b-2 w-fit" >AMINE</h1><p>Technecien</p> </div>-->
-
-<!--                            </div>-->
-<!--                            <div id="${objet.id}" class="relative flex gap-[5%]   rounded-sm bg-white border-2  border-white max-w-[80px] aspect-[3/1] min-w-0 ">-->
-<!--                                <img src="./assets/emptyProfile.jpg" class="rounded-sm  " alt="profile">-->
-<!--                                <svg  class="deleteBtn  cursor-pointer absolute top-1/2 left-full -translate-1/2 w-[20%] aspect-square" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg">-->
-<!--                                    <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0"-->
-<!--                                          fill="#f44336"/>-->
-<!--                                    <path d="m350.273438 320.105469c8.339843 8.34375 8.339843 21.824219 0 30.167969-4.160157 4.160156-9.621094 6.25-15.085938 6.25-5.460938 0-10.921875-2.089844-15.082031-6.25l-64.105469-64.109376-64.105469 64.109376c-4.160156 4.160156-9.621093 6.25-15.082031 6.25-5.464844 0-10.925781-2.089844-15.085938-6.25-8.339843-8.34375-8.339843-21.824219 0-30.167969l64.109376-64.105469-64.109376-64.105469c-8.339843-8.34375-8.339843-21.824219 0-30.167969 8.34375-8.339843 21.824219-8.339843 30.167969 0l64.105469 64.109376 64.105469-64.109376c8.34375-8.339843 21.824219-8.339843 30.167969 0 8.339843 8.34375 8.339843 21.824219 0 30.167969l-64.109376 64.105469zm0 0"-->
-<!--                                          fill="#fafafa"/>-->
-<!--                                </svg>-->
-<!--                                <div class="text-[8px] text-black flex flex-col "><h1 class="border-b-amber-400 border-b-[1px] lg:border-b-2 w-fit" >AMINE</h1><p>Technecien</p> </div>-->
-
-<!--                            </div>-->
-<!--                            <div id="${objet.id}" class="relative flex gap-[5%]   rounded-sm bg-white border-2  border-white max-w-[80px] aspect-[3/1] min-w-0 ">-->
-<!--                                <img src="./assets/emptyProfile.jpg" class="rounded-sm  " alt="profile">-->
-<!--                                <svg  class="deleteBtn  cursor-pointer absolute top-1/2 left-full -translate-1/2 w-[20%] aspect-square" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg">-->
-<!--                                    <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0"-->
-<!--                                          fill="#f44336"/>-->
-<!--                                    <path d="m350.273438 320.105469c8.339843 8.34375 8.339843 21.824219 0 30.167969-4.160157 4.160156-9.621094 6.25-15.085938 6.25-5.460938 0-10.921875-2.089844-15.082031-6.25l-64.105469-64.109376-64.105469 64.109376c-4.160156 4.160156-9.621093 6.25-15.082031 6.25-5.464844 0-10.925781-2.089844-15.085938-6.25-8.339843-8.34375-8.339843-21.824219 0-30.167969l64.109376-64.105469-64.109376-64.105469c-8.339843-8.34375-8.339843-21.824219 0-30.167969 8.34375-8.339843 21.824219-8.339843 30.167969 0l64.105469 64.109376 64.105469-64.109376c8.34375-8.339843 21.824219-8.339843 30.167969 0 8.339843 8.34375 8.339843 21.824219 0 30.167969l-64.109376 64.105469zm0 0"-->
-<!--                                          fill="#fafafa"/>-->
-<!--                                </svg>-->
-<!--                                <div class="text-[8px] text-black flex flex-col "><h1 class="border-b-amber-400 border-b-[1px] lg:border-b-2 w-fit" >AMINE</h1><p>Technecien</p> </div>-->
-
-<!--                            </div>-->
-
-
-
+                        <div class=" flex  flex-wrap  items-center justify-between content-center gap-y-4 px-6 h-full "  data-salle="conference">
                         </div>
-<!--                        <div class="relative    rounded-md border-2  border-white max-w-[20%] min-w-0 ">-->
-<!--                            <img src="./assets/emptyProfile.jpg" class="rounded-sm  w-full " alt="profile">-->
-<!--                            <svg  class="absolute -top-1.5 left-1/2 -translate-x-1/2 w-[30%] aspect-square" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg">-->
-<!--                                <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0"-->
-<!--                                      fill="#f44336"/>-->
-<!--                                <path d="m350.273438 320.105469c8.339843 8.34375 8.339843 21.824219 0 30.167969-4.160157 4.160156-9.621094 6.25-15.085938 6.25-5.460938 0-10.921875-2.089844-15.082031-6.25l-64.105469-64.109376-64.105469 64.109376c-4.160156 4.160156-9.621093 6.25-15.082031 6.25-5.464844 0-10.925781-2.089844-15.085938-6.25-8.339843-8.34375-8.339843-21.824219 0-30.167969l64.109376-64.105469-64.109376-64.105469c-8.339843-8.34375-8.339843-21.824219 0-30.167969 8.34375-8.339843 21.824219-8.339843 30.167969 0l64.105469 64.109376 64.105469-64.109376c8.34375-8.339843 21.824219-8.339843 30.167969 0 8.339843 8.34375 8.339843 21.824219 0 30.167969l-64.109376 64.105469zm0 0"-->
-<!--                                      fill="#fafafa"/>-->
-<!--                            </svg>-->
-<!--                            <div class="absolute top-11/12 left-1/2 px-1 transform -translate-x-1/2  min-w-[130%]  rounded-xs bg-orange-500  whitespace-nowrap  flex justify-center font-semibold ">-->
-<!--                                <h1 class="text-[40%]">AMINE ELHAILAA</h1>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="relative    rounded-md border-2  border-white max-w-[10%] min-w-0 ">-->
-<!--                            <img src="./assets/emptyProfile.jpg" class="rounded-sm  w-full " alt="profile">-->
-<!--                            <div class="absolute top-11/12 left-1/2 px-1 transform -translate-x-1/2  min-w-[120%] max-w-14  rounded-xs bg-orange-500 whitespace-nowrap  overflow-hidden flex justify-center font-semibold ">-->
-<!--                                <h1 class="text-[0.4rem]">AMINE ELHAILAA</h1>-->
-<!--                            </div>-->
-<!--                        </div><div class="relative    rounded-md border-2  border-white max-w-[10%] min-w-0 ">-->
-<!--                        <img src="./assets/emptyProfile.jpg" class="rounded-sm  w-full " alt="profile">-->
-<!--                        <div class="absolute top-11/12 left-1/2 px-1 transform -translate-x-1/2  min-w-[120%] max-w-14  rounded-xs bg-orange-500 whitespace-nowrap  overflow-hidden flex justify-center font-semibold ">-->
-<!--                            <h1 class="text-[0.4rem]">AMINE ELHAILAA</h1>-->
-<!--                        </div>-->
-<!--                    </div><div class="relative    rounded-md border-2  border-white max-w-[10%] min-w-0 ">-->
-<!--                        <img src="./assets/emptyProfile.jpg" class="rounded-sm  w-full " alt="profile">-->
-<!--                        <div class="absolute top-11/12 left-1/2 px-1 transform -translate-x-1/2  min-w-[120%] max-w-14  rounded-xs bg-orange-500 whitespace-nowrap  overflow-hidden flex justify-center font-semibold ">-->
-<!--                            <h1 class="text-[0.4rem]">AMINE ELHAILAA</h1>-->
-<!--                        </div>-->
-<!--                    </div><div class="relative    rounded-md border-2  border-white max-w-[10%] min-w-0 ">-->
-<!--                        <img src="./assets/emptyProfile.jpg" class="rounded-sm  w-full " alt="profile">-->
-<!--                        <div class="absolute top-11/12 left-1/2 px-1 transform -translate-x-1/2  min-w-[120%] max-w-14  rounded-xs bg-orange-500 whitespace-nowrap  overflow-hidden flex justify-center font-semibold ">-->
-<!--                            <h1 class="text-[0.4rem]">AMINE ELHAILAA</h1>-->
-<!--                        </div>-->
-<!--                    </div><div class="relative    rounded-md border-2  border-white max-w-[10%] min-w-0 ">-->
-<!--                        <img src="./assets/emptyProfile.jpg" class="rounded-sm  w-full " alt="profile">-->
-<!--                        <div class="absolute top-11/12 left-1/2 px-1 transform -translate-x-1/2  min-w-[120%] max-w-14  rounded-xs bg-orange-500 whitespace-nowrap  overflow-hidden flex justify-center font-semibold ">-->
-<!--                            <h1 class="text-[0.4rem]">AMINE ELHAILAA</h1>-->
-<!--                        </div>-->
-<!--                    </div>-->
-
-
-
-
-
-
                         <div class="  text-amber-700 bg-white rounded-xs px-1  -translate-x-1/2  flex flex-col justify-center items-center font-bold text-[6px] sm:text-xs lg:text-xl min-w-0 min-h-0 bottom-1/12 left-1/2 absolute">
                             Conference
                         </div>
-                    </div>
+                    </section>
 
-                    <div id="reception"
-                         class=" relative flex justify-center  items-center    bg-red-500/40   col-start-1 col-end-2 row-start-2 row-end-5   ">
-                            <div class=" addHimHere  cursor-pointer  bg-amber-700 text-white hover:text-amber-700 hover:bg-white  rounded-b-[40%]  -translate-x-1/2 aspect-video min-w-0 min-h-0  w-[15%]  flex flex-col justify-center items-center font-bold text-xs lg:text-xl  top-0 left-1/2   absolute">
+
+
+                    <section class=" relative flex justify-center  items-center    bg-red-500/40   col-start-1 col-end-2 row-start-2 row-end-5   "
+                         id="reception">
+                        <div class=" addHimHere  cursor-pointer  bg-amber-700 text-white hover:text-amber-700 hover:bg-white  rounded-b-[40%]  -translate-x-1/2 aspect-video min-w-0 min-h-0  w-[15%]  flex flex-col justify-center items-center font-bold text-xs lg:text-xl  top-0 left-1/2   absolute">
                             +
                         </div>
-                        <div id="receptionC" class="flex  flex-wrap p-[10%]  gap-y-2 justify-between" >
-<!--                            <div id="${objet.id}" class="relative flex gap-[5%]   rounded-sm bg-white border-2  border-white max-w-[70px] aspect-[3/1] min-w-0 ">-->
-<!--                                <img src="./assets/emptyProfile.jpg" class="rounded-sm  " alt="profile">-->
-<!--                                <svg  class="deleteBtn  cursor-pointer absolute top-1/2 left-full -translate-1/2 w-[20%] aspect-square" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg">-->
-<!--                                    <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0"-->
-<!--                                          fill="#f44336"/>-->
-<!--                                    <path d="m350.273438 320.105469c8.339843 8.34375 8.339843 21.824219 0 30.167969-4.160157 4.160156-9.621094 6.25-15.085938 6.25-5.460938 0-10.921875-2.089844-15.082031-6.25l-64.105469-64.109376-64.105469 64.109376c-4.160156 4.160156-9.621093 6.25-15.082031 6.25-5.464844 0-10.925781-2.089844-15.085938-6.25-8.339843-8.34375-8.339843-21.824219 0-30.167969l64.109376-64.105469-64.109376-64.105469c-8.339843-8.34375-8.339843-21.824219 0-30.167969 8.34375-8.339843 21.824219-8.339843 30.167969 0l64.105469 64.109376 64.105469-64.109376c8.34375-8.339843 21.824219-8.339843 30.167969 0 8.339843 8.34375 8.339843 21.824219 0 30.167969l-64.109376 64.105469zm0 0"-->
-<!--                                          fill="#fafafa"/>-->
-<!--                                </svg>-->
-<!--                                <div class="text-[8px] text-black flex flex-col "><h1 class="border-b-amber-400 border-b-[1px] lg:border-b-2 w-fit" >AMINE</h1><p>Technecien</p> </div>-->
-
-<!--                            </div>-->
-<!--                            <div id="${objet.id}" class="relative flex gap-[5%]   rounded-sm bg-white border-2  border-white max-w-[80px] aspect-[3/1] min-w-0 ">-->
-<!--                                <img src="./assets/emptyProfile.jpg" class="rounded-sm  " alt="profile">-->
-<!--                                <svg  class="deleteBtn  cursor-pointer absolute top-1/2 left-full -translate-1/2 w-[20%] aspect-square" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg">-->
-<!--                                    <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0"-->
-<!--                                          fill="#f44336"/>-->
-<!--                                    <path d="m350.273438 320.105469c8.339843 8.34375 8.339843 21.824219 0 30.167969-4.160157 4.160156-9.621094 6.25-15.085938 6.25-5.460938 0-10.921875-2.089844-15.082031-6.25l-64.105469-64.109376-64.105469 64.109376c-4.160156 4.160156-9.621093 6.25-15.082031 6.25-5.464844 0-10.925781-2.089844-15.085938-6.25-8.339843-8.34375-8.339843-21.824219 0-30.167969l64.109376-64.105469-64.109376-64.105469c-8.339843-8.34375-8.339843-21.824219 0-30.167969 8.34375-8.339843 21.824219-8.339843 30.167969 0l64.105469 64.109376 64.105469-64.109376c8.34375-8.339843 21.824219-8.339843 30.167969 0 8.339843 8.34375 8.339843 21.824219 0 30.167969l-64.109376 64.105469zm0 0"-->
-<!--                                          fill="#fafafa"/>-->
-<!--                                </svg>-->
-<!--                                <div class="text-[8px] text-black flex flex-col "><h1 class="border-b-amber-400 border-b-[1px] lg:border-b-2 w-fit" >AMINE</h1><p>Technecien</p> </div>-->
-
-<!--                            </div>-->
-<!--                            <div id="${objet.id}" class="relative flex gap-[5%]   rounded-sm bg-white border-2  border-white max-w-[80px] aspect-[3/1] min-w-0 ">-->
-<!--                                <img src="./assets/emptyProfile.jpg" class="rounded-sm  " alt="profile">-->
-<!--                                <svg  class="deleteBtn  cursor-pointer absolute top-1/2 left-full -translate-1/2 w-[20%] aspect-square" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg">-->
-<!--                                    <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0"-->
-<!--                                          fill="#f44336"/>-->
-<!--                                    <path d="m350.273438 320.105469c8.339843 8.34375 8.339843 21.824219 0 30.167969-4.160157 4.160156-9.621094 6.25-15.085938 6.25-5.460938 0-10.921875-2.089844-15.082031-6.25l-64.105469-64.109376-64.105469 64.109376c-4.160156 4.160156-9.621093 6.25-15.082031 6.25-5.464844 0-10.925781-2.089844-15.085938-6.25-8.339843-8.34375-8.339843-21.824219 0-30.167969l64.109376-64.105469-64.109376-64.105469c-8.339843-8.34375-8.339843-21.824219 0-30.167969 8.34375-8.339843 21.824219-8.339843 30.167969 0l64.105469 64.109376 64.105469-64.109376c8.34375-8.339843 21.824219-8.339843 30.167969 0 8.339843 8.34375 8.339843 21.824219 0 30.167969l-64.109376 64.105469zm0 0"-->
-<!--                                          fill="#fafafa"/>-->
-<!--                                </svg>-->
-<!--                                <div class="text-[8px] text-black flex flex-col "><h1 class="border-b-amber-400 border-b-[1px] lg:border-b-2 w-fit" >AMINE</h1><p>Technecien</p> </div>-->
-
-<!--                            </div>-->
-<!--                            <div id="${objet.id}" class="relative flex gap-[5%]   rounded-sm bg-white border-2  border-white max-w-[80px] aspect-[3/1] min-w-0 ">-->
-<!--                                <img src="./assets/emptyProfile.jpg" class="rounded-sm  " alt="profile">-->
-<!--                                <svg  class="deleteBtn  cursor-pointer absolute top-1/2 left-full -translate-1/2 w-[20%] aspect-square" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg">-->
-<!--                                    <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0"-->
-<!--                                          fill="#f44336"/>-->
-<!--                                    <path d="m350.273438 320.105469c8.339843 8.34375 8.339843 21.824219 0 30.167969-4.160157 4.160156-9.621094 6.25-15.085938 6.25-5.460938 0-10.921875-2.089844-15.082031-6.25l-64.105469-64.109376-64.105469 64.109376c-4.160156 4.160156-9.621093 6.25-15.082031 6.25-5.464844 0-10.925781-2.089844-15.085938-6.25-8.339843-8.34375-8.339843-21.824219 0-30.167969l64.109376-64.105469-64.109376-64.105469c-8.339843-8.34375-8.339843-21.824219 0-30.167969 8.34375-8.339843 21.824219-8.339843 30.167969 0l64.105469 64.109376 64.105469-64.109376c8.34375-8.339843 21.824219-8.339843 30.167969 0 8.339843 8.34375 8.339843 21.824219 0 30.167969l-64.109376 64.105469zm0 0"-->
-<!--                                          fill="#fafafa"/>-->
-<!--                                </svg>-->
-<!--                                <div class="text-[8px] text-black flex flex-col "><h1 class="border-b-amber-400 border-b-[1px] lg:border-b-2 w-fit" >AMINE</h1><p>Technecien</p> </div>-->
-
-<!--                            </div>-->
-<!--                            <div id="${objet.id}" class="relative flex gap-[5%]   rounded-sm bg-white border-2  border-white max-w-[80px] aspect-[3/1] min-w-0 ">-->
-<!--                                <img src="./assets/emptyProfile.jpg" class="rounded-sm  " alt="profile">-->
-<!--                                <svg  class="deleteBtn  cursor-pointer absolute top-1/2 left-full -translate-1/2 w-[20%] aspect-square" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg">-->
-<!--                                    <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0"-->
-<!--                                          fill="#f44336"/>-->
-<!--                                    <path d="m350.273438 320.105469c8.339843 8.34375 8.339843 21.824219 0 30.167969-4.160157 4.160156-9.621094 6.25-15.085938 6.25-5.460938 0-10.921875-2.089844-15.082031-6.25l-64.105469-64.109376-64.105469 64.109376c-4.160156 4.160156-9.621093 6.25-15.082031 6.25-5.464844 0-10.925781-2.089844-15.085938-6.25-8.339843-8.34375-8.339843-21.824219 0-30.167969l64.109376-64.105469-64.109376-64.105469c-8.339843-8.34375-8.339843-21.824219 0-30.167969 8.34375-8.339843 21.824219-8.339843 30.167969 0l64.105469 64.109376 64.105469-64.109376c8.34375-8.339843 21.824219-8.339843 30.167969 0 8.339843 8.34375 8.339843 21.824219 0 30.167969l-64.109376 64.105469zm0 0"-->
-<!--                                          fill="#fafafa"/>-->
-<!--                                </svg>-->
-<!--                                <div class="text-[8px] text-black flex flex-col "><h1 class="border-b-amber-400 border-b-[1px] lg:border-b-2 w-fit" >AMINE</h1><p>Technecien</p> </div>-->
-
-<!--                            </div>-->
-<!--                            <div id="${objet.id}" class="relative flex gap-[5%]   rounded-sm bg-white border-2  border-white w-[clamp(40px,80px,80px)] aspect-[3/1] min-w-0 ">-->
-<!--                                <img src="./assets/emptyProfile.jpg" class="rounded-sm  " alt="profile">-->
-<!--                                <svg  class="deleteBtn  cursor-pointer absolute top-1/2 left-full -translate-1/2 w-[20%] aspect-square" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg">-->
-<!--                                    <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0"-->
-<!--                                          fill="#f44336"/>-->
-<!--                                    <path d="m350.273438 320.105469c8.339843 8.34375 8.339843 21.824219 0 30.167969-4.160157 4.160156-9.621094 6.25-15.085938 6.25-5.460938 0-10.921875-2.089844-15.082031-6.25l-64.105469-64.109376-64.105469 64.109376c-4.160156 4.160156-9.621093 6.25-15.082031 6.25-5.464844 0-10.925781-2.089844-15.085938-6.25-8.339843-8.34375-8.339843-21.824219 0-30.167969l64.109376-64.105469-64.109376-64.105469c-8.339843-8.34375-8.339843-21.824219 0-30.167969 8.34375-8.339843 21.824219-8.339843 30.167969 0l64.105469 64.109376 64.105469-64.109376c8.34375-8.339843 21.824219-8.339843 30.167969 0 8.339843 8.34375 8.339843 21.824219 0 30.167969l-64.109376 64.105469zm0 0"-->
-<!--                                          fill="#fafafa"/>-->
-<!--                                </svg>-->
-<!--                                <div class="text-[8px] text-black flex flex-col "><h1 class="border-b-amber-400 border-b-[1px] lg:border-b-2 w-fit" >AMINE</h1><p>Technecien</p> </div>-->
-
-<!--                            </div>-->
+                        <div class="flex  flex-wrap p-[10%]  gap-y-2 justify-between"  data-salle="reception">
                         </div>
-
                         <div class="  text-amber-700 bg-white rounded-xs px-1  -translate-x-1/2  flex flex-col justify-center items-center font-bold text-[6px] sm:text-xs lg:text-xl min-w-0 min-h-0 bottom-1/12 left-1/2 absolute">
                             Reception
                         </div>
-                    </div>
+                    </section>
 
-                    <div id="servers"
-                         class=" relative flex  justify-center items-center  flex-wrap  bg-red-500/40  col-start-3 col-end-4 row-start-1 row-end-3   ">
-                            <div class=" addHimHere  cursor-pointer  bg-amber-700 text-white hover:text-amber-700 hover:bg-white rounded-b-[40%]   -translate-x-1/2 w-[25%] flex flex-col justify-center items-center font-bold text-xs lg:text-xl  top-0 left-1/2 aspect-video  absolute">
+
+
+                    <section class=" relative flex  justify-center items-center  flex-wrap  bg-red-500/40  col-start-3 col-end-4 row-start-1 row-end-3   "
+                         id="servers">
+                        <div class=" addHimHere  cursor-pointer  bg-amber-700 text-white hover:text-amber-700 hover:bg-white rounded-b-[40%]   -translate-x-1/2 w-[25%] flex flex-col justify-center items-center font-bold text-xs lg:text-xl  top-0 left-1/2 aspect-video  absolute">
                             +
                         </div>
-                        <div id="serversC" class="flex  flex-wrap justify-around items-end gap-1 w-full  " >
-<!--                            <div id="${objet.id}" class="relative flex gap-[5%]   rounded-sm bg-white border-2  border-white max-w-[75px] aspect-[3/1] min-w-0 ">-->
-<!--                                <img src="./assets/emptyProfile.jpg" class="rounded-sm  " alt="profile">-->
-<!--                                <svg  class="deleteBtn  cursor-pointer absolute top-1/2 left-full -translate-1/2 w-[20%] aspect-square" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg">-->
-<!--                                    <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0"-->
-<!--                                          fill="#f44336"/>-->
-<!--                                    <path d="m350.273438 320.105469c8.339843 8.34375 8.339843 21.824219 0 30.167969-4.160157 4.160156-9.621094 6.25-15.085938 6.25-5.460938 0-10.921875-2.089844-15.082031-6.25l-64.105469-64.109376-64.105469 64.109376c-4.160156 4.160156-9.621093 6.25-15.082031 6.25-5.464844 0-10.925781-2.089844-15.085938-6.25-8.339843-8.34375-8.339843-21.824219 0-30.167969l64.109376-64.105469-64.109376-64.105469c-8.339843-8.34375-8.339843-21.824219 0-30.167969 8.34375-8.339843 21.824219-8.339843 30.167969 0l64.105469 64.109376 64.105469-64.109376c8.34375-8.339843 21.824219-8.339843 30.167969 0 8.339843 8.34375 8.339843 21.824219 0 30.167969l-64.109376 64.105469zm0 0"-->
-<!--                                          fill="#fafafa"/>-->
-<!--                                </svg>-->
-<!--                                <div class="text-[8px] text-black flex flex-col "><h1 class="border-b-amber-400 border-b-[1px] lg:border-b-2 w-fit" >AMINE</h1><p>Technecien</p> </div>-->
-
-<!--                            </div><div id="${objet.id}" class="relative flex gap-[5%]   rounded-sm bg-white border-2  border-white max-w-[80px] aspect-[3/1] min-w-0 ">-->
-<!--                            <img src="./assets/emptyProfile.jpg" class="rounded-sm  " alt="profile">-->
-<!--                            <svg  class="deleteBtn  cursor-pointer absolute top-1/2 left-full -translate-1/2 w-[20%] aspect-square" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg">-->
-<!--                                <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0"-->
-<!--                                      fill="#f44336"/>-->
-<!--                                <path d="m350.273438 320.105469c8.339843 8.34375 8.339843 21.824219 0 30.167969-4.160157 4.160156-9.621094 6.25-15.085938 6.25-5.460938 0-10.921875-2.089844-15.082031-6.25l-64.105469-64.109376-64.105469 64.109376c-4.160156 4.160156-9.621093 6.25-15.082031 6.25-5.464844 0-10.925781-2.089844-15.085938-6.25-8.339843-8.34375-8.339843-21.824219 0-30.167969l64.109376-64.105469-64.109376-64.105469c-8.339843-8.34375-8.339843-21.824219 0-30.167969 8.34375-8.339843 21.824219-8.339843 30.167969 0l64.105469 64.109376 64.105469-64.109376c8.34375-8.339843 21.824219-8.339843 30.167969 0 8.339843 8.34375 8.339843 21.824219 0 30.167969l-64.109376 64.105469zm0 0"-->
-<!--                                      fill="#fafafa"/>-->
-<!--                            </svg>-->
-<!--                            <div class="text-[8px] text-black flex flex-col "><h1 class="border-b-amber-400 border-b-[1px] lg:border-b-2 w-fit" >AMINE</h1><p>Technecien</p> </div>-->
-
-<!--                        </div><div id="${objet.id}" class="relative flex gap-[5%]   rounded-sm bg-white border-2  border-white max-w-[80px] aspect-[3/1] min-w-0 ">-->
-<!--                            <img src="./assets/emptyProfile.jpg" class="rounded-sm  " alt="profile">-->
-<!--                            <svg  class="deleteBtn  cursor-pointer absolute top-1/2 left-full -translate-1/2 w-[20%] aspect-square" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg">-->
-<!--                                <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0"-->
-<!--                                      fill="#f44336"/>-->
-<!--                                <path d="m350.273438 320.105469c8.339843 8.34375 8.339843 21.824219 0 30.167969-4.160157 4.160156-9.621094 6.25-15.085938 6.25-5.460938 0-10.921875-2.089844-15.082031-6.25l-64.105469-64.109376-64.105469 64.109376c-4.160156 4.160156-9.621093 6.25-15.082031 6.25-5.464844 0-10.925781-2.089844-15.085938-6.25-8.339843-8.34375-8.339843-21.824219 0-30.167969l64.109376-64.105469-64.109376-64.105469c-8.339843-8.34375-8.339843-21.824219 0-30.167969 8.34375-8.339843 21.824219-8.339843 30.167969 0l64.105469 64.109376 64.105469-64.109376c8.34375-8.339843 21.824219-8.339843 30.167969 0 8.339843 8.34375 8.339843 21.824219 0 30.167969l-64.109376 64.105469zm0 0"-->
-<!--                                      fill="#fafafa"/>-->
-<!--                            </svg>-->
-<!--                            <div class="text-[8px] text-black flex flex-col "><h1 class="border-b-amber-400 border-b-[1px] lg:border-b-2 w-fit" >AMINE</h1><p>Technecien</p> </div>-->
-
-<!--                        </div>-->
-                        </div>
-
-<!--                        <div class="relative    rounded-md border-2  border-white max-w-[20%] min-w-0 ">-->
-<!--                            <img src="./assets/emptyProfile.jpg" class="rounded-sm  w-full " alt="profile">-->
-<!--                            <div class="absolute top-11/12 left-1/2 px-1 transform -translate-x-1/2  min-w-[120%] max-w-14  rounded-xs bg-orange-500 whitespace-nowrap  overflow-hidden flex justify-center font-semibold ">-->
-<!--                                <h1 class="text-[0.4rem]">AMINE ELHAILAA</h1>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="relative    rounded-md border-2  border-white max-w-[20%] min-w-0 ">-->
-<!--                            <img src="./assets/emptyProfile.jpg" class="rounded-sm  w-full " alt="profile">-->
-<!--                            <div class="absolute top-11/12 left-1/2 px-1 transform -translate-x-1/2  min-w-[120%] max-w-14  rounded-xs bg-orange-500 whitespace-nowrap  overflow-hidden flex justify-center font-semibold ">-->
-<!--                                <h1 class="text-[0.4rem]">AMINE ELHAILAA</h1>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="relative    rounded-md border-2  border-white max-w-[20%] min-w-0 ">-->
-<!--                            <img src="./assets/emptyProfile.jpg" class="rounded-sm  w-full " alt="profile">-->
-<!--                            <div class="absolute top-11/12 left-1/2 px-1 transform -translate-x-1/2  min-w-[120%] max-w-14  rounded-xs bg-orange-500 whitespace-nowrap  overflow-hidden flex justify-center font-semibold ">-->
-<!--                                <h1 class="text-[0.4rem]">AMINE ELHAILAA</h1>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="relative    rounded-md border-2  border-white max-w-[20%] min-w-0 ">-->
-<!--                            <img src="./assets/emptyProfile.jpg" class="rounded-sm  w-full " alt="profile">-->
-<!--                            <div class="absolute top-11/12 left-1/2 px-1 transform -translate-x-1/2  min-w-[120%] max-w-14  rounded-xs bg-orange-500 whitespace-nowrap  overflow-hidden flex justify-center font-semibold ">-->
-<!--                                <h1 class="text-[0.4rem]">AMINE ELHAILAA</h1>-->
-<!--                            </div>-->
-<!--                        </div>-->
-
-
-
+                        <div class="flex  flex-wrap justify-around items-end gap-1 w-full  " data-salle="servers"> </div>
 
                         <div class="  text-amber-700 bg-white rounded-xs px-1  -translate-x-1/2  flex flex-col justify-center items-center font-bold text-[6px] sm:text-xs lg:text-xl min-w-0 min-h-0 bottom-1/12 left-1/2 absolute">
                             Servers
                         </div>
-                    </div>
+                    </section>
 
-                    <div id="security"
-                         class=" relative flex  justify-center items-center  gap-[40%] p-[20%] flex-wrap  bg-red-500/40  col-start-4 col-end-5 row-start-1 row-end-3    ">
-                            <div class=" addHimHere  cursor-pointer  bg-amber-700 text-white hover:text-amber-700 hover:bg-white rounded-b-[40%]   -translate-x-1/2 w-[25%] flex flex-col justify-center items-center font-bold text-xs lg:text-xl  top-0 left-1/2 aspect-video  absolute">
+
+
+                    <section class=" relative flex  justify-center items-center  gap-[40%] p-[20%] flex-wrap  bg-red-500/40  col-start-4 col-end-5 row-start-1 row-end-3    "
+                         id="security">
+                        <div class=" addHimHere  cursor-pointer  bg-amber-700 text-white hover:text-amber-700 hover:bg-white rounded-b-[40%]   -translate-x-1/2 w-[25%] flex flex-col justify-center items-center font-bold text-xs lg:text-xl  top-0 left-1/2 aspect-video  absolute">
                             +
                         </div>
-                        <div id="securityC" class="flex  flex-wrap justify-around items-end gap-1 w-full " ></div>
+                        <div class="flex  flex-wrap justify-around items-end gap-1 w-full " data-salle="security"></div>
 
-<!--                        <div class="relative    rounded-md border-2  border-white max-w-[20%] min-w-0 ">-->
-<!--                            <img src="./assets/emptyProfile.jpg" class="rounded-sm  w-full " alt="profile">-->
-<!--                            <div class="absolute top-11/12 left-1/2 px-1 transform -translate-x-1/2  min-w-[120%] max-w-14  rounded-xs bg-orange-500 whitespace-nowrap  overflow-hidden flex justify-center font-semibold ">-->
-<!--                                <h1 class="text-[0.4rem]">AMINE ELHAILAA</h1>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="relative    rounded-md border-2  border-white max-w-[20%] min-w-0 ">-->
-<!--                            <img src="./assets/emptyProfile.jpg" class="rounded-sm  w-full " alt="profile">-->
-<!--                            <div class="absolute top-11/12 left-1/2 px-1 transform -translate-x-1/2  min-w-[120%] max-w-14  rounded-xs bg-orange-500 whitespace-nowrap  overflow-hidden flex justify-center font-semibold ">-->
-<!--                                <h1 class="text-[0.4rem]">AMINE ELHAILAA</h1>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="relative    rounded-md border-2  border-white max-w-[20%] min-w-0 ">-->
-<!--                            <img src="./assets/emptyProfile.jpg" class="rounded-sm  w-full " alt="profile">-->
-<!--                            <div class="absolute top-11/12 left-1/2 px-1 transform -translate-x-1/2  min-w-[120%] max-w-14  rounded-xs bg-orange-500 whitespace-nowrap  overflow-hidden flex justify-center font-semibold ">-->
-<!--                                <h1 class="text-[0.4rem]">AMINE ELHAILAA</h1>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="relative    rounded-md border-2  border-white max-w-[20%] min-w-0 ">-->
-<!--                            <img src="./assets/emptyProfile.jpg" class="rounded-sm  w-full " alt="profile">-->
-<!--                            <div class="absolute top-11/12 left-1/2 px-1 transform -translate-x-1/2  min-w-[120%] max-w-14  rounded-xs bg-orange-500 whitespace-nowrap  overflow-hidden flex justify-center font-semibold ">-->
-<!--                                <h1 class="text-[0.4rem]">AMINE ELHAILAA</h1>-->
-<!--                            </div>-->
-<!--                        </div>-->
                         <div class="  text-amber-700 bg-white rounded-xs px-1  -translate-x-1/2  flex flex-col justify-center items-center font-bold text-[6px] sm:text-xs lg:text-xl min-w-0 min-h-0 bottom-1/12 left-1/2 absolute">
                             Security
                         </div>
-                    </div>
+                    </section>
 
-                    <div id="personnel"
-                         class=" relative flex  justify-center items-center  gap-[40%] p-[20%] flex-wrap   col-start-3 col-end-4 row-start-4 row-end-5  ">
-                            <div class=" addHimHere  cursor-pointer  bg-amber-700 text-white hover:text-amber-700 hover:bg-white  rounded-b-[40%]   -translate-x-1/2 w-[25%] flex flex-col justify-center items-center font-bold text-xs lg:text-xl  top-0 left-1/2 aspect-video  absolute">
+
+
+
+                    <section class=" relative flex  justify-center items-center  gap-[40%] p-[20%] flex-wrap   col-start-3 col-end-4 row-start-4 row-end-5  "
+                         id="personnel">
+                        <div class=" addHimHere  cursor-pointer  bg-amber-700 text-white hover:text-amber-700 hover:bg-white  rounded-b-[40%]   -translate-x-1/2 w-[25%] flex flex-col justify-center items-center font-bold text-xs lg:text-xl  top-0 left-1/2 aspect-video  absolute">
                             +
                         </div>
-                        <div id="personnelC" class="flex  flex-wrap justify-around items-end gap-1 w-full " ></div>
-
-<!--                        <div class="relative    rounded-md border-2  border-white max-w-[20%] min-w-0 ">-->
-<!--                            <img src="./assets/emptyProfile.jpg" class="rounded-sm  w-full " alt="profile">-->
-<!--                            <div class="absolute top-11/12 left-1/2 px-1 transform -translate-x-1/2  min-w-[120%] max-w-14  rounded-xs bg-orange-500 whitespace-nowrap  overflow-hidden flex justify-center font-semibold ">-->
-<!--                                <h1 class="text-[0.4rem]">AMINE ELHAILAA</h1>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="relative    rounded-md border-2  border-white max-w-[20%] min-w-0 ">-->
-<!--                            <img src="./assets/emptyProfile.jpg" class="rounded-sm  w-full " alt="profile">-->
-<!--                            <div class="absolute top-11/12 left-1/2 px-1 transform -translate-x-1/2  min-w-[120%] max-w-14  rounded-xs bg-orange-500 whitespace-nowrap  overflow-hidden flex justify-center font-semibold ">-->
-<!--                                <h1 class="text-[0.4rem]">AMINE ELHAILAA</h1>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="relative    rounded-md border-2  border-white max-w-[20%] min-w-0 ">-->
-<!--                            <img src="./assets/emptyProfile.jpg" class="rounded-sm  w-full " alt="profile">-->
-<!--                            <div class="absolute top-11/12 left-1/2 px-1 transform -translate-x-1/2  min-w-[120%] max-w-14  rounded-xs bg-orange-500 whitespace-nowrap  overflow-hidden flex justify-center font-semibold ">-->
-<!--                                <h1 class="text-[0.4rem]">AMINE ELHAILAA</h1>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="relative    rounded-md border-2  border-white max-w-[20%] min-w-0 ">-->
-<!--                            <img src="./assets/emptyProfile.jpg" class="rounded-sm  w-full " alt="profile">-->
-<!--                            <div class="absolute top-11/12 left-1/2 px-1 transform -translate-x-1/2  min-w-[120%] max-w-14  rounded-xs bg-orange-500 whitespace-nowrap  overflow-hidden flex justify-center font-semibold ">-->
-<!--                                <h1 class="text-[0.4rem]">AMINE ELHAILAA</h1>-->
-<!--                            </div>-->
-<!--                        </div>-->
+                        <div class="flex  flex-wrap justify-around items-end gap-1 w-full " data-salle="personnel"></div>
                         <div class="  text-amber-700 bg-white rounded-xs px-1  -translate-x-1/2  flex flex-col justify-center items-center font-bold text-[6px] sm:text-xs lg:text-xl min-w-0 min-h-0 bottom-1/12 left-1/2 absolute">
                             Staff
                         </div>
-                    </div>
+                    </section>
 
-                    <div id="archive"
-                         class=" relative  flex  justify-center items-center  gap-[40%] p-[20%] flex-wrap   col-start-4 col-end-5 row-start-4 row-end-5    bg-red-500/40 ">
-                            <div class=" addHimHere  cursor-pointer  bg-amber-700 text-white hover:text-amber-700 hover:bg-white  rounded-b-[40%]   -translate-x-1/2 w-[25%] flex flex-col justify-center items-center font-bold text-xs lg:text-xl  top-0 left-1/2 aspect-video  absolute">
+
+
+
+
+
+                    <section class=" relative  flex  justify-center items-center  gap-[40%] p-[20%] flex-wrap   col-start-4 col-end-5 row-start-4 row-end-5    bg-red-500/40 "
+                         id="archive">
+                        <div class=" addHimHere  cursor-pointer  bg-amber-700 text-white hover:text-amber-700 hover:bg-white  rounded-b-[40%]   -translate-x-1/2 w-[25%] flex flex-col justify-center items-center font-bold text-xs lg:text-xl  top-0 left-1/2 aspect-video  absolute">
                             +
                         </div>
-                        <div id="archiveC" class="flex  flex-wrap justify-around items-end gap-1 w-full " ></div>
-
+                        <div class="flex  flex-wrap justify-around items-end gap-1 w-full " data-salle="archive"></div>
                         <div class="  text-amber-700 bg-white rounded-xs px-1  -translate-x-1/2  flex flex-col justify-center items-center font-bold text-[6px] sm:text-xs lg:text-xl min-w-0 min-h-0 bottom-1/12 left-1/2 absolute">
                             Archive
                         </div>
-                    </div>
+                    </section>
+
+
+
+
 
                 </div>
             </div>
-        </div>
+        </main>
     </section>
-</main>
 
 
 
+<section class=" hidden   left-0 top-0 w-full h-full bg-red-950/50 fixed " id="form_section">
 
-
-
-
-<section id="form_section" class=" hidden   left-0 top-0 w-full h-full bg-red-950/50 fixed ">
-
-    <form id="addForm" class="flex flex-col py-4 px-4 gap-y-2 bg-white border-1 border-amber-500 shadow-amber-600 rounded-2xl w-[90%] max-w-[400px]  absolute top-1/2 left-1/2  transform -translate-1/2 max- overflow-y-scroll max-h-[80vh]  ">
+    <form class="flex flex-col py-4 px-4 gap-y-2 bg-white border-1 border-amber-500 shadow-amber-600 rounded-2xl w-[90%] max-w-[400px]  absolute top-1/2 left-1/2  transform -translate-1/2 max- overflow-y-scroll max-h-[80vh]  "
+          id="addForm">
         <label for="name">Nom</label>
-        <div class="flex flex-col"><input id="name" class="outline-1 outline-amber-400 rounded-md px-4 py-1" type="text">
-        <p class="text-red-500 text-xs  hidden" id="regFullName">Nom invalid!</p>
+        <div class="flex flex-col"><input class="outline-1 outline-amber-400 rounded-md px-4 py-1" id="name"
+                                          type="text">
+            <p class="text-red-500 text-xs  hidden" id="regFullName">Nom invalid!</p>
         </div>
 
         <label for="role">Role</label>
-        <select id="role" class="outline-1 outline-amber-400 rounded-md px-4 py-1">
-<!--            ///fetch-->
+        <select class="outline-1 outline-amber-400 rounded-md px-4 py-1" id="role">
+            <!--            ///fetch-->
             <option value="receptionist">Réceptionniste</option>
             <option value="technicien">Techniciens IT</option>
             <option value="manager">Manager</option>
@@ -456,123 +154,129 @@
 
 
         <div class="flex items-center my-4 gap-5">
-            <div class="rounded-full border-1 border-amber-400 aspect-square max-h-20 overflow-hidden  " id="profile" > <img alt="profileImage" src="./assets/emptyProfile.jpg" id="profileImage" ></div>
+            <div class="rounded-full border-1 border-amber-400 aspect-square max-h-20 overflow-hidden  " id="profile">
+                <img alt="profileImage" id="profileImage" src="./assets/emptyProfile.jpg"></div>
             <div class="flex flex-col grow min-w-0 ">
                 <label for="inputProfile">Image</label>
-                <input id="inputProfile" class="outline-1 outline-amber-400 rounded-md  px-2 py-1 " type="url">
-                <p class="text-red-600 text-xs hidden"  id="regImg" >image url invalid!</p>
+                <input class="outline-1 outline-amber-400 rounded-md  px-2 py-1 " id="inputProfile" type="url">
+                <p class="text-red-600 text-xs hidden" id="regImg">image url invalid!</p>
             </div>
         </div>
 
 
         <div>
-            <div id="experienceContainer" class=" flex flex-col gap-3 ">
+            <div class=" flex flex-col gap-3 " id="experienceContainer">
                 <label for="experienceContainer">Experiences Professionnelles</label>
 
             </div>
         </div>
 
 
-        <button type="button" id="btnExper"
-                class=" bg-orange-400 rounded-md mt-4 text-white w-fit px-2 cursor-pointer py-1 self-center ">
+        <button class=" bg-orange-400 rounded-md mt-4 text-white w-fit px-2 cursor-pointer py-1 self-center " id="btnExper"
+                type="button">
             +Ajouter une experience
         </button>
 
 
         <label for="email">Email</label>
-        <div class="flex flex-col"><input id="email" class="outline-1 outline-amber-400 rounded-md px-4 py-1" type="email">
-            <p class="text-red-600 text-xs hidden"  id="regEmail">image url invalid!</p></div>
+        <div class="flex flex-col"><input class="outline-1 outline-amber-400 rounded-md px-4 py-1" id="email"
+                                          type="email">
+            <p class="text-red-600 text-xs hidden" id="regEmail">image url invalid!</p></div>
 
 
         <label for="telephone">Telephone</label>
-        <div class=" flex-col flex"><input id="telephone" class="outline-1 outline-amber-400 rounded-md px-4 py-1" type="tel">
-            <p class="text-red-600 text-xs hidden"  id="regPhone">phone number invalid!</p></div>
+        <div class=" flex-col flex"><input class="outline-1 outline-amber-400 rounded-md px-4 py-1" id="telephone"
+                                           type="tel">
+            <p class="text-red-600 text-xs hidden" id="regPhone">phone number invalid!</p></div>
 
         <div class="flex justify-evenly flex-wrap">
-            <button type="button" id="btnAnnulerSubmit"
-                    class=" bg-red-500 rounded-md mt-4 text-white px-4 cursor-pointer py-1  ">ANNULER
+            <button class=" bg-red-500 rounded-md mt-4 text-white px-4 cursor-pointer py-1  " id="btnAnnulerSubmit"
+                    type="button">ANNULER
             </button>
 
-            <button type="submit" id="btnSubmit"
-                    class=" bg-amber-600 rounded-md mt-4 text-white  px-4 cursor-pointer py-1 ">AJOUTER
+            <button class=" bg-amber-600 rounded-md mt-4 text-white  px-4 cursor-pointer py-1 " id="btnSubmit"
+                    type="submit">AJOUTER
             </button>
         </div>
     </form>
 </section>
 
 
-
-<section id="popUpAllowedList" class="hidden fixed top-0 left-0 h-full w-full bg-black/50">
-    <div id="allowedList" class=" px-4 py-2 min-w-xs bg-white rounded-2xl shadow-xl  absolute top-1/2 left-1/2  transform -translate-1/2 max-h-100  flex flex-col overflow-y-scroll">
-<!--            <div class="card flex flex-row gap-4 py-2 border-b-2 border-b-amber-400">-->
-<!--                <img src="./assets/emptyProfile.jpg" alt="profile" class="rounded-full aspect-square max-h-13">-->
-<!--                <div><h1 class="worker_NAME">AMINE ELHAILAA</h1>-->
-<!--                    <p class="worker_ROLE">Role</p></div>-->
-<!--            </div>-->
+<section class="hidden fixed top-0 left-0 h-full w-full bg-black/50" id="popUpAllowedList">
+    <div class=" px-4 py-2 min-w-xs bg-white rounded-2xl shadow-xl  absolute top-1/2 left-1/2  transform -translate-1/2 max-h-100  flex flex-col overflow-y-scroll"
+         id="allowedList">
+        <!--            <div class="card flex flex-row gap-4 py-2 border-b-2 border-b-amber-400">-->
+        <!--                <img src="./assets/emptyProfile.jpg" alt="profile" class="rounded-full aspect-square max-h-13">-->
+        <!--                <div><h1 class="worker_NAME">AMINE ELHAILAA</h1>-->
+        <!--                    <p class="worker_ROLE">Role</p></div>-->
+        <!--            </div>-->
     </div>
 </section>
 
-<section id="detailsContainer" class="hidden fixed top-0 left-0 h-full w-full bg-black/50">
-<div class=" absolute top-1/2 left-1/2  transform -translate-1/2   flex flex-col bg-white rounded-xl w-[90%]  max-w-[300px]">
-<div id="detailCard" class="detailCard flex flex-col gap-2  items-start py-6 px-6 max-h-[80vh] overflow-y-scroll">
-    <img id="imgDetail" src="./assets/emptyProfile.jpg" alt="profile" class="rounded-full absolute left-1/2 -top-1/50 -translate-1/2 transform  max-w-15 aspect-square">
-    <h1 class="fullName border-b-2 border-amber-300 self-center" id="NameDetail">AMINE ELHILAA</h1>
-    <div class="flex w-full justify-between "><svg class="w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480.56 480.56">
-        <path d="M365.354 317.9c-15.7-15.5-35.3-15.5-50.9 0-11.9 11.8-23.8 23.6-35.5 35.6-3.2 3.3-5.9 4-9.8 1.8-7.7-4.2-15.9-7.6-23.3-12.2-34.5-21.7-63.4-49.6-89-81-12.7-15.6-24-32.3-31.9-51.1-1.6-3.8-1.3-6.3 1.8-9.4 11.9-11.5 23.5-23.3 35.2-35.1 16.3-16.4 16.3-35.6-.1-52.1-9.3-9.4-18.6-18.6-27.9-28-9.6-9.6-19.1-19.3-28.8-28.8-15.7-15.3-35.3-15.3-50.9.1-12 11.8-23.5 23.9-35.7 35.5-11.3 10.7-17 23.8-18.2 39.1-1.9 24.9 4.2 48.4 12.8 71.3 17.6 47.4 44.4 89.5 76.9 128.1 43.9 52.2 96.3 93.5 157.6 123.3 27.6 13.4 56.2 23.7 87.3 25.4 21.4 1.2 40-4.2 54.9-20.9 10.2-11.4 21.7-21.8 32.5-32.7 16-16.2 16.1-35.8.2-51.8-18.8-18.9-37.9-37.9-57-56.9z"/>
-        <path d="M346.254 238.2l36.9-6.3c-5.8-33.9-21.8-64.6-46.1-89-25.7-25.7-58.2-41.9-94-46.9l-5.2 37.1c27.7 3.9 52.9 16.4 72.8 36.3 18.2 18.8 30.5 42.6 35.6 68.8z"/>
-        <path d="M403.954 77.8c-42.6-42.6-96.5-69.5-156-77.8l-5.2 37.1c51.4 7.2 98 30.5 134.8 67.2 34.9 34.9 57.8 79 66.1 127.5l36.9-6.3c-14.5-60-41-111-76.6-147.7z"/>
-    </svg>
-        <p id="phoneDetail">phone number</p></div>
-    <div class="flex w-full justify-between ">
-        <svg id="Layer_1" class="w-6" viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg"
-             data-name="Layer 1">
-            <path d="m256 0c141.385 0 256 114.615 256 256s-114.615 256-256 256-256-114.615-256-256 114.615-256 256-256zm162.5 355.241v-190.263l-95.137 95.131zm-304.676 3.876h284.358l-86.908-86.908-33.123 33.118a8.563 8.563 0 0 1 -6.05 2.5h-32.2a8.553 8.553 0 0 1 -6.051-2.5l-33.122-33.118-86.908 86.908zm-20.324-194.145v190.274l95.137-95.137zm312.906-12.089h-300.806l137.844 137.844h25.117z"
-                  fill-rule="evenodd"/>
-        </svg>
-        <p id="emailDetail">amineelhailaa@gmail.com</p></div>
-    <div class="flex w-full justify-between">
-        <svg clip-rule="evenodd" fill-rule="evenodd" class="w-6" stroke-linejoin="round" stroke-miterlimit="2"
-             viewBox="0 0 24 24" width="512" xmlns="http://www.w3.org/2000/svg">
-            <g id="Icon">
-                <circle cx="11.5" cy="6.744" r="5.5"/>
-                <path d="m17.5 13.938c-1.966 0-3.562 1.596-3.562 3.562s1.596 3.563 3.562 3.563 3.563-1.597 3.563-3.563-1.597-3.562-3.563-3.562zm0 1.5c1.138 0 2.063.924 2.063 2.062s-.925 2.063-2.063 2.063-2.063-.925-2.063-2.063.925-2.062 2.063-2.062z"/>
-                <path d="m18.25 14.687v-1.687c0-.414-.336-.75-.75-.75s-.75.336-.75.75v1.688c0 .413.336.75.75.75.414-.001.75-.337.75-.751z"/>
-                <path d="m20.019 16.042 1.193-1.194c.293-.292.293-.768 0-1.06-.292-.293-.768-.293-1.06 0l-1.194 1.193c-.292.293-.292.768 0 1.061.293.292.768.292 1.061 0z"/>
-                <path d="m20.312 18.25h1.688c.414 0 .75-.336.75-.75s-.336-.75-.75-.75h-1.688c-.413 0-.749.336-.749.75-.001.414.336.75.749.75z"/>
-                <path d="m18.958 20.019 1.194 1.193c.292.293.768.293 1.06 0 .293-.292.293-.768 0-1.06l-1.193-1.194c-.293-.292-.768-.292-1.061 0-.292.293-.292.768 0 1.061z"/>
-                <path d="m16.75 20.312v1.688c0 .414.336.75.75.75s.75-.336.75-.75v-1.688c0-.413-.336-.749-.75-.75-.414 0-.75.337-.75.75z"/>
-                <path d="m14.981 18.958-1.193 1.194c-.293.292-.293.768 0 1.06.292.293.768.293 1.06 0l1.194-1.193c.292-.293.292-.768 0-1.061-.293-.292-.768-.292-1.061 0z"/>
-                <path d="m14.687 16.75h-1.687c-.414 0-.75.336-.75.75s.336.75.75.75h1.687c.414 0 .751-.336.75-.75 0-.414-.336-.75-.75-.75z"/>
-                <path d="m16.042 14.981-1.194-1.193c-.292-.293-.768-.293-1.06 0-.293.292-.293.768 0 1.06l1.193 1.194c.293.292.768.292 1.061 0 .292-.293.292-.768 0-1.061z"/>
-                <path d="m12.936 21.756c-.534-.686-.486-1.681.145-2.311l.194-.195h-.275c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75h.275l-.194-.195c-.656-.655-.682-1.704-.078-2.391-.49-.038-.992-.058-1.503-.058-3.322 0-6.263.831-8.089 2.076-1.393.95-2.161 2.157-2.161 3.424v1.45c0 .451.179.884.498 1.202.319.319.751.498 1.202.498z"/>
-            </g>
-        </svg>
-        <p id="roleDetail">technicient</p></div>
-    <div class=" localisation flex w-full justify-between  ">
-        <svg viewBox="0 0 24 24" class="w-6" xmlns="http://www.w3.org/2000/svg">
-            <g id="Layer_2" data-name="Layer 2">
-                <path d="m17.718 3.049a9.061 9.061 0 0 0 -7.524-1.873 9 9 0 0 0 -3.671 15.957 15.25 15.25 0 0 1 3.921 4.217l.7 1.164a1 1 0 0 0 1.714 0l.671-1.118a12.72 12.72 0 0 1 3.578-4 8.99 8.99 0 0 0 .612-14.352zm-5.718 10.951a4 4 0 1 1 4-4 4 4 0 0 1 -4 4z"/>
-            </g>
-        </svg>
-        <p id="locationDetail">Servers Room</p></div>
+<section class="hidden fixed top-0 left-0 h-full w-full bg-black/50" id="detailsContainer">
+    <div class=" absolute top-1/2 left-1/2  transform -translate-1/2   flex flex-col bg-white rounded-xl w-[90%]  max-w-[300px]">
+        <div class="detailCard flex flex-col gap-2  items-start py-6 px-6 max-h-[80vh] overflow-y-scroll"
+             id="detailCard">
+            <img alt="profile" class="rounded-full absolute left-1/2 -top-1/50 -translate-1/2 transform  max-w-15 aspect-square" id="imgDetail"
+                 src="./assets/emptyProfile.jpg">
+            <h1 class="fullName border-b-2 border-amber-300 self-center" id="NameDetail">AMINE ELHILAA</h1>
+            <div class="flex w-full justify-between ">
+                <svg class="w-6" viewBox="0 0 480.56 480.56" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M365.354 317.9c-15.7-15.5-35.3-15.5-50.9 0-11.9 11.8-23.8 23.6-35.5 35.6-3.2 3.3-5.9 4-9.8 1.8-7.7-4.2-15.9-7.6-23.3-12.2-34.5-21.7-63.4-49.6-89-81-12.7-15.6-24-32.3-31.9-51.1-1.6-3.8-1.3-6.3 1.8-9.4 11.9-11.5 23.5-23.3 35.2-35.1 16.3-16.4 16.3-35.6-.1-52.1-9.3-9.4-18.6-18.6-27.9-28-9.6-9.6-19.1-19.3-28.8-28.8-15.7-15.3-35.3-15.3-50.9.1-12 11.8-23.5 23.9-35.7 35.5-11.3 10.7-17 23.8-18.2 39.1-1.9 24.9 4.2 48.4 12.8 71.3 17.6 47.4 44.4 89.5 76.9 128.1 43.9 52.2 96.3 93.5 157.6 123.3 27.6 13.4 56.2 23.7 87.3 25.4 21.4 1.2 40-4.2 54.9-20.9 10.2-11.4 21.7-21.8 32.5-32.7 16-16.2 16.1-35.8.2-51.8-18.8-18.9-37.9-37.9-57-56.9z"/>
+                    <path d="M346.254 238.2l36.9-6.3c-5.8-33.9-21.8-64.6-46.1-89-25.7-25.7-58.2-41.9-94-46.9l-5.2 37.1c27.7 3.9 52.9 16.4 72.8 36.3 18.2 18.8 30.5 42.6 35.6 68.8z"/>
+                    <path d="M403.954 77.8c-42.6-42.6-96.5-69.5-156-77.8l-5.2 37.1c51.4 7.2 98 30.5 134.8 67.2 34.9 34.9 57.8 79 66.1 127.5l36.9-6.3c-14.5-60-41-111-76.6-147.7z"/>
+                </svg>
+                <p id="phoneDetail">phone number</p></div>
+            <div class="flex w-full justify-between ">
+                <svg class="w-6" data-name="Layer 1" id="Layer_1" viewBox="0 0 512 512" width="512"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path d="m256 0c141.385 0 256 114.615 256 256s-114.615 256-256 256-256-114.615-256-256 114.615-256 256-256zm162.5 355.241v-190.263l-95.137 95.131zm-304.676 3.876h284.358l-86.908-86.908-33.123 33.118a8.563 8.563 0 0 1 -6.05 2.5h-32.2a8.553 8.553 0 0 1 -6.051-2.5l-33.122-33.118-86.908 86.908zm-20.324-194.145v190.274l95.137-95.137zm312.906-12.089h-300.806l137.844 137.844h25.117z"
+                          fill-rule="evenodd"/>
+                </svg>
+                <p id="emailDetail">amineelhailaa@gmail.com</p></div>
+            <div class="flex w-full justify-between">
+                <svg class="w-6" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2"
+                     viewBox="0 0 24 24" width="512" xmlns="http://www.w3.org/2000/svg">
+                    <g id="Icon">
+                        <circle cx="11.5" cy="6.744" r="5.5"/>
+                        <path d="m17.5 13.938c-1.966 0-3.562 1.596-3.562 3.562s1.596 3.563 3.562 3.563 3.563-1.597 3.563-3.563-1.597-3.562-3.563-3.562zm0 1.5c1.138 0 2.063.924 2.063 2.062s-.925 2.063-2.063 2.063-2.063-.925-2.063-2.063.925-2.062 2.063-2.062z"/>
+                        <path d="m18.25 14.687v-1.687c0-.414-.336-.75-.75-.75s-.75.336-.75.75v1.688c0 .413.336.75.75.75.414-.001.75-.337.75-.751z"/>
+                        <path d="m20.019 16.042 1.193-1.194c.293-.292.293-.768 0-1.06-.292-.293-.768-.293-1.06 0l-1.194 1.193c-.292.293-.292.768 0 1.061.293.292.768.292 1.061 0z"/>
+                        <path d="m20.312 18.25h1.688c.414 0 .75-.336.75-.75s-.336-.75-.75-.75h-1.688c-.413 0-.749.336-.749.75-.001.414.336.75.749.75z"/>
+                        <path d="m18.958 20.019 1.194 1.193c.292.293.768.293 1.06 0 .293-.292.293-.768 0-1.06l-1.193-1.194c-.293-.292-.768-.292-1.061 0-.292.293-.292.768 0 1.061z"/>
+                        <path d="m16.75 20.312v1.688c0 .414.336.75.75.75s.75-.336.75-.75v-1.688c0-.413-.336-.749-.75-.75-.414 0-.75.337-.75.75z"/>
+                        <path d="m14.981 18.958-1.193 1.194c-.293.292-.293.768 0 1.06.292.293.768.293 1.06 0l1.194-1.193c.292-.293.292-.768 0-1.061-.293-.292-.768-.292-1.061 0z"/>
+                        <path d="m14.687 16.75h-1.687c-.414 0-.75.336-.75.75s.336.75.75.75h1.687c.414 0 .751-.336.75-.75 0-.414-.336-.75-.75-.75z"/>
+                        <path d="m16.042 14.981-1.194-1.193c-.292-.293-.768-.293-1.06 0-.293.292-.293.768 0 1.06l1.193 1.194c.293.292.768.292 1.061 0 .292-.293.292-.768 0-1.061z"/>
+                        <path d="m12.936 21.756c-.534-.686-.486-1.681.145-2.311l.194-.195h-.275c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75h.275l-.194-.195c-.656-.655-.682-1.704-.078-2.391-.49-.038-.992-.058-1.503-.058-3.322 0-6.263.831-8.089 2.076-1.393.95-2.161 2.157-2.161 3.424v1.45c0 .451.179.884.498 1.202.319.319.751.498 1.202.498z"/>
+                    </g>
+                </svg>
+                <p id="roleDetail">technicient</p></div>
+            <div class=" localisation flex w-full justify-between  ">
+                <svg class="w-6" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <g data-name="Layer 2" id="Layer_2">
+                        <path d="m17.718 3.049a9.061 9.061 0 0 0 -7.524-1.873 9 9 0 0 0 -3.671 15.957 15.25 15.25 0 0 1 3.921 4.217l.7 1.164a1 1 0 0 0 1.714 0l.671-1.118a12.72 12.72 0 0 1 3.578-4 8.99 8.99 0 0 0 .612-14.352zm-5.718 10.951a4 4 0 1 1 4-4 4 4 0 0 1 -4 4z"/>
+                    </g>
+                </svg>
+                <p id="locationDetail">Servers Room</p></div>
 
-    <div class="self-center flex flex-col items-center w-full"><h1
-            class="text-xl border-b-2 border-amber-300 self-center">Experiences</h1>
+            <div class="self-center flex flex-col items-center w-full"><h1
+                    class="text-xl border-b-2 border-amber-300 self-center">Experiences</h1>
 
-            <div id="experienceContainerDetail" class=" w-full">
+                <div class=" w-full" id="experienceContainerDetail">
 
-                <!--        <div class="experienceDetailled w-full bg-amber-300 text-white shadow-md rounded-2xl p-2">-->
+                    <!--        <div class="experienceDetailled w-full bg-amber-300 text-white shadow-md rounded-2xl p-2">-->
 
-                <!--            <p class="flex w-full gap-7"><span>GMD TANGER</span><span>COMPTABLE</span></p>-->
-                <!--            <p class="flex w-full gap-7"><span class="dateDebutEx">Start: 20/20/2002</span><span class="dateFinEx">End: 20/20/2002</span></p>-->
-                <!--        </div>-->
+                    <!--            <p class="flex w-full gap-7"><span>GMD TANGER</span><span>COMPTABLE</span></p>-->
+                    <!--            <p class="flex w-full gap-7"><span class="dateDebutEx">Start: 20/20/2002</span><span class="dateFinEx">End: 20/20/2002</span></p>-->
+                    <!--        </div>-->
 
+
+                </div>
 
             </div>
-
+        </div>
     </div>
-</div>
-</div>
 
 </section>
 

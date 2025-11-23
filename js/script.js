@@ -1,12 +1,5 @@
-
-
-
-
-
-
 const addWorker = document.getElementById("addWorker");
 const cancelAdding = document.getElementById("btnAnnulerSubmit")
-// const submitAdding = document.getElementById("btnSubmit")
 const formSection = document.getElementById("form_section");
 const allowedListSection = document.getElementById("popUpAllowedList")
 const addForm = document.getElementById("addForm")
@@ -15,26 +8,23 @@ const imageInput = document.getElementById("inputProfile");
 const experienceContainer = document.getElementById("experienceContainer");
 const addExperience = document.getElementById("btnExper");
 const workerContainer = document.getElementById('workerContainer')
-const roomsContainer = document.getElementById('rooms_container');
-const conferenceContainer = document.getElementById("conferenceC")
-const staffContainer = document.getElementById("personnelC")
-const securityContainer = document.getElementById("securityC")
-const receptionContainer = document.getElementById("receptionC")
-const archiveContainer = document.getElementById("archiveC")
-const itContainer = document.getElementById("serversC")
 const alowedList = document.getElementById("allowedList")
 const detailSection = document.getElementById('detailsContainer')
+const detailPage = document.getElementById('detailCard')
 
+const sallesRules= {
+    conference: ["receptionist","technicien","manager","securite","nettoyage","other"],
+    personnel:["receptionist","technicien","manager","securite","nettoyage","other"],
+    reception: ["receptionist","manager","nettoyage"],
+    servers:["technicien","manager","nettoyage"],
+    security:["manager","securite","nettoyage"],
+    archive:["manager"]
+}
+const sallesKeys = ["conference","personnel","servers","security","archive","reception"]
 
-let workerCounter = 0
-let workerList = []
-
-let conferenceList = []
-let receptionList = []
-let serversList = []
-let securityList = []
-let staffList = []
-let archiveList = []
+let workerCounter =    JSON.parse(localStorage.getItem('counter')) || 0
+let workerList = JSON.parse(localStorage.getItem("workerList")) || []
+showCards(1)
 
 const regexEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z._]+\.[a-z]{3,}$/
 const regexFullName = /^[a-zA-Z]+\s*[a-zA-Z]+\s*[a-zA-Z]*$/
@@ -46,11 +36,6 @@ const msgNameForm = document.getElementById("regFullName")
 const msgImg = document.getElementById("regImg")
 const msgEmail = document.getElementById("regEmail")
 const msgPhone = document.getElementById("regPhone")
-
-
-workerList = JSON.parse(localStorage.getItem("workerList")) || []
-showCards(0)
-
 
 imageInput.addEventListener('input', () => {
     imageProfile.src = imageInput.value
@@ -64,7 +49,6 @@ imageInput.addEventListener('input', () => {
     }
 })
 
-
 addWorker.addEventListener('click', () => {
     formSection.classList.toggle("hidden");
 })
@@ -75,22 +59,17 @@ function toggleAddReset() {
         element.classList.add("hidden")
     })
 }
-
-
 function toggleHidden(element) {
     element.classList.remove("hidden")
 }
-
 addForm.addEventListener('submit', e => {
     e.preventDefault()
-
     console.log(regexEmail.test(document.getElementById("email").value), msgEmail)
     let valid = 1
     if (!regexFullName.test(document.getElementById("name").value)) {
         toggleHidden(msgNameForm)
         valid = 0
     }//validation full name
-
     if (!regexEmail.test(document.getElementById("email").value)) {
         toggleHidden(msgEmail)
         valid = 0
@@ -98,10 +77,7 @@ addForm.addEventListener('submit', e => {
     if (!regexPhone.test(document.getElementById('telephone').value)) {
         toggleHidden(msgPhone)
         valid = 0
-
     }//validation phone number
-
-
     document.querySelectorAll(".accessExperience").forEach(exrg => {
         if (!regexExp.test(exrg.querySelector(".entrepriseEx").value)) {
             toggleHidden(exrg.querySelector('.regExpEn'))
@@ -118,17 +94,12 @@ addForm.addEventListener('submit', e => {
             valid = 0
         }
     })
-
-
     if (!valid) {
         return
     }
-
-
     workerCounter++
+    localStorage.setItem('counter',JSON.stringify(workerCounter))
     let experienceBridge = []
-
-
     const experiences = addForm.querySelectorAll('.accessExperience')
     experiences.forEach(ex => {
         if (ex.querySelector('.entrepriseEx').value !== "") {
@@ -138,15 +109,10 @@ addForm.addEventListener('submit', e => {
                 dateS: ex.querySelector('.dateS').value,
                 dateE: ex.querySelector('.dateE').value
             }
-
             experienceBridge.push(storeExperience)
         }
     })
-
-
     console.log(regexFullName.test(document.getElementById("name").value))
-
-
     let workerObjet = {
         id: workerCounter,
         name: document.getElementById("name").value,
@@ -156,9 +122,9 @@ addForm.addEventListener('submit', e => {
         experience: experienceBridge,
         email: document.getElementById("email").value,
         phone: document.getElementById('telephone').value,
-
     }
-    console.log("hahah")
+
+    console.log("hmm")
     workerList.push(workerObjet)
     localsave()
     showCards(0) //affichag
@@ -168,28 +134,9 @@ addForm.addEventListener('submit', e => {
 })
 
 
-let sallesRules= {
-    conference: ["receptionist","technicien","manager","securite","nettoyage","other"],
-    personnel:["receptionist","technicien","manager","securite","nettoyage","other"],
-    reception: ["receptionist","manager","nettoyage"],
-    servers:["technicien","manager","nettoyage"],
-    security:["manager","securite","nettoyage"],
-    archive:["manager"]
-}
-
-
-function localget(){
-    
-    let localA = JSON.parse(localStorage.getItem("workerList")) || []
-    return localA
-}
 function localsave(){
     localStorage.setItem("workerList",JSON.stringify(workerList))
 }
-
-
-
-
 
 
 function showCards(location) {
@@ -201,42 +148,42 @@ function showCards(location) {
             if (worker.salle === 0){
             const workerCard = document.createElement('div')
             workerCard.className = "roomCards"
+                workerCard.dataset.id = worker.id
             workerCard.innerHTML = `<div id="${worker.id}" class=" flex flex-row gap-4 py-2 border-b-2 border-b-amber-400"> 
-                        <img src="${worker.img}" alt="profile" class="rounded-full aspect-square max-h-13">
+                        <img src="${worker.img}" onerror="this.src='./assets/emptyProfile.jpg'" alt="profile" class="rounded-full aspect-square max-h-13">
                         <div><h1 class="worker_NAME">${worker.name}</h1>
                             <p class="worker_ROLE">${worker.role}</p></div></div>
                     `
                 console.log("dkhl lfunction")
                 workerContainer.append(workerCard)
         }})
-    }
-    
-    else {
-        let where=location.parentElement.querySelector('.roomate')
-        console.log(where,"where >>>")
-        where.innerHTML=""
-        workerList.forEach(mate => {
-            if (mate.salle===location) {
-                let roomCard = cardOfRooms(mate)
-                where.append(roomCard)
-            }
+    } else {
+        sallesKeys.forEach(salle => {
+            let where = document.querySelector(`div[data-salle="${salle}"]`).parentElement.querySelector('.roomate')
+            where.innerHTML =""
+            workerList.forEach(mate => {
+
+                if (mate.salle === salle) {
+                    console.log("showroom condition is true")
+                    console.log(mate)
+                    let roomcards = cardOfRooms(mate)
+                    console.log(roomcards, "WHYYYYYYYYY")
+                    where.append(roomcards)
+                }
+            })
         })
+        showCards(0)
     }
-
-
 }
-
 
 cancelAdding.addEventListener('click', () => {
     formSection.classList.toggle("hidden");
     console.log("whatsgoing on")
 })
 
-
 hideOnEmptyClick(formSection)
 hideOnEmptyClick(allowedListSection)
 hideOnEmptyClick(detailSection)
-
 
 function hideOnEmptyClick(form) {
     form.addEventListener('click', (e) => {
@@ -245,7 +192,6 @@ function hideOnEmptyClick(form) {
         }
     })
 }
-
 
 addExperience.addEventListener('click', () => {
     const experienceTemplate = document.createElement("div")
@@ -280,8 +226,6 @@ addExperience.addEventListener('click', () => {
                     </svg>
 
                 </div>`
-
-
     experienceTemplate.querySelector(".deleteExperience").addEventListener("click", () => {
         experienceTemplate.remove();
     })
@@ -289,341 +233,95 @@ addExperience.addEventListener('click', () => {
 })
 
 
-//------------------------ start event on rooms -----------------------------
-// roomsContainer.addEventListener('click', event => {
-
 document.body.addEventListener('click', event => {
 /// part of ajout
     if (event.target.closest(".addHimHere")) {
         const clickedMe = event.target.closest(".addHimHere").dataset.salle
+        const divClicked = event.target.closest(".addHimHere")
         console.log(clickedMe)
         let somethingThere = false
         allowedListSection.classList.toggle("hidden")
         alowedList.innerHTML=""
         workerList.forEach(worker =>{
-            if (allowedHere(worker.role,clickedMe)){
+            if (allowedHere(worker,clickedMe)){
                 somethingThere = true
-                let allowedCard = cardIt(worker, clickedMe)
+                let allowedCard = cardIt(worker, divClicked)
                 alowedList.append(allowedCard)
             } 
         })
-        // if (clickedMe.parentElement.id === "reception") {
-        //     filter("receptionist", clickedMe.parentElement.id)
-        // } else if (clickedMe.parentElement.id === "servers") {
-        //     filter("technicien", clickedMe.parentElement.id)
-        // } else if (clickedMe.parentElement.id === "security") {
-        //     filter("securite", clickedMe.parentElement.id)
-        // } else if (clickedMe.parentElement.id === "conference") {
-        //     filter("justGo", clickedMe.parentElement.id)
-        // } else if (clickedMe.parentElement.id === "personnel") {
-        //     filter("justGo", clickedMe.parentElement.id)
-        // } else if (clickedMe.parentElement.id === "archive") {
-        //     filter("archive", clickedMe.parentElement.id)
-        // } else {
-        //     console.log("there is some error here")
-        // }
-        verifyArray()
+        if (somethingThere===false) noCardAvailable();
+
     }
-
-    
-    
-    
-    
-    
-    
-
-
-
 /// part of delete
     else if (event.target.closest(".deleteBtn")) {
         const clickedMe = event.target.closest(".deleteBtn")
-        const idToDelete = clickedMe.parentElement.id
-        console.log("condition of delete btn works")
-        ///
-        if (clickedMe.closest("#conference")) {
+        const idToDelete = clickedMe.parentElement.parentElement.dataset.id
 
-
-        //     conferenceList.forEach(agent => {
-        //         if (agent.id == idToDelete) {
-        //             let tempTransfer = transfer(conferenceList, workerList, agent)
-        //             workerList = tempTransfer[1]
-        //             conferenceList = tempTransfer[0]
-        //             showCards(workerList, workerContainer)
-        //             showCards(conferenceList, conferenceContainer)
-        //         }
-        //     })
-        //
-        // } else if (clickedMe.closest("#reception")) {
-        //     console.log("conditons passed to reception", clickedMe.id)
-        //     receptionList.forEach(agent => {
-        //         if (agent.id == idToDelete) {
-        //             let tempTransfer = transfer(receptionList, workerList, agent)
-        //             workerList = tempTransfer[1]
-        //             receptionList = tempTransfer[0]
-        //             showCards(workerList, workerContainer)
-        //             showCards(receptionList, receptionContainer)
-        //         }
-        //     })
-        // } else if (clickedMe.closest("#servers")) {
-        //     serversList.forEach(agent => {
-        //         if (agent.id == idToDelete) {
-        //             let tempTransfer = transfer(serversList, workerList, agent)
-        //             workerList = tempTransfer[1]
-        //             serversList = tempTransfer[0]
-        //             showCards(workerList, workerContainer)
-        //             showCards(serversList, itContainer)
-        //         }
-        //     })
-        // } else if (clickedMe.closest("#security")) {
-        //     securityList.forEach(agent => {
-        //         if (agent.id == idToDelete) {
-        //             let tempTransfer = transfer(securityList, workerList, agent)
-        //             workerList = tempTransfer[1]
-        //             securityList = tempTransfer[0]
-        //             showCards(workerList, workerContainer)
-        //             showCards(securityList, securityContainer)
-        //         }
-        //     })
-        // } else if (clickedMe.closest("#personnel")) {
-        //     staffList.forEach(agent => {
-        //         if (agent.id == idToDelete) {
-        //             let tempTransfer = transfer(staffList, workerList, agent)
-        //             workerList = tempTransfer[1]
-        //             staffList = tempTransfer[0]
-        //             showCards(workerList, workerContainer)
-        //             showCards(staffList, staffContainer)
-        //         }
-        //     })
-        // } else if (clickedMe.closest("#archive")) {
-        //     archiveList.forEach(agent => {
-        //         if (agent.id == idToDelete) {
-        //             let tempTransfer = transfer(archiveList, workerList, agent)
-        //             workerList = tempTransfer[1]
-        //             archiveList = tempTransfer[0]
-        //             showCards(workerList, workerContainer)
-        //             showCards(archiveList, archiveContainer)
-        //         }
-        //     })
-        // } else {
-        //     console.log("there is error in delete")
-        // }
-
-        verifyArray()
-    }}
-
-
-    //detailllllllllllllllllllllllllllllllll------------------------------
-
-    else if (event.target.closest('.roomCards')) {
-
-        const cardToDetail = event.target.closest('.roomCards')
-        const idToDetail = event.target.closest('.roomCards').querySelector('div').id //get the id of the div inside the div that has this class
-
-
-        // if (cardToDetail.parentElement.id === "conferenceC") {
-        //
-        //     // let objetX = searchById(conferenceList,idToDetail)
-        //
-        //     detailledCard(searchById(conferenceList, idToDetail), "Conference")
-        // } else if (cardToDetail.parentElement.id === "receptionC") {
-        //
-        //     detailledCard(searchById(receptionList, idToDetail), "Reception")
-        // } else if (cardToDetail.parentElement.id === "serversC") {
-        //     detailledCard(searchById(serversList, idToDetail), "Servers")
-        // } else if (cardToDetail.parentElement.id === "securityC") {
-        //     detailledCard(searchById(securityList, idToDetail), "Security")
-        // } else if (cardToDetail.parentElement.id === "personnelC") {
-        //     detailledCard(searchById(staffList, idToDetail), "Staff")
-        // } else if (cardToDetail.parentElement.id === "archiveC") {
-        //     detailledCard(searchById(archiveList, idToDetail), "Archive")
-        // } else {
-        //     detailledCard(searchById(workerList, idToDetail), "unssaigned")
-        // }
-
-
+        workerList.forEach(man=>{
+            if (man.id===parseInt(idToDelete)){
+                man.salle = 0
+                localsave()
+                showCards(1)
+            console.log(man, idToDelete)
+            }
+        })
     }
-
-
+    //detailllllllllllllllllllllllllllllllll------------------------------
+    else if (event.target.closest('.roomCards')) {
+        console.log("yama")
+        const cardToDetail = event.target.closest('.roomCards').dataset.id
+        workerList.forEach(ell=>{
+            if (ell.id === parseInt(cardToDetail)){
+                detailledCard(ell)
+            }
+        })
+    }
 })
-
-function searchById(array, id) {
-
-    let objetx
-    array.forEach(thing => {
-        if (thing.id == id) {
-            objetx = thing
-        }
-    })
-    console.log(objetx);
-
-    return objetx
-}
-
 
 
 function allowedHere(metier,sali){
     let yesNo = 0
     sallesRules[sali].forEach(role=>{
         console.log(role)
-    if (role===metier){
+    if (role===metier.role && metier.salle!==sali ){
         yesNo=1
     }
 })
     return yesNo
 }
 
-
-
-
-function filter(roleName, idOfRoom) {
-
-    let somethingThere = false
-    allowedListSection.classList.toggle("hidden")
-    alowedList.innerHTML = ""
-    workerList.forEach(worker => {
-        if (roleName === "archive") {
-            if (worker.role === "manager") {
-                somethingThere = true
-                let allowedCard = cardIt(worker, idOfRoom)
-                alowedList.append(allowedCard)
-                console.log("first condition")
-            }
-
-
-        } else if (worker.role === roleName || worker.role === "manager" || worker.role === "nettoyage" || roleName === "justGo") {
-            console.log("second condition")
-            somethingThere = true
-            let allowedCard = cardIt(worker, idOfRoom)
-            alowedList.append(allowedCard)
-        }
-    })
-    if (!somethingThere) {
-
-
-        noCardAvailable()
-    }
-    verifyArray()
-    //should make statement to show unvailable people in this case
-}
-
-
 function cardIt(worker, idOfRoom) {
     let allowedCard = document.createElement('div')
+    allowedCard.dataset.id = worker.id
     allowedCard.innerHTML = `
                     <div data-id="${worker.id}"  class="card cursor-pointer flex flex-row gap-4 py-2 border-b-2 border-b-amber-400 md:hover:scale-102">
                           <img src="${worker.img}" alt="profile" class="rounded-full aspect-square max-h-13">
                           <div><h1 class="worker_NAME">${worker.name}</h1>
                           <p class="worker_ROLE">${worker.role}</p></div>
                      </div>`
-//ghibhdha bla fonction
-
+//     console.log(idOfRoom.dataset.salle,"this is the id of room")
     allowedCard.addEventListener('click', () => {
        let theMan = allowedCard.dataset.id
+        console.log(theMan,"this is theMan")
         workerList.forEach(e=>{
-            if (e.id === theMan){
-                e.salle = idOfRoom
+            if (e.id === parseInt(theMan)){
+                // console.log("this is the mannmnnnnnnnnnnnnnnnn ",e.id,theMan)
+                e.salle = idOfRoom.dataset.salle
             }
         })
-        
+        localsave()
         console.log("event triggered",idOfRoom)
-        showCards(idOfRoom)
-    
-        //
-        //
-        // if (idOfRoom === "conference") {
-        //     if ((receptionList.length + 1 > 4)) {
-        //         alert("conference room is full!")
-        //         return
-        //     }
-        //    
-        //     workerList = tempTransfer[0]
-        //     conferenceList = tempTransfer[1]
-        //     showCards(workerList, workerContainer)
-        //     showCards(conferenceList, conferenceContainer)
-        // }
-        //
-        // if (idOfRoom === "reception") {
-        //     if ((receptionList.length + 1 > 6)) {
-        //         alert("reception room is full!")
-        //         return
-        //     }
-        //     let tempTransfer = transfer(workerList, receptionList, worker)
-        //     workerList = tempTransfer[0]
-        //     receptionList = tempTransfer[1]
-        //     showCards(workerList, workerContainer)
-        //     showCards(receptionList, receptionContainer)
-        // }
-        // if (idOfRoom === "servers") {
-        //     if ((serversList.length + 1 > 3)) {
-        //         alert("servers room is full!")
-        //         return
-        //     }
-        //     let tempTransfer = transfer(workerList, serversList, worker)
-        //     workerList = tempTransfer[0]
-        //     serversList = tempTransfer[1]
-        //     showCards(workerList, workerContainer)
-        //     showCards(serversList, itContainer)
-        // }
-        // if (idOfRoom === "security") {
-        //     if ((securityList.length + 1 > 3)) {
-        //         alert("security room is full!")
-        //         return
-        //     }
-        //     let tempTransfer = transfer(workerList, securityList, worker)
-        //     workerList = tempTransfer[0]
-        //     securityList = tempTransfer[1]
-        //     showCards(workerList, workerContainer)
-        //     showCards(securityList, securityContainer)
-        // }
-        // if (idOfRoom === "personnel") {
-        //     if ((staffList.length + 1 > 3)) {
-        //         alert("staff room is full!")
-        //         return
-        //     }
-        //     let tempTransfer = transfer(workerList, staffList, worker)
-        //     workerList = tempTransfer[0]
-        //     staffList = tempTransfer[1]
-        //     showCards(workerList, workerContainer)
-        //     showCards(staffList, staffContainer)
-        // }
-        // if (idOfRoom === "archive") {
-        //     if ((archiveList.length + 1 > 3)) {
-        //         alert("archive room is full!")
-        //         return
-        //     }
-        //     let tempTransfer = transfer(workerList, archiveList, worker)
-        //     workerList = tempTransfer[0]
-        //     archiveList = tempTransfer[1]
-        //     showCards(workerList, workerContainer)
-        //     showCards(archiveList, archiveContainer)
-        // }
+        console.log("IDOFROOM",idOfRoom.parentElement.querySelector('.roomate'))
+        showCards(1)
         allowedListSection.classList.toggle("hidden")
-        verifyArray()
     })
-
     return allowedCard
 }
-
-
-function transfer(array1, array2, agent) {
-//add loop here refactor!!!
-    let temp = []
-    array2.push(agent)
-    array1.forEach(element => {
-        if (element.id !== agent.id) {
-            temp.push(element)
-        }
-    })
-    array1 = temp
-    return [array1, array2]
-}
-
 
 function noCardAvailable() {
     alowedList.innerHTML = `
                     <div class="text-red-500 flex flex-row gap-4 py-2 border-b-2 border-b-amber-400  ">
-                          <div><h1 class="worker_NAME">desole y a pas des roles pour les ajouter dans ce poste</h1>
-                    
+                          <div><h1 class="worker_NAME">There is no qualified workers to add here</h1>
                      </div>`
 }
 
@@ -631,8 +329,10 @@ function noCardAvailable() {
 function cardOfRooms(objet) {
     const card = document.createElement("div")
     card.className = "roomCards"
-    card.innerHTML = `<div id="${objet.id}" class="relative flex gap-[5%]   rounded-sm bg-white border-2  border-white max-w-[80px] md:max-w-[90px] aspect-[3/1] min-w-0 ">
-                                <img src="${objet.img}" class="rounded-sm  " alt="profile">
+    card.dataset.id = objet.id
+    console.log("im in cardofrooms , tara")
+    card.innerHTML = `<div  class="relative flex gap-[5%]   rounded-sm bg-white border-2  border-white max-w-[80px] md:max-w-[90px] aspect-[3/1] min-w-0 ">
+                                <img src="${objet.img}"  onerror="this.src='./assets/emptyProfile.jpg'" class="rounded-sm  " alt="profile">
                                 <svg  class="deleteBtn  cursor-pointer absolute top-1/2 left-full -translate-1/2 w-[20%] aspect-square" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg">
                                     <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0"
                                           fill="#f44336"/>
@@ -642,7 +342,7 @@ function cardOfRooms(objet) {
                                 <div class="   text-[8px] md:text-[9px] text-black flex flex-col justify-start  leading-none   sm:leading-tight"><h1 class="border-b-amber-400 border-b-[1px] lg:border-b-2 w-fit m-0" >${objet.name.split(" ")[0]}</h1><p>${objet.role}</p> </div>
 
                             </div>`
-    verifyArray()
+
     return card
 }
 
@@ -664,27 +364,31 @@ function experienceCardDetail(arrayofexperience) {
 }
 
 
-const detailPage = document.getElementById('detailCard')
 
 
-function detailledCard(objet, location) {
+function detailledCard(objet) {
     console.log(objet, "this is the one")
     detailSection.classList.toggle('hidden')
     detailPage.querySelector('#NameDetail').textContent = `${objet.name}`
     detailPage.querySelector('#phoneDetail').textContent = `${objet.phone}`
     detailPage.querySelector('#emailDetail').textContent = `${objet.email}`
     detailPage.querySelector('#roleDetail').textContent = `${objet.role}`
-    detailPage.querySelector('#locationDetail').textContent = location
+    let location = detailPage.querySelector('#locationDetail').textContent
+    objet.salle? location = `${objet.salle}` : location = "unssaigned"
+    detailPage.querySelector('#locationDetail').textContent = `${objet.salle}`
     detailPage.querySelector('#experienceContainerDetail').innerHTML = ""
     detailPage.querySelector('#experienceContainerDetail').append(experienceCardDetail(objet.experience))
     detailPage.querySelector('#imgDetail').src = objet.img
 }
 
 
-function verifyArray() {
+// function   { hadi verify , array
+//
+//     receptionContainer.parentElement.classList.toggle("bg-red-500/40", receptionList.length === 0)
+//     archiveContainer.parentElement.classList.toggle("bg-red-500/40", archiveList.length === 0)
+//     itContainer.parentElement.classList.toggle("bg-red-500/40", serversList.length === 0)
+//     securityContainer.parentElement.classList.toggle("bg-red-500/40", securityList.length === 0)
+// }
+function verifyArray(container){
 
-    receptionContainer.parentElement.classList.toggle("bg-red-500/40", receptionList.length === 0)
-    archiveContainer.parentElement.classList.toggle("bg-red-500/40", archiveList.length === 0)
-    itContainer.parentElement.classList.toggle("bg-red-500/40", serversList.length === 0)
-    securityContainer.parentElement.classList.toggle("bg-red-500/40", securityList.length === 0)
 }

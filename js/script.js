@@ -365,7 +365,7 @@ function cardOfRooms(objet) {
     card.className = "roomCards"
     card.dataset.id = objet.id
     console.log("im in cardofrooms , tara")
-    card.innerHTML = `<div  class="relative flex gap-[5%]   rounded-sm bg-white border-2  border-white max-w-[80px] md:max-w-[90px] aspect-[3/1] min-w-0 ">
+    card.innerHTML = `<div  class="relative flex gap-[5%]   rounded-sm bg-white border-2  border-white max-w-[50px] md:max-w-[80px] aspect-[3/1] min-w-0 ">
                                 <img src="${objet.img}"  onerror="this.src='./assets/emptyProfile.jpg'" class="rounded-sm  " alt="profile">
                                 <svg  class="deleteBtn  cursor-pointer absolute top-1/2 left-full -translate-1/2 w-[20%] aspect-square" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg">
                                     <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0"

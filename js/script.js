@@ -373,7 +373,7 @@ function cardOfRooms(objet) {
                                     <path d="m350.273438 320.105469c8.339843 8.34375 8.339843 21.824219 0 30.167969-4.160157 4.160156-9.621094 6.25-15.085938 6.25-5.460938 0-10.921875-2.089844-15.082031-6.25l-64.105469-64.109376-64.105469 64.109376c-4.160156 4.160156-9.621093 6.25-15.082031 6.25-5.464844 0-10.925781-2.089844-15.085938-6.25-8.339843-8.34375-8.339843-21.824219 0-30.167969l64.109376-64.105469-64.109376-64.105469c-8.339843-8.34375-8.339843-21.824219 0-30.167969 8.34375-8.339843 21.824219-8.339843 30.167969 0l64.105469 64.109376 64.105469-64.109376c8.34375-8.339843 21.824219-8.339843 30.167969 0 8.339843 8.34375 8.339843 21.824219 0 30.167969l-64.109376 64.105469zm0 0"
                                           fill="#fafafa"/>
                                 </svg>
-                                <div class="   text-[8px] md:text-[9px] text-black flex flex-col justify-start  leading-none   sm:leading-tight"><h1 class="border-b-amber-400 border-b-[1px] lg:border-b-2 w-fit m-0" >${objet.name.split(" ")[0]}</h1><p>${objet.role}</p> </div>
+                                <div class="   text-[8px] md:text-[9px] text-black flex flex-col justify-start  leading-none   sm:leading-tight"><h1 class="border-b-amber-400 border-b-[1px] lg:border-b-2 w-fit m-0" >${objet.name.split(" ")[0]}</h1><p class="text-[6px] sm:text-[8px]">${objet.role}</p> </div>
 
                             </div>`
 
